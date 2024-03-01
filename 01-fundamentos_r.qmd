@@ -115,7 +115,7 @@ Por exemplo, ao usar a função ls() (que lista os nomes dos objetos no ambiente
 ls()
 ```
 
-Se você executou corretamente todos os comandos da Seção [@sec-tipodedados], deve obter como resultado no console o seguinte:
+Se você executou corretamente todos os comandos da @sec-tipodedados, deve obter como resultado no console o seguinte:
 
 `[1] "empresa"               "pais"                  "qtd_acoes"`\
 `[4] "queda_preco_acoes"     "taxa_inflacao"         "taxa_juros_aumentando"`
