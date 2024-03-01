@@ -1,0 +1,8 @@
+# Manipulação de dados
+
+## Importar arquivos externos
+
+## O pacote tidyverse
+
+focar no tidyr e no dplyr
+

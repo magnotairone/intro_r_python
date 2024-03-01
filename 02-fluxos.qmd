@@ -1,0 +1,7 @@
+# Fluxos de execução
+
+## Estruturas condicionais
+if, else, 
+
+## Estruturas de repetição
+while e for
