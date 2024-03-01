@@ -1,4 +1,4 @@
-# Visualização de dados
+# Visualização de dados {#ch-dataviz}
 
 In summary, this book has no content whatsoever.
 

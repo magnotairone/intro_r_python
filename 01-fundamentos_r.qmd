@@ -498,6 +498,7 @@ dados_demograficos <- data.frame(
 
 Podemos combinar novas linhas de dados ao dataframe existente.
 
+TODO: adicionar dados faltantes e explicar
 ```{r}
 # Criando outro dataframe para combinação de linhas
 mais_dados <- data.frame(

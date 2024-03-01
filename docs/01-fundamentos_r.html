@@ -366,7 +366,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Se você executou corretamente todos os comandos da <a href="#sec-tipodedados"><span>Section&nbsp;1.2</span></a>, deve obter como resultado no console o seguinte:</p>
+<p>Se você executou corretamente todos os comandos da Seção <a href="#sec-tipodedados"><span>Section&nbsp;1.2</span></a>, deve obter como resultado no console o seguinte:</p>
 <p><code>[1] "empresa"               "pais"                  "qtd_acoes"</code><br>
 <code>[4] "queda_preco_acoes"     "taxa_inflacao"         "taxa_juros_aumentando"</code></p>
 <p>usando R como calculadora numeros especiais</p>
@@ -628,13 +628,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="dataframes" class="level3" data-number="1.6.4">
 <h3 data-number="1.6.4" class="anchored" data-anchor-id="dataframes"><span class="header-section-number">1.6.4</span> DataFrames</h3>
-<p>vetor, matriz, listas, dataframe</p>
-<p>utilizando R como calculadora, números especiais</p>
+<p>Os dataframes são estruturas de dados tabulares em R que representam conjuntos de dados retangulares onde as colunas podem ser de tipos diferentes, como numérico, caractere, lógico ou fator.</p>
+<p>Para criar um dataframe, usamos a função <code>data.frame()</code>, fornecendo vetores de dados para cada coluna.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um dataframe com dados econômicos</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>dados_economicos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  país <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Brasil"</span>, <span class="st">"EUA"</span>, <span class="st">"China"</span>, <span class="st">"Índia"</span>, <span class="st">"Japão"</span>),</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">continente =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"América"</span>, <span class="st">"América"</span>, <span class="st">"Ásia"</span>, <span class="st">"Ásia"</span>, <span class="st">"Ásia"</span>)),</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  população <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">213</span>, <span class="dv">328</span>, <span class="dv">1441</span>, <span class="dv">1380</span>, <span class="dv">126</span>),</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pib_per_capita =</span> <span class="fu">c</span>(<span class="dv">10294</span>, <span class="dv">65741</span>, <span class="dv">10380</span>, <span class="dv">2353</span>, <span class="dv">41581</span>),</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  inflação <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.01</span>, <span class="fl">0.04</span>, <span class="fl">0.06</span>, <span class="fl">0.005</span>)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Podemos acessar elementos individuais, linhas ou colunas de um dataframe usando índices numéricos ou nomes de colunas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessando a primeira linha do dataframe</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>(primeira_linha <span class="ot">&lt;-</span> dados_economicos[<span class="dv">1</span>, ])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    país continente população pib_per_capita inflação
+1 Brasil    América       213          10294     0.02</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessando a coluna "país" do dataframe</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>(paises <span class="ot">&lt;-</span> dados_economicos<span class="sc">$</span>país)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Brasil" "EUA"    "China"  "Índia"  "Japão" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessando o elemento na segunda linha e terceira coluna do dataframe</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>(elemento <span class="ot">&lt;-</span> dados_economicos[<span class="dv">2</span>, <span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 328</code></pre>
+</div>
+</div>
+<p>Podemos combinar dataframes com base em colunas comuns usando a função <code>merge()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando outro dataframe para junção</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>dados_demograficos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  país <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"China"</span>, <span class="st">"Índia"</span>, <span class="st">"Japão"</span>, <span class="st">"Brasil"</span>, <span class="st">"EUA"</span>),</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">expectativa_vida =</span> <span class="fu">c</span>(<span class="dv">76</span>, <span class="dv">69</span>, <span class="dv">84</span>, <span class="dv">75</span>, <span class="dv">79</span>)</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Realizando uma junção (merge) com base na coluna "país"</span></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>(dados_com_demografia <span class="ot">&lt;-</span> <span class="fu">merge</span>(dados_economicos, dados_demograficos, <span class="at">by =</span> <span class="st">"país"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    país continente população pib_per_capita inflação expectativa_vida
+1 Brasil    América       213          10294    0.020               75
+2  China       Ásia      1441          10380    0.040               76
+3    EUA    América       328          65741    0.010               79
+4  Índia       Ásia      1380           2353    0.060               69
+5  Japão       Ásia       126          41581    0.005               84</code></pre>
+</div>
+</div>
+<p>Podemos combinar novas linhas de dados ao dataframe existente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando outro dataframe para combinação de linhas</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>mais_dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  país <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"África do Sul"</span>, <span class="st">"Alemanha"</span>),</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">continente =</span> <span class="fu">c</span>(<span class="st">"África"</span>, <span class="st">"Europa"</span>),</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  população <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">83</span>),</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pib_per_capita =</span> <span class="fu">c</span>(<span class="dv">6151</span>, <span class="dv">52947</span>),</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  inflação <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.015</span>),</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">expectativa_vida =</span> <span class="fu">c</span>(<span class="dv">58</span>, <span class="dv">81</span>)</span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinando os dataframes por linhas</span></span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>(todos_dados <span class="ot">&lt;-</span> <span class="fu">rbind</span>(dados_com_demografia, mais_dados))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           país continente população pib_per_capita inflação expectativa_vida
+1        Brasil    América       213          10294    0.020               75
+2         China       Ásia      1441          10380    0.040               76
+3           EUA    América       328          65741    0.010               79
+4         Índia       Ásia      1380           2353    0.060               69
+5         Japão       Ásia       126          41581    0.005               84
+6 África do Sul     África        60           6151    0.025               58
+7      Alemanha     Europa        83          52947    0.015               81</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="exercícios" class="level2" data-number="1.7">
 <h2 data-number="1.7" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">1.7</span> Exercícios</h2>
-<p>utilize a funcao class e avalie a diferenca entre pais_info[1] e e pais_info[[2]]</p>
+<p>utilize a funcao class e avalie a diferenca entre <code>pais_info[1]</code> e <code>pais_info[[2]]</code></p>
 
 
 </section>
