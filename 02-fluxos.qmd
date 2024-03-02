@@ -150,7 +150,6 @@ print(media_movel)
 ```
 Este exemplo demonstra como usar um loop for em conjunto com vetores para calcular a média móvel de uma série temporal.
 O gráfico abaixo mostra a média móvel ao longo dos dias.
-Você aprenderá como construir gráficos assim na @ch-dataviz.
 
 ```{r echo=FALSE}
 ggplot2::ggplot(tidyr::tibble(t=5:30, mm=media_movel), ggplot2::aes(t, mm)) +
@@ -160,6 +159,11 @@ ggplot2::ggplot(tidyr::tibble(t=5:30, mm=media_movel), ggplot2::aes(t, mm)) +
   ggplot2::ylim(10,15)+
   ggplot2::theme_bw()
 ```
+
+:::{.callout-note}
+Você vai aprender a construir gráficos como este no [Capítulo 4](04-visualizacao.qmd).
+:::
+
 :::
 
 ### `while`
@@ -239,8 +243,91 @@ print(paste("Foram necessários", anos, "anos para atingir uma população de", 
 É possível calcular diretamente o número de anos necessários para atingir a população limite desejada. 
 Com um pouco de álgebra você chege na seguinte fórmula para calcular o número de anos:
 $$\text{anos} = \frac{\log\left(\frac{\text{limite\_populacional}}{\text{populacao\_inicial}}\right)}{\log(1 + \text{taxa\_crescimento})}.$$
+
+## Funções
+
+Uma função em R é um bloco de código que realiza uma tarefa específica e pode ser reutilizado várias vezes. A sintaxe para definir uma função em R segue o padrão:
+```{r eval=FALSE}
+nome_da_funcao <- function(parametros) {
+  # Corpo da função
+  # Código que realiza a tarefa desejada
+  # Pode incluir operações matemáticas, manipulação de dados, etc.
+  return(resultado)  # Retorna o resultado desejado
+}
+```
+
+Os parâmetros são variáveis que uma função recebe como entrada para executar suas operações. Eles são especificados entre parênteses na definição da função. Dentro do corpo da função, os parâmetros podem ser utilizados para realizar cálculos ou operações.
+
+O exemplo abaixo define uma função para realizar uma regressão linear simples.
+A função `regressao_linear` recebe dois parâmetros: `x` e `y`, que representam os dados de entrada para a regressão linear. 
+Dentro da função, um modelo de regressão linear é criado usando a função `lm()` do R com os dados `y` em função de `x`. 
+A documentação da função `lm()` pode ser acessada ao executar o comando `?lm`.
+O modelo resultante é retornado como resultado da função.
+
+```{r}
+# Função para realizar regressão linear simples
+regressao_linear <- function(x, y) {
+  modelo <- lm(y ~ x)  # Criando o modelo de regressão linear
+  return(modelo)  # Retornando o modelo
+}
+
+# Dados de exemplo: salário (y) em função dos anos de educação (x)
+anos_educacao <- c(10, 12, 14, 16, 18)
+salario <- c(2500, 3300, 3550, 3700, 4500)
+
+# Chamando a função de regressão linear
+modelo_regressao <- regressao_linear(anos_educacao, salario)
+```
+
+Veja o sumário com o resultado do modelo treinado.
+```{r}
+# Exibindo os resultados da regressão
+summary(modelo_regressao)
+```
+
+A figura abaixo mostra um gráfico de dispersão que representa a relação entre anos de educação e salário.
+A reta azul mostra o modelo de regressão linear treinado com os dados.
+
+```{r echo=FALSE}
+coefs = data.frame(intercept=coef(modelo_regressao)[1],
+                   slope=coef(modelo_regressao)[2],
+                   class = "coef")
+
+ggplot2::ggplot(tidyr::tibble(anos_educacao = anos_educacao,
+       salario = salario),
+       ggplot2::aes(anos_educacao, salario))+
+  ggplot2::geom_point() +
+  ggplot2::geom_abline(data=coefs,
+              ggplot2::aes(intercept=intercept,slope=slope,color=class),
+              show.legend = TRUE)+
+  ggplot2::scale_color_manual(breaks=c("coef"), 
+                              values="blue", labels=c("Modelo linear"))+
+  ggplot2::labs(x="Anos de educação", y="Salário", title="Relação entre escolaridade e salário",color="")+
+  ggplot2::theme_bw()+
+  ggplot2::theme(legend.position = "bottom")
+```
+
+:::{.callout-note}
+Você vai aprender a construir gráficos como este no [Capítulo 4](04-visualizacao.qmd).
 :::
-:::
+
+## Pacotes {#sec-pacotes}
+
+Os pacotes no R são conjuntos de funções, conjuntos de dados e documentação que ampliam as capacidades básicas da linguagem R. Eles são essenciais para expandir a funcionalidade do R, permitindo que os usuários realizem uma ampla variedade de tarefas.
+
+Os pacotes do R estão disponíveis no CRAN (Comprehensive R Archive Network), um repositório centralizado que abriga uma vasta coleção de pacotes, manuais, documentações e outros recursos relacionados ao R. O CRAN é essencialmente o principal hub para distribuição de pacotes R e serve como uma fonte confiável e abrangente de ferramentas para análise de dados, estatísticas e muito mais.
+Para acessar os pacotes do CRAN, você pode usar a função `install.packages()`. 
+Por exemplo:
+```{r eval=FALSE}
+install.packages("nome_do_pacote")
+```
+
+Depois de instalar um pacote, você precisa carregá-lo em sua sessão R usando a função `library()`:
+```{r eval=FALSE}
+library(nome_do_pacote)
+```
+
+Isso tornará as funções e conjuntos de dados do pacote disponíveis para uso em sua sessão atual.
 
 ## Exercícios
 
@@ -261,7 +348,7 @@ lancamentos <- rbinom(100, 1, 0.5)
 
 **2.** Trabalhando com dados de pacotes.
 
-  **a)** Instale o pacote nycflights13 utilizando o comando abaixo:
+  **a)** Instale o pacote `nycflights13` utilizando o comando abaixo:
 ```{r eval=FALSE}
 install.packages("nycflights13")
 ```

@@ -3,3 +3,4 @@
 Este livro é composto por notas de aula do minicurso de introdução às linguagens de programação R e Python.
 
 <!-- See @knuth84 for additional discussion of literate programming. -->
+

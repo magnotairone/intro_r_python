@@ -126,7 +126,7 @@ levels(risco_credito)
 ## Fundamentos da linguagem
 
 O ambiente R refere-se ao espaço de trabalho onde todas as variáveis, funções e objetos criados durante uma sessão R são armazenados e manipulados.
-O ambiente inclui tanto os objetos que você criou quanto os que são carregados automaticamente por meio de pacotes ou outros mecanismos de importação de dados (mais sobre pacotes a seguir).
+O ambiente inclui tanto os objetos que você criou quanto os que são carregados automaticamente por meio de pacotes ou outros mecanismos de importação de dados (mais sobre pacotes na @sec-pacotes).
 
 Por exemplo, ao usar a função ls() (que lista os nomes dos objetos no ambiente atual), podemos ver todos os objetos atualmente presentes no ambiente R.
 
@@ -382,6 +382,11 @@ segunda_coluna <- retornos_ativos[, 2]
 # Acessando o elemento na segunda linha e terceira coluna da matriz
 elemento <- retornos_ativos[2, 3]
 
+# Acessando as três primeiras linhas da matriz
+primeiras_linhas <- retornos_ativos[1:2, ]
+
+# Acessando mais de uma coluna da matriz
+algumas_colunas <- retornos_ativos[, c(1,3)]
 ```
 
 -   Acessando Linhas e Colunas por Nomes: Se você definiu nomes para as linhas e/ou colunas da matriz, você pode acessá-las usando esses nomes.
@@ -451,7 +456,44 @@ terceiro_elemento <- pais_info[[3]]
 Você deve ter notado o uso de colchetes duplos para acessar os elementos da lista.
 Em R, os colchetes simples (`[]`) e duplos (`[[]]`) têm diferentes propósitos quando usados para acessar elementos em uma lista.
 
+Imagine que uma lista em R seja como um trem, e cada elemento dessa lista é um vagão do trem.
+Agora, dentro de cada vagão, você pode armazenar diferentes tipos de carga, como caixas, sacos ou até mesmo outros vagões.
+
+Por exemplo, em um vagão você pode ter um vetor, em outro uma matriz e em outro apenas um número.
+Cada elemento da lista pode ser diferente do outro em tipo e conteúdo, assim como cada vagão de um trem pode conter coisas diferentes.
+
+Quando você quer acessar um vagão específico do trem, você usa colchetes simples \[ \], e quando quer acessar os elementos dentro desse vagão, usa colchetes duplos \[\[ \]\].
+É como abrir a porta de um vagão para ver o que tem dentro e, em seguida, olhar dentro das caixas que estão dentro desse vagão para ver o que tem lá.
+
+Vamos usar a analogia dos trens e vagões com a lista `pais_info`, que contém informações sobre o Brasil:
+
+**Acessando um vagão específico**
+
+Para acessar informações específicas sobre o Brasil, como o nome do país ou o valor do PIB, podemos usar os colchetes simples `[ ]`.
+Por exemplo: - `pais_info["nome"]`: obtemos o vagão que contém o nome do país, e encontramos "Brasil".
+- `pais_info[2]` : obtemos o segundo vagão, neste caso é o que contem o PIB do país, e encontramos o valor 1609.
+
+**Acessando elementos dentro de um vagão**
+
+Agora, se quisermos acessar elementos específicos dentro de um vagão, usamos colchetes duplos `[[ ]]`.
+Por exemplo:
+
+-   `pais_info[["cambio"]]`: abrimos o vagão que contém informações sobre o câmbio do país e acessamos o seu conteúdo, que é um vetor com diferentes valores de câmbio ao longo do tempo.
+
+Agora, se quisermos acessar um valor específico desse vetor, podemos usar os colchetes simples `[ ]` novamente:
+
+-   `pais_info[["cambio"]][3]`: isso abre o vagão que contém o vetor de câmbio e encontra o terceiro valor, que é 5.20.
+
+Ao usar a função `class()` podemos notar a diferença entre os objetos obtidos ao usar colchetes simples e duplos.
+
+```{r}
+class(pais_info["nome"])
+class(pais_info[["nome"]])
+```
+
+::: {.callout-note title="Resumindo"}
 Em resumo, os colchetes simples são usados para acessar subconjuntos de elementos em uma lista, preservando sua estrutura, enquanto os colchetes duplos são usados para acessar valores individuais de uma lista, sem preservar a estrutura original.
+:::
 
 ### DataFrames
 
@@ -498,7 +540,6 @@ dados_demograficos <- data.frame(
 
 Podemos combinar novas linhas de dados ao dataframe existente.
 
-TODO: adicionar dados faltantes e explicar
 ```{r}
 # Criando outro dataframe para combinação de linhas
 mais_dados <- data.frame(
@@ -506,13 +547,29 @@ mais_dados <- data.frame(
   continente = c("África", "Europa"),
   população = c(60, 83),
   pib_per_capita = c(6151, 52947),
-  inflação = c(0.025, 0.015),
+  inflação = c(0.025, NA),
   expectativa_vida = c(58, 81)
 )
 
 # Combinando os dataframes por linhas
 (todos_dados <- rbind(dados_com_demografia, mais_dados))
 ```
+
+::: {.callout-important title="Dados faltantes"}
+Você deve ter observado no dataframe `mais_dados` que o valor da inflação para a Alemanha está como `NA`.
+Um dado `NA`, abreviação de "Not Available" (não disponível), é uma marcação que indica a ausência de um valor em um conjunto de dados.
+No exemplo acima, a presença do dado `NA`na coluna de inflação para a Alemanha significa que não há um valor disponível para a inflação desse país na tabela fornecida.
+
+Um dado pode ser marcado como `NA` em diversas situações, incluindo
+
+-   **Dados ausentes**: Quando não há informação disponível para um determinado campo em um conjunto de dados. Por exemplo, falta de dados sobre o índice de desemprego em determinadas regiões devido à falta de disponibilidade ou relatórios incompletos.
+
+-   **Erros de medição ou coleta**: Em algumas situações, erros podem ocorrer durante o processo de medição ou coleta de dados, levando a valores inexatos ou ausentes. Por exemplo, ao registrar o PIB de um país, um erro humano pode levar a valores inexatos ou até mesmo ausentes em determinados trimestres devido a falhas no processo de coleta de dados.
+
+-   **Valores inaplicáveis**: Algumas variáveis podem não ser aplicáveis a todos os casos. Por exemplo, ao analisar os gastos do governo em educação, pode não haver dados disponíveis para alguns países devido a diferenças nas políticas de relatório ou à falta de investimento em educação em determinados períodos.
+
+-   **Valores não registrados**: Em algumas bases de dados, certos valores podem não ser registrados de propósito, seja por questões de privacidade ou por não serem relevantes para o contexto da análise. Por exemplo, ao coletar dados sobre o patrimônio líquido dos indivíduos em uma pesquisa de renda, alguns participantes podem optar por não divulgar suas informações financeiras por motivos de privacidade. Nesses casos, os valores correspondentes seriam marcados como `NA`.
+:::
 
 ## Exercícios
 

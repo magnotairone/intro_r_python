@@ -360,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="fundamentos-da-linguagem" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="fundamentos-da-linguagem"><span class="header-section-number">1.3</span> Fundamentos da linguagem</h2>
-<p>O ambiente R refere-se ao espaço de trabalho onde todas as variáveis, funções e objetos criados durante uma sessão R são armazenados e manipulados. O ambiente inclui tanto os objetos que você criou quanto os que são carregados automaticamente por meio de pacotes ou outros mecanismos de importação de dados (mais sobre pacotes a seguir).</p>
+<p>O ambiente R refere-se ao espaço de trabalho onde todas as variáveis, funções e objetos criados durante uma sessão R são armazenados e manipulados. O ambiente inclui tanto os objetos que você criou quanto os que são carregados automaticamente por meio de pacotes ou outros mecanismos de importação de dados (mais sobre pacotes na <a href="02-fluxos.html#sec-pacotes"><span>Section&nbsp;2.4</span></a>).</p>
 <p>Por exemplo, ao usar a função ls() (que lista os nomes dos objetos no ambiente atual), podemos ver todos os objetos atualmente presentes no ambiente R.</p>
 <!-- TODO: tem uma variavel sobrando: hasanotations -->
 <div class="cell">
@@ -564,7 +564,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>segunda_coluna <span class="ot">&lt;-</span> retornos_ativos[, <span class="dv">2</span>]</span>
 <span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessando o elemento na segunda linha e terceira coluna da matriz</span></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>elemento <span class="ot">&lt;-</span> retornos_ativos[<span class="dv">2</span>, <span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>elemento <span class="ot">&lt;-</span> retornos_ativos[<span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessando as três primeiras linhas da matriz</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>primeiras_linhas <span class="ot">&lt;-</span> retornos_ativos[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, ]</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessando mais de uma coluna da matriz</span></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>algumas_colunas <span class="ot">&lt;-</span> retornos_ativos[, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Acessando Linhas e Colunas por Nomes: Se você definiu nomes para as linhas e/ou colunas da matriz, você pode acessá-las usando esses nomes.</li>
@@ -624,51 +630,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>terceiro_elemento <span class="ot">&lt;-</span> pais_info[[<span class="dv">3</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Você deve ter notado o uso de colchetes duplos para acessar os elementos da lista. Em R, os colchetes simples (<code>[]</code>) e duplos (<code>[[]]</code>) têm diferentes propósitos quando usados para acessar elementos em uma lista.</p>
+<p>Imagine que uma lista em R seja como um trem, e cada elemento dessa lista é um vagão do trem. Agora, dentro de cada vagão, você pode armazenar diferentes tipos de carga, como caixas, sacos ou até mesmo outros vagões.</p>
+<p>Por exemplo, em um vagão você pode ter um vetor, em outro uma matriz e em outro apenas um número. Cada elemento da lista pode ser diferente do outro em tipo e conteúdo, assim como cada vagão de um trem pode conter coisas diferentes.</p>
+<p>Quando você quer acessar um vagão específico do trem, você usa colchetes simples [ ], e quando quer acessar os elementos dentro desse vagão, usa colchetes duplos [[ ]]. É como abrir a porta de um vagão para ver o que tem dentro e, em seguida, olhar dentro das caixas que estão dentro desse vagão para ver o que tem lá.</p>
+<p>Vamos usar a analogia dos trens e vagões com a lista <code>pais_info</code>, que contém informações sobre o Brasil:</p>
+<p><strong>Acessando um vagão específico</strong></p>
+<p>Para acessar informações específicas sobre o Brasil, como o nome do país ou o valor do PIB, podemos usar os colchetes simples <code>[ ]</code>. Por exemplo: - <code>pais_info["nome"]</code>: obtemos o vagão que contém o nome do país, e encontramos “Brasil”. - <code>pais_info[2]</code> : obtemos o segundo vagão, neste caso é o que contem o PIB do país, e encontramos o valor 1609.</p>
+<p><strong>Acessando elementos dentro de um vagão</strong></p>
+<p>Agora, se quisermos acessar elementos específicos dentro de um vagão, usamos colchetes duplos <code>[[ ]]</code>. Por exemplo:</p>
+<ul>
+<li><code>pais_info[["cambio"]]</code>: abrimos o vagão que contém informações sobre o câmbio do país e acessamos o seu conteúdo, que é um vetor com diferentes valores de câmbio ao longo do tempo.</li>
+</ul>
+<p>Agora, se quisermos acessar um valor específico desse vetor, podemos usar os colchetes simples <code>[ ]</code> novamente:</p>
+<ul>
+<li><code>pais_info[["cambio"]][3]</code>: isso abre o vagão que contém o vetor de câmbio e encontra o terceiro valor, que é 5.20.</li>
+</ul>
+<p>Ao usar a função <code>class()</code> podemos notar a diferença entre os objetos obtidos ao usar colchetes simples e duplos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(pais_info[<span class="st">"nome"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "list"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(pais_info[[<span class="st">"nome"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Resumindo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Resumindo
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Em resumo, os colchetes simples são usados para acessar subconjuntos de elementos em uma lista, preservando sua estrutura, enquanto os colchetes duplos são usados para acessar valores individuais de uma lista, sem preservar a estrutura original.</p>
+</div>
+</div>
 </section>
 <section id="dataframes" class="level3" data-number="1.6.4">
 <h3 data-number="1.6.4" class="anchored" data-anchor-id="dataframes"><span class="header-section-number">1.6.4</span> DataFrames</h3>
 <p>Os dataframes são estruturas de dados tabulares em R que representam conjuntos de dados retangulares onde as colunas podem ser de tipos diferentes, como numérico, caractere, lógico ou fator.</p>
 <p>Para criar um dataframe, usamos a função <code>data.frame()</code>, fornecendo vetores de dados para cada coluna.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um dataframe com dados econômicos</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>dados_economicos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  país <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Brasil"</span>, <span class="st">"EUA"</span>, <span class="st">"China"</span>, <span class="st">"Índia"</span>, <span class="st">"Japão"</span>),</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">continente =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"América"</span>, <span class="st">"América"</span>, <span class="st">"Ásia"</span>, <span class="st">"Ásia"</span>, <span class="st">"Ásia"</span>)),</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  população <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">213</span>, <span class="dv">328</span>, <span class="dv">1441</span>, <span class="dv">1380</span>, <span class="dv">126</span>),</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pib_per_capita =</span> <span class="fu">c</span>(<span class="dv">10294</span>, <span class="dv">65741</span>, <span class="dv">10380</span>, <span class="dv">2353</span>, <span class="dv">41581</span>),</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  inflação <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.01</span>, <span class="fl">0.04</span>, <span class="fl">0.06</span>, <span class="fl">0.005</span>)</span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um dataframe com dados econômicos</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>dados_economicos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  país <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Brasil"</span>, <span class="st">"EUA"</span>, <span class="st">"China"</span>, <span class="st">"Índia"</span>, <span class="st">"Japão"</span>),</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">continente =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"América"</span>, <span class="st">"América"</span>, <span class="st">"Ásia"</span>, <span class="st">"Ásia"</span>, <span class="st">"Ásia"</span>)),</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  população <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">213</span>, <span class="dv">328</span>, <span class="dv">1441</span>, <span class="dv">1380</span>, <span class="dv">126</span>),</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pib_per_capita =</span> <span class="fu">c</span>(<span class="dv">10294</span>, <span class="dv">65741</span>, <span class="dv">10380</span>, <span class="dv">2353</span>, <span class="dv">41581</span>),</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  inflação <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.01</span>, <span class="fl">0.04</span>, <span class="fl">0.06</span>, <span class="fl">0.005</span>)</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Podemos acessar elementos individuais, linhas ou colunas de um dataframe usando índices numéricos ou nomes de colunas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessando a primeira linha do dataframe</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>(primeira_linha <span class="ot">&lt;-</span> dados_economicos[<span class="dv">1</span>, ])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessando a primeira linha do dataframe</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>(primeira_linha <span class="ot">&lt;-</span> dados_economicos[<span class="dv">1</span>, ])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    país continente população pib_per_capita inflação
 1 Brasil    América       213          10294     0.02</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessando a coluna "país" do dataframe</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>(paises <span class="ot">&lt;-</span> dados_economicos<span class="sc">$</span>país)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessando a coluna "país" do dataframe</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>(paises <span class="ot">&lt;-</span> dados_economicos<span class="sc">$</span>país)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Brasil" "EUA"    "China"  "Índia"  "Japão" </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessando o elemento na segunda linha e terceira coluna do dataframe</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>(elemento <span class="ot">&lt;-</span> dados_economicos[<span class="dv">2</span>, <span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Acessando o elemento na segunda linha e terceira coluna do dataframe</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>(elemento <span class="ot">&lt;-</span> dados_economicos[<span class="dv">2</span>, <span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 328</code></pre>
 </div>
 </div>
 <p>Podemos combinar dataframes com base em colunas comuns usando a função <code>merge()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando outro dataframe para junção</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>dados_demograficos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  país <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"China"</span>, <span class="st">"Índia"</span>, <span class="st">"Japão"</span>, <span class="st">"Brasil"</span>, <span class="st">"EUA"</span>),</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">expectativa_vida =</span> <span class="fu">c</span>(<span class="dv">76</span>, <span class="dv">69</span>, <span class="dv">84</span>, <span class="dv">75</span>, <span class="dv">79</span>)</span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Realizando uma junção (merge) com base na coluna "país"</span></span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>(dados_com_demografia <span class="ot">&lt;-</span> <span class="fu">merge</span>(dados_economicos, dados_demograficos, <span class="at">by =</span> <span class="st">"país"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando outro dataframe para junção</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>dados_demograficos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  país <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"China"</span>, <span class="st">"Índia"</span>, <span class="st">"Japão"</span>, <span class="st">"Brasil"</span>, <span class="st">"EUA"</span>),</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">expectativa_vida =</span> <span class="fu">c</span>(<span class="dv">76</span>, <span class="dv">69</span>, <span class="dv">84</span>, <span class="dv">75</span>, <span class="dv">79</span>)</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Realizando uma junção (merge) com base na coluna "país"</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>(dados_com_demografia <span class="ot">&lt;-</span> <span class="fu">merge</span>(dados_economicos, dados_demograficos, <span class="at">by =</span> <span class="st">"país"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    país continente população pib_per_capita inflação expectativa_vida
 1 Brasil    América       213          10294    0.020               75
@@ -680,18 +724,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Podemos combinar novas linhas de dados ao dataframe existente.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando outro dataframe para combinação de linhas</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>mais_dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  país <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"África do Sul"</span>, <span class="st">"Alemanha"</span>),</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">continente =</span> <span class="fu">c</span>(<span class="st">"África"</span>, <span class="st">"Europa"</span>),</span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  população <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">83</span>),</span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pib_per_capita =</span> <span class="fu">c</span>(<span class="dv">6151</span>, <span class="dv">52947</span>),</span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  inflação <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.015</span>),</span>
-<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">expectativa_vida =</span> <span class="fu">c</span>(<span class="dv">58</span>, <span class="dv">81</span>)</span>
-<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinando os dataframes por linhas</span></span>
-<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>(todos_dados <span class="ot">&lt;-</span> <span class="fu">rbind</span>(dados_com_demografia, mais_dados))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando outro dataframe para combinação de linhas</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>mais_dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  país <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"África do Sul"</span>, <span class="st">"Alemanha"</span>),</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">continente =</span> <span class="fu">c</span>(<span class="st">"África"</span>, <span class="st">"Europa"</span>),</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  população <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">83</span>),</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">pib_per_capita =</span> <span class="fu">c</span>(<span class="dv">6151</span>, <span class="dv">52947</span>),</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>  inflação <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="cn">NA</span>),</span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">expectativa_vida =</span> <span class="fu">c</span>(<span class="dv">58</span>, <span class="dv">81</span>)</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinando os dataframes por linhas</span></span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>(todos_dados <span class="ot">&lt;-</span> <span class="fu">rbind</span>(dados_com_demografia, mais_dados))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           país continente população pib_per_capita inflação expectativa_vida
 1        Brasil    América       213          10294    0.020               75
@@ -700,7 +744,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 4         Índia       Ásia      1380           2353    0.060               69
 5         Japão       Ásia       126          41581    0.005               84
 6 África do Sul     África        60           6151    0.025               58
-7      Alemanha     Europa        83          52947    0.015               81</code></pre>
+7      Alemanha     Europa        83          52947       NA               81</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Dados faltantes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dados faltantes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Você deve ter observado no dataframe <code>mais_dados</code> que o valor da inflação para a Alemanha está como <code>NA</code>. Um dado <code>NA</code>, abreviação de “Not Available” (não disponível), é uma marcação que indica a ausência de um valor em um conjunto de dados. No exemplo acima, a presença do dado <code>NA</code>na coluna de inflação para a Alemanha significa que não há um valor disponível para a inflação desse país na tabela fornecida.</p>
+<p>Um dado pode ser marcado como <code>NA</code> em diversas situações, incluindo</p>
+<ul>
+<li><p><strong>Dados ausentes</strong>: Quando não há informação disponível para um determinado campo em um conjunto de dados. Por exemplo, falta de dados sobre o índice de desemprego em determinadas regiões devido à falta de disponibilidade ou relatórios incompletos.</p></li>
+<li><p><strong>Erros de medição ou coleta</strong>: Em algumas situações, erros podem ocorrer durante o processo de medição ou coleta de dados, levando a valores inexatos ou ausentes. Por exemplo, ao registrar o PIB de um país, um erro humano pode levar a valores inexatos ou até mesmo ausentes em determinados trimestres devido a falhas no processo de coleta de dados.</p></li>
+<li><p><strong>Valores inaplicáveis</strong>: Algumas variáveis podem não ser aplicáveis a todos os casos. Por exemplo, ao analisar os gastos do governo em educação, pode não haver dados disponíveis para alguns países devido a diferenças nas políticas de relatório ou à falta de investimento em educação em determinados períodos.</p></li>
+<li><p><strong>Valores não registrados</strong>: Em algumas bases de dados, certos valores podem não ser registrados de propósito, seja por questões de privacidade ou por não serem relevantes para o contexto da análise. Por exemplo, ao coletar dados sobre o patrimônio líquido dos indivíduos em uma pesquisa de renda, alguns participantes podem optar por não divulgar suas informações financeiras por motivos de privacidade. Nesses casos, os valores correspondentes seriam marcados como <code>NA</code>.</p></li>
+</ul>
 </div>
 </div>
 </section>
