@@ -81,7 +81,7 @@ Neste exemplo, a empresa é classificada com base em sua receita anual. Se a rec
 
 As estruturas de repetição, também conhecidas como loops, são utilizadas para executar um bloco de código repetidamente enquanto uma condição específica for verdadeira ou para percorrer uma sequência de elementos. Isso é útil quando você precisa executar uma tarefa várias vezes ou quando deseja iterar sobre uma coleção de dados.
 
-### `foor` 
+### `for` 
 Uma das estruturas de repetição mais comuns é o loop `for.` O loop for é usado para iterar sobre uma sequência de valores, como uma sequência numérica de números inteiros ou os elementos de um vetor.
 
 Existem duas maneiras de se usar o `for` loop.
