@@ -4,5 +4,7 @@
 
 ## O pacote tidyverse
 
-focar no tidyr e no dplyr
+### Dados no formato tidy
+
+### Principais verbos do pacote `dplyr`
 

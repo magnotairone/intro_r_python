@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -209,7 +175,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#gramática-dos-gráficos" id="toc-gramática-dos-gráficos" class="nav-link active" data-scroll-target="#gramática-dos-gráficos"><span class="header-section-number">4.1</span> Gramática dos Gráficos</a></li>
+  <li><a href="#o-pacote-ggplot" id="toc-o-pacote-ggplot" class="nav-link" data-scroll-target="#o-pacote-ggplot"><span class="header-section-number">4.2</span> O pacote ggplot</a>
+  <ul class="collapse">
+  <li><a href="#dados" id="toc-dados" class="nav-link" data-scroll-target="#dados"><span class="header-section-number">4.2.1</span> Dados</a></li>
+  <li><a href="#geometria" id="toc-geometria" class="nav-link" data-scroll-target="#geometria"><span class="header-section-number">4.2.2</span> Geometria</a></li>
+  <li><a href="#estética" id="toc-estética" class="nav-link" data-scroll-target="#estética"><span class="header-section-number">4.2.3</span> Estética</a></li>
+  <li><a href="#facetas" id="toc-facetas" class="nav-link" data-scroll-target="#facetas"><span class="header-section-number">4.2.4</span> Facetas</a></li>
+  <li><a href="#coordenadas" id="toc-coordenadas" class="nav-link" data-scroll-target="#coordenadas"><span class="header-section-number">4.2.5</span> Coordenadas</a></li>
+  <li><a href="#temas" id="toc-temas" class="nav-link" data-scroll-target="#temas"><span class="header-section-number">4.2.6</span> Temas</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -231,15 +212,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>In summary, this book has no content whatsoever.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
+<section id="gramática-dos-gráficos" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="gramática-dos-gráficos"><span class="header-section-number">4.1</span> Gramática dos Gráficos</h2>
+</section>
+<section id="o-pacote-ggplot" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="o-pacote-ggplot"><span class="header-section-number">4.2</span> O pacote ggplot</h2>
+<section id="dados" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="dados"><span class="header-section-number">4.2.1</span> Dados</h3>
+</section>
+<section id="geometria" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="geometria"><span class="header-section-number">4.2.2</span> Geometria</h3>
+</section>
+<section id="estética" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="estética"><span class="header-section-number">4.2.3</span> Estética</h3>
+</section>
+<section id="facetas" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="facetas"><span class="header-section-number">4.2.4</span> Facetas</h3>
+</section>
+<section id="coordenadas" class="level3" data-number="4.2.5">
+<h3 data-number="4.2.5" class="anchored" data-anchor-id="coordenadas"><span class="header-section-number">4.2.5</span> Coordenadas</h3>
+</section>
+<section id="temas" class="level3" data-number="4.2.6">
+<h3 data-number="4.2.6" class="anchored" data-anchor-id="temas"><span class="header-section-number">4.2.6</span> Temas</h3>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
