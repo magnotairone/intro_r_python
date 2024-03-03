@@ -20,7 +20,60 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -182,8 +235,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#importar-arquivos-externos" id="toc-importar-arquivos-externos" class="nav-link active" data-scroll-target="#importar-arquivos-externos"><span class="header-section-number">3.1</span> Importar arquivos externos</a></li>
   <li><a href="#o-pacote-tidyverse" id="toc-o-pacote-tidyverse" class="nav-link" data-scroll-target="#o-pacote-tidyverse"><span class="header-section-number">3.2</span> O pacote tidyverse</a>
   <ul class="collapse">
-  <li><a href="#dados-no-formato-tidy" id="toc-dados-no-formato-tidy" class="nav-link" data-scroll-target="#dados-no-formato-tidy"><span class="header-section-number">3.2.1</span> Dados no formato tidy</a></li>
-  <li><a href="#principais-verbos-do-pacote-dplyr" id="toc-principais-verbos-do-pacote-dplyr" class="nav-link" data-scroll-target="#principais-verbos-do-pacote-dplyr"><span class="header-section-number">3.2.2</span> Principais verbos do pacote <code>dplyr</code></a></li>
+  <li><a href="#o-operador-pipe" id="toc-o-operador-pipe" class="nav-link" data-scroll-target="#o-operador-pipe"><span class="header-section-number">3.2.1</span> O operador pipe <code>%&gt;%</code></a></li>
+  <li><a href="#dados-no-formato-tidy" id="toc-dados-no-formato-tidy" class="nav-link" data-scroll-target="#dados-no-formato-tidy"><span class="header-section-number">3.2.2</span> Dados no formato <em>tidy</em></a></li>
+  <li><a href="#principais-verbos-do-pacote-dplyr" id="toc-principais-verbos-do-pacote-dplyr" class="nav-link" data-scroll-target="#principais-verbos-do-pacote-dplyr"><span class="header-section-number">3.2.3</span> Principais verbos do pacote <code>dplyr</code></a></li>
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><span class="header-section-number">3.2.4</span> select</a></li>
+  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange"><span class="header-section-number">3.2.5</span> arrange</a></li>
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><span class="header-section-number">3.2.6</span> filter</a></li>
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><span class="header-section-number">3.2.7</span> mutate</a></li>
+  <li><a href="#summarise" id="toc-summarise" class="nav-link" data-scroll-target="#summarise"><span class="header-section-number">3.2.8</span> summarise</a></li>
+  <li><a href="#group-by" id="toc-group-by" class="nav-link" data-scroll-target="#group-by"><span class="header-section-number">3.2.9</span> group by</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -208,18 +268,398 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>Dominar técnicas de manipulação e processamento de dados em R é fundamental para qualquer pessoa que trabalhe com análise de dados ou ciência de dados. A capacidade de limpar, transformar e preparar dados de maneira eficiente é essencial para garantir que os resultados das análises sejam precisos e confiáveis. Além disso, o domínio dessas técnicas economiza tempo e aumenta a produtividade.</p>
 <section id="importar-arquivos-externos" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="importar-arquivos-externos"><span class="header-section-number">3.1</span> Importar arquivos externos</h2>
+<p>Dois dos formatos mais comuns para armazenamento de dados não tão grandes são <code>csv</code> e <code>xlsx</code>.</p>
+<p>Ao carregar dados de arquivos csv em R, duas opções comumente utilizadas são as funções <code>read.csv()</code> e <code>read_csv()</code>. Ambas são eficazes para importar dados tabulares, mas apresentam diferenças significativas. A função <code>read.csv()</code> é uma opção padrão no R base, sendo simples de usar e amplamente conhecida. Por outro lado, <code>read_csv()</code> faz parte do pacote <code>readr</code>, oferecendo desempenho otimizado e detecção automática de tipos de dados. Enquanto <code>read.csv()</code> tende a ser mais lenta, especialmente com grandes conjuntos de dados, <code>read_csv()</code> é mais rápida e precisa, sendo capaz de manter os nomes das colunas como símbolos e converter adequadamente os dados, inclusive lidando com strings vazias.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando read.csv()</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dados_read_csv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"dados.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Usando read_csv() do pacote readr</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>dados_readr <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"dados.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para importar dados de um arquivo Excel (formato <code>xlsx</code>) em R, podemos usar a biblioteca <code>readxl</code>. Primeiro, é necessário instalá-la usando o comando <code>install.packages("readxl")</code>. Em seguida, podemos usar a função <code>read_excel()</code> para ler os dados. Por exemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"arquivo.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="o-pacote-tidyverse" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="o-pacote-tidyverse"><span class="header-section-number">3.2</span> O pacote tidyverse</h2>
-<section id="dados-no-formato-tidy" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="dados-no-formato-tidy"><span class="header-section-number">3.2.1</span> Dados no formato tidy</h3>
+<p>O pacote <code>tidyverse</code> é uma coleção de pacotes do R projetados para trabalhar de forma integrada e intuitiva na análise de dados. Ele inclui uma variedade de pacotes poderosos e populares, como <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, <code>tibble</code>, <code>readr</code>, <code>purrr</code>, <code>forcats</code> e <code>stringr</code>. Cada pacote no tidyverse foi projetado para lidar com uma etapa específica do fluxo de trabalho de análise de dados, desde a importação e limpeza até a visualização e modelagem. Todos os pacotes no <code>tidyverse</code> compartilham uma filosofia de design subjacente, gramática e estruturas de dados, veja mais <a href="https://www.tidyverse.org/">na página do pacote</a>.</p>
+<section id="o-operador-pipe" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="o-operador-pipe"><span class="header-section-number">3.2.1</span> O operador pipe <code>%&gt;%</code></h3>
+<p>O operador %&gt;%, conhecido como pipe, é uma ferramenta poderosa em R que facilita a encadeamento de operações em sequência. Ele permite escrever código de forma mais clara e concisa, especialmente ao trabalhar com pacotes do tidyverse. O pipe recebe o resultado de uma expressão à esquerda e o passa como primeiro argumento para a próxima expressão à direita.</p>
+<p>Vamos supor que temos uma função <code>f</code>, uma função <code>g</code> e uma variável <code>x</code>. Queremos aplicar <code>g</code> a <code>x</code> e, em seguida, aplicar <code>f</code> ao resultado. Aqui está como poderíamos fazer isso de duas maneiras: usando a abordagem encadeada tradicional e usando o pipe <code>%&gt;%</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">f</span>(<span class="fu">g</span>(x))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">g</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">f</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ambos os métodos produzirão o mesmo resultado. No entanto, a segunda abordagem usando o pipe %&gt;% é mais legível e fácil de entender, especialmente quando estamos encadeando múltiplas operações. Isso torna o código mais conciso e mais próximo de uma leitura natural da operação que está sendo realizada.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uma boa prática ao usar o pipe %&gt;% é quebrar a linha após cada pipe para melhorar a legibilidade do código.</p>
+</div>
+</div>
 </section>
-<section id="principais-verbos-do-pacote-dplyr" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="principais-verbos-do-pacote-dplyr"><span class="header-section-number">3.2.2</span> Principais verbos do pacote <code>dplyr</code></h3>
+<section id="dados-no-formato-tidy" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="dados-no-formato-tidy"><span class="header-section-number">3.2.2</span> Dados no formato <em>tidy</em></h3>
+<blockquote class="blockquote">
+<p>“Tidy datasets are all alike, but every messy dataset is messy in its own way.” — Hadley Wickham.</p>
+</blockquote>
+<p>Um mesmo conjunto de dados pode ser representado de diversas maneiras. Veja o código abaixo que mostra o mesmo dado em três diferentes formatos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  country      year  cases population
+  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+1 Afghanistan  1999    745   19987071
+2 Afghanistan  2000   2666   20595360
+3 Brazil       1999  37737  172006362
+4 Brazil       2000  80488  174504898
+5 China        1999 212258 1272915272
+6 China        2000 213766 1280428583</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>table2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 4
+   country      year type            count
+   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;
+ 1 Afghanistan  1999 cases             745
+ 2 Afghanistan  1999 population   19987071
+ 3 Afghanistan  2000 cases            2666
+ 4 Afghanistan  2000 population   20595360
+ 5 Brazil       1999 cases           37737
+ 6 Brazil       1999 population  172006362
+ 7 Brazil       2000 cases           80488
+ 8 Brazil       2000 population  174504898
+ 9 China        1999 cases          212258
+10 China        1999 population 1272915272
+11 China        2000 cases          213766
+12 China        2000 population 1280428583</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>table4a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  country     `1999` `2000`
+  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+1 Afghanistan    745   2666
+2 Brazil       37737  80488
+3 China       212258 213766</code></pre>
+</div>
+</div>
+<p>Todas as representações acima são dos mesmos dados, mas não são igualmente fáceis de utilizar. A <code>table1</code>, por exemplo, será muito mais acessível para trabalhar dentro do tidyverse devido à sua organização no formato <em>tidy</em>. Existem três regras inter-relacionadas que caracterizam um conjunto de dados no formato <em>tidy</em>:</p>
+<ol type="1">
+<li>Cada variável é uma coluna; cada coluna representa uma variável.</li>
+<li>Cada observação é uma linha; cada linha representa uma observação.</li>
+<li>Cada valor é uma célula; cada célula contém um único valor.</li>
+</ol>
+<p>A figura abaixo representa graficamente este conceito.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/tidy-1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Imagem do livro R4DS.</figcaption>
+</figure>
+</div>
+<p>A pivotação de dados é o processo de reorganizar um conjunto de dados para torná-lo compatível com o formato <em>tidy</em>. Isso envolve transformar os dados de um formato mais largo para um formato mais longo, ou vice-versa, para garantir que cada variável corresponda a uma coluna e cada observação a uma linha.</p>
+<p>No exemplo abaixo, estamos transformando os dados de <code>table2</code> para um formato mais largo, onde cada valor único da variável <code>type</code> se torna uma nova coluna. Note que cada unidade de informação (país, ano, casos e contagem) está quebrado em duas linhas. Então essa operação então deixa a tabela de dados mais larga, garantindo que cada unidade de dado esteja representada em uma única linha.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>table2 <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span><span class="st">"type"</span>, <span class="at">values_from=</span><span class="st">"count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  country      year  cases population
+  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
+1 Afghanistan  1999    745   19987071
+2 Afghanistan  2000   2666   20595360
+3 Brazil       1999  37737  172006362
+4 Brazil       2000  80488  174504898
+5 China        1999 212258 1272915272
+6 China        2000 213766 1280428583</code></pre>
+</div>
+</div>
+<p>No exemplo abaixo, estamos transformando os dados de <code>table4a</code> em um formato mais longo, onde as colunas representando anos específicos (1999 e 2000) são reunidas em uma única coluna chamada <code>year</code>, e os valores correspondentes são colocados em uma nova coluna chamada <code>cases</code>. Neste caso, a informação sobre os anos estavam armazenadas como nome de colunas, mas, pelo princípio de dados <em>tidy</em>, deveriam estar em colunas. Por isso, utilizamos a função <code>pivot_longer</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>table4a <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">1999</span><span class="st">`</span>, <span class="st">`</span><span class="at">2000</span><span class="st">`</span>), <span class="at">names_to =</span> <span class="st">"year"</span>, <span class="at">values_to =</span> <span class="st">"cases"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  country     year   cases
+  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;
+1 Afghanistan 1999     745
+2 Afghanistan 2000    2666
+3 Brazil      1999   37737
+4 Brazil      2000   80488
+5 China       1999  212258
+6 China       2000  213766</code></pre>
+</div>
+</div>
+<p>As duas funções <code>pivot_wider</code> e <code>pivot_longer</code> são suficientes para fazer a transformação de bases de dados no formato <em>tidy</em>.</p>
+</section>
+<section id="principais-verbos-do-pacote-dplyr" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="principais-verbos-do-pacote-dplyr"><span class="header-section-number">3.2.3</span> Principais verbos do pacote <code>dplyr</code></h3>
+<p>O pacote <code>dplyr</code> é uma das ferramentas mais poderosas para manipulação de dados no ambiente R. Ele oferece um conjunto coeso de funções que simplificam tarefas comuns de manipulação, como filtragem, seleção, agrupamento, ordenação e resumo de dados. O dplyr utiliza uma sintaxe intuitiva e consistente, facilitando a escrita de código limpo e legível.</p>
+<p>A seguir, vamos estudar o funcionamento dos principais verbos do pacote. Para exemplificar, vamos utilizar a base de dados <code>gapminder</code>. Ela é uma coleção de informações socioeconômicas de diversos países ao longo do tempo, veja <span class="citation" data-cites="gapminder">Rosling (<a href="references.html#ref-gapminder" role="doc-biblioref">2012</a>)</span>. Ela inclui variáveis como expectativa de vida, PIB per capita, taxa de mortalidade infantil e tamanho da população para diferentes países e anos, cobrindo um período de várias décadas.</p>
+<p>Para carregar a base de dados <code>gapminder</code>, você precisa carregar o pacote <code>gapminder</code>. Com o pacote gapminder carregado, a base de dados <code>gapminder</code> estará disponível para uso em seu ambiente R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'gapminder' was built under R version 4.2.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>glimpse()</code> fornece uma visão geral rápida e concisa da estrutura de um conjunto de dados. Quando aplicada a um conjunto de dados, como o gapminder, ela exibe informações essenciais sobre as variáveis presentes, incluindo a quantidade de linhas, colunas e as primeiras linhas do conjunto de dados:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,704
+Columns: 6
+$ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …
+$ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+$ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
+$ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
+$ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
+$ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
+</div>
+</div>
+</section>
+<section id="select" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="select"><span class="header-section-number">3.2.4</span> select</h3>
+<p>O verbo <code>select()</code> é utilizado para selecionar colunas específicas de um conjunto de dados. Com o <code>select()</code>, é possível escolher as colunas desejadas com base em seus nomes, tipos de dados ou outros critérios.</p>
+<p>Por exemplo, considerando a base de dados gapminder, suponha que desejamos selecionar apenas as colunas referentes ao ano, ao país, à expectativa de vida e ao PIB per capita. Podemos fazer isso da seguinte maneira:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecionando as colunas pelo nome</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, country, lifeExp, gdpPercap)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecionando apenas as colunas numéricas</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric))</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecionando colunas que começam com "co"</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"co"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note que nos exemplos acima, nenhuma das seleções foi salva em variável. Para salvar as seleções em uma variável, você pode atribuir o resultado de cada operação <code>select()</code> a uma variável separada. Por exemplo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>gapminder_character <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.character))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="arrange" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="arrange"><span class="header-section-number">3.2.5</span> arrange</h3>
+<p>O verbo <code>arrange()</code> é usado para reorganizar as linhas de um conjunto de dados com base nos valores de uma ou mais colunas. Quando aplicado a um conjunto de dados, o <code>arrange()</code> classifica as linhas em ordem crescente ou decrescente com base nos valores das colunas especificadas.</p>
+<p>No primeiro exemplo usando o verbo <code>select()</code>, podemos ordenar os dados por país em ordem alfabética, podemos fazer assim:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, country, lifeExp, gdpPercap, pop) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(country)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,704 × 5
+    year country     lifeExp gdpPercap      pop
+   &lt;int&gt; &lt;fct&gt;         &lt;dbl&gt;     &lt;dbl&gt;    &lt;int&gt;
+ 1  1952 Afghanistan    28.8      779.  8425333
+ 2  1957 Afghanistan    30.3      821.  9240934
+ 3  1962 Afghanistan    32.0      853. 10267083
+ 4  1967 Afghanistan    34.0      836. 11537966
+ 5  1972 Afghanistan    36.1      740. 13079460
+ 6  1977 Afghanistan    38.4      786. 14880372
+ 7  1982 Afghanistan    39.9      978. 12881816
+ 8  1987 Afghanistan    40.8      852. 13867957
+ 9  1992 Afghanistan    41.7      649. 16317921
+10  1997 Afghanistan    41.8      635. 22227415
+# ℹ 1,694 more rows</code></pre>
+</div>
+</div>
+<p>No exemplo abaixo, estamos organizando de acordo com o ano em ordem crescente e a expectativa de vida em ordem decrescente dentro de cada ano.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, country, lifeExp, gdpPercap, pop) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year, <span class="fu">desc</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,704 × 5
+    year country        lifeExp gdpPercap      pop
+   &lt;int&gt; &lt;fct&gt;            &lt;dbl&gt;     &lt;dbl&gt;    &lt;int&gt;
+ 1  1952 Norway            72.7    10095.  3327728
+ 2  1952 Iceland           72.5     7268.   147962
+ 3  1952 Netherlands       72.1     8942. 10381988
+ 4  1952 Sweden            71.9     8528.  7124673
+ 5  1952 Denmark           70.8     9692.  4334000
+ 6  1952 Switzerland       69.6    14734.  4815000
+ 7  1952 New Zealand       69.4    10557.  1994794
+ 8  1952 United Kingdom    69.2     9980. 50430000
+ 9  1952 Australia         69.1    10040.  8691212
+10  1952 Canada            68.8    11367. 14785584
+# ℹ 1,694 more rows</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ao utilizar o verbo <code>select()</code> com o prefixo <code>-</code>, você pode especificar as colunas que deseja <strong>excluir</strong> do conjunto de dados. No exemplo abaixo, vamos excluir a coluna <code>continent</code> da seleção no conjunto de dados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,704 × 5
+   country      year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan  1952    28.8  8425333      779.
+ 2 Afghanistan  1957    30.3  9240934      821.
+ 3 Afghanistan  1962    32.0 10267083      853.
+ 4 Afghanistan  1967    34.0 11537966      836.
+ 5 Afghanistan  1972    36.1 13079460      740.
+ 6 Afghanistan  1977    38.4 14880372      786.
+ 7 Afghanistan  1982    39.9 12881816      978.
+ 8 Afghanistan  1987    40.8 13867957      852.
+ 9 Afghanistan  1992    41.7 16317921      649.
+10 Afghanistan  1997    41.8 22227415      635.
+# ℹ 1,694 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="filter" class="level3" data-number="3.2.6">
+<h3 data-number="3.2.6" class="anchored" data-anchor-id="filter"><span class="header-section-number">3.2.6</span> filter</h3>
+<p>Para analisar dados específicos de interesse, muitas vezes é necessário filtrar o conjunto de dados para incluir apenas as observações relevantes. O verbo <code>filter()</code> é usado para fazer isso. Basta definir uma ou mais condições lógicas que as linhas da base de dados devem satisfazer para serem mostradas.</p>
+<p>No exemplo abaixo, estamos filtrando os dados para incluir apenas as observações onde o país é “Brasil” ou “Argentina”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, country, lifeExp, gdpPercap, pop) <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year, <span class="fu">desc</span>(lifeExp)) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Brazil"</span> <span class="sc">|</span> country <span class="sc">==</span> <span class="st">"Argentina"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 24 × 5
+    year country   lifeExp gdpPercap       pop
+   &lt;int&gt; &lt;fct&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;int&gt;
+ 1  1952 Argentina    62.5     5911.  17876956
+ 2  1952 Brazil       50.9     2109.  56602560
+ 3  1957 Argentina    64.4     6857.  19610538
+ 4  1957 Brazil       53.3     2487.  65551171
+ 5  1962 Argentina    65.1     7133.  21283783
+ 6  1962 Brazil       55.7     3337.  76039390
+ 7  1967 Argentina    65.6     8053.  22934225
+ 8  1967 Brazil       57.6     3430.  88049823
+ 9  1972 Argentina    67.1     9443.  24779799
+10  1972 Brazil       59.5     4986. 100840058
+# ℹ 14 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="mutate" class="level3" data-number="3.2.7">
+<h3 data-number="3.2.7" class="anchored" data-anchor-id="mutate"><span class="header-section-number">3.2.7</span> mutate</h3>
+<p>O verbo <code>mutate()</code> é usado para criar ou modificar colunas em um conjunto de dados existente. Ele permite adicionar novas variáveis calculadas com base em variáveis existentes ou modificar as variáveis existentes de acordo com alguma lógica específica.</p>
+<p>Por exemplo, podemos usar o mutate() para calcular uma nova variável que represente o PIB total de cada país multiplicando o PIB per capita pelo tamanho da população. Aqui está um exemplo de como fazer isso com o conjunto de dados gapminder:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>gapminder_total_gdp <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, year, lifeExp, gdpPercap, pop) <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_gdp =</span> gdpPercap <span class="sc">*</span> pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="summarise" class="level3" data-number="3.2.8">
+<h3 data-number="3.2.8" class="anchored" data-anchor-id="summarise"><span class="header-section-number">3.2.8</span> summarise</h3>
+<p>O verbo <code>summarise()</code> é usado para resumir os dados em uma única linha, geralmente calculando estatísticas resumidas como média, soma, mediana, etc. Ele permite calcular resumos estatísticos em um conjunto de dados, criando uma nova tabela contendo os resultados resumidos.</p>
+<p>Aqui está um exemplo de como usar <code>summarise()</code> para calcular a média da expectativa de vida usando os dados do <code>gapminder</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_lifeExp
+         &lt;dbl&gt;
+1         59.5</code></pre>
+</div>
+</div>
+</section>
+<section id="group-by" class="level3" data-number="3.2.9">
+<h3 data-number="3.2.9" class="anchored" data-anchor-id="group-by"><span class="header-section-number">3.2.9</span> group by</h3>
+<p>O verbo <code>group_by()</code> é usado para dividir os dados em grupos com base nos valores de uma ou mais variáveis. Ele não realiza cálculos por si só, mas altera o comportamento das funções de resumo, como summarise(), para operar em cada grupo separadamente.</p>
+<p>Aqui está um exemplo de como usar <code>group_by()</code> com os dados do gapminder para calcular a média da expectativa de vida por continente:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  continent mean_lifeExp
+  &lt;fct&gt;            &lt;dbl&gt;
+1 Africa            48.9
+2 Americas          64.7
+3 Asia              60.1
+4 Europe            71.9
+5 Oceania           74.3</code></pre>
+</div>
+</div>
+<p>O exemplo abaixo utiliza todos os principais verbos do <code>dplyr</code> para calcular a expectativa de vida média e o PIB (em milhares) médio por continente no ano de 2007</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, continent, year, lifeExp, gdpPercap) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">%&gt;%</span> <span class="co"># apenas os dados para o ano de 2007</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gdp =</span> gdpPercap <span class="sc">/</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span> <span class="co"># representa o PIB per capita em milhares</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span> <span class="co"># agrupar os dados por continente</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># média da expectativa de vida</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_gdp =</span> <span class="fu">mean</span>(gdp, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> <span class="co">#média do PIB per capita em bilhões</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  continent mean_lifeExp mean_gdp
+  &lt;fct&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+1 Oceania           80.7    29.8 
+2 Europe            77.6    25.1 
+3 Americas          73.6    11.0 
+4 Asia              70.7    12.5 
+5 Africa            54.8     3.09</code></pre>
+</div>
+</div>
+<p>O gráfico abaixo mostra a evolução da expectativa de vida média nos continentes ao longo dos anos.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="03-dados_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Desafio">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Desafio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Qual mudança foi feita no código do exemplo anterior para constrir os dados usados na geração deste gráfico?</p>
+</div>
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-gapminder" class="csl-entry" role="listitem">
+Rosling, Hans. 2012. <span>“Data - Gapminder.org.”</span> <a href="http://www.gapminder.org/data/" class="uri">http://www.gapminder.org/data/</a>.
+</div>
+</div>
 </section>
 </section>
 
