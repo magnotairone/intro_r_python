@@ -222,7 +222,8 @@ gapminder %>%
 
 ```
 
-O exemplo abaixo utiliza todos os principais verbos do `dplyr` para calcular a expectativa de vida média e o PIB (em milhares) médio por continente no ano de 2007
+O exemplo abaixo utiliza todos os principais verbos do `dplyr` para calcular a expectativa de vida média e o PIB (em milhares) médio por continente no ano de 2007.
+
 ```{r}
 gapminder %>%
   select(country, continent, year, lifeExp, gdpPercap) %>% 
