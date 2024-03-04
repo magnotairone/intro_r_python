@@ -200,35 +200,35 @@
     "href": "05-fundamentos_python.html#tipos-de-dados-fundamentais-integer-float-string-boolean",
     "title": "5  Fundamentos de Python",
     "section": "5.1 Tipos de dados fundamentais: integer, float, string, boolean",
-    "text": "5.1 Tipos de dados fundamentais: integer, float, string, boolean\n\n2 + 2 # integer\nx = 2\nx\nprint(x)\ntype(x)\n\n2\n\n\nint\n\n\n\n1.75 + 2**3 # float\nx = 1.25\nx\nprint(x)\ntype(x)\n\n1.25\n\n\nfloat\n\n\n\npais = \"Brasil\" # string\npais\nprint(pais)\ntype(pais)\n\nBrasil\n\n\nstr\n\n\n\n1 == 2 # boolean\n5 % 2 == 0\nx = True\nx\nprint(x)\ntype(x)\n\nTrue\n\n\nbool\n\n\n\n# coerção (conversão forçada) de tipos\nstr_num = \"1.41\"\ntype(str_num)\n# 1.25 + str_num # erro!\n1.25 + float(str_num)\nint(True)\n\n1\n\n\n\n# strings funcionam como listas/vetores\nschool=\"Insper\"\nprint(school)\nschool[0]\nschool[3]\nschool[2:5] # slice: o último índice não é incluído (start:stop:step)\nschool[3:]\nschool[1:5:2]\nprint(school[-2])\nprint(school[-2:])\nprint(school[-1::-1]) # reverse\n\nInsper\ne\ner\nrepsnI"
+    "text": "5.1 Tipos de dados fundamentais: integer, float, string, boolean"
   },
   {
     "objectID": "05-fundamentos_python.html#objetos-básicos",
     "href": "05-fundamentos_python.html#objetos-básicos",
     "title": "5  Fundamentos de Python",
     "section": "5.2 Objetos básicos",
-    "text": "5.2 Objetos básicos\n\n5.2.1 listas\n\n# Listas\nempty_list = [ ]\nweekdays = [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\"]\nweekend = [\"Saturday\", \"Sunday\"]\nvowels = list(\"aeiou\")\n\n\nnames = [\"John\", \"Paul\", \"George\", \"Ringo\"]\nprint(names)\nprint(names[1])\n\nnames.append(\"Pete\")\n# names += [\"Pete\"] # equivalente\nprint(names)\n\nnames = [\"John\", \"Paul\", \"George\", \"Ringo\"]\nnames.insert(2, \"Pete\")\nprint(names)\n\nnames = [\"John\", \"Paul\", \"George\", \"Ringo\"]\ndel names[3]\nprint(names)\n\nnames = [\"John\", \"Paul\", \"George\", \"Ringo\"]\nnames.remove(\"John\")\nprint(names)\n\nnames = [\"John\", \"Paul\", \"George\", \"Ringo\"]\nbeatle = names.pop(2)\nprint(beatle)\nprint(names)\n\nnames = [\"John\", \"Paul\", \"George\", \"Ringo\"]\nprint(names.index(\"Paul\"))\nprint(\"George\" in names)\nprint(names.count(\"George\"))\nprint(\", \".join(names))\n\nprint(len(names))\nprint(sorted(names))\nnames.sort() # in place\nprint(names)\n\nnames = [\"John\", \"Paul\", \"George\", \"Ringo\"] # voltando à lista original\n\n['John', 'Paul', 'George', 'Ringo']\nPaul\n['John', 'Paul', 'George', 'Ringo', 'Pete']\n['John', 'Paul', 'Pete', 'George', 'Ringo']\n['John', 'Paul', 'George']\n['Paul', 'George', 'Ringo']\nGeorge\n['John', 'Paul', 'Ringo']\n1\nTrue\n1\nJohn, Paul, George, Ringo\n4\n['George', 'John', 'Paul', 'Ringo']\n['George', 'John', 'Paul', 'Ringo']\n\n\n\nweek = weekdays + weekend\nprint(week)\n\nweek = weekdays\nweek.extend(weekend)\nprint(week)\n\n['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']\n['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']\n\n\n\n# fatias (slices)\nweekdays[3]\nweekdays[1:4]\nweekdays[0:4:2]\n\n['Monday', 'Wednesday']\n\n\n\nfor beatle in names:\n    print(\"Beatle:\", beatle)\n\nBeatle: John\nBeatle: Paul\nBeatle: George\nBeatle: Ringo\n\n\n\nfor letter in sorted(school):\n    print(letter.swapcase())\n\ni\nE\nN\nP\nR\nS\n\n\n\n\n5.2.2 tuplas\n\n# tupla (lista imutável)\nx = (1, 2, 3)\nprint(x)\n# x[0] = 5 # erro!\nx = 1, 2, 3\nprint(x)\n\n(1, 2, 3)\n(1, 2, 3)\n\n\n\n\n5.2.3 dicionarios\n\n# dicionários\nbeatles = {\"John\": \"Lennon\", \"Paul\": \"McCartney\", \"George\": \"Harrison\", \"Ringo\": \"Star\"} # key: value\nprint(beatles)\nprint(beatles[\"Paul\"])\n\n# notação alternativa (comum em análise de dados)\nbeatles = dict(John = \"Lennon\", Paul = \"McCartney\", George = \"Harrison\", Ringo =\"Star\")\n\nbeatles[\"Pete\"] = \"Best\"\nprint(beatles)\n\ndel beatles[\"Pete\"]\nprint(beatles)\n\nbeatles.update({\"Pete\": \"Best\"})\nprint(beatles)\n\npairs = ((\"John\", \"Lennon\"), (\"Paul\", \"McCartney\"), (\"George\", \"Harrison\"), (\"Ringo\", \"Star\"))\nbeatles = dict(pairs)\nprint(beatles)\n\nif \"John\" in beatles: # check the keys\n    print(\"Yes!\")\n\nbeatles.keys()\nbeatles.values()\nlist(beatles.values())\n\nfor surname in beatles.keys():\n    print(surname)\n\nfor name in beatles.keys():\n    print(name, beatles[name])\n\nfor name, surname in beatles.items():\n    print(name, surname)\n\n{'John': 'Lennon', 'Paul': 'McCartney', 'George': 'Harrison', 'Ringo': 'Star'}\nMcCartney\n{'John': 'Lennon', 'Paul': 'McCartney', 'George': 'Harrison', 'Ringo': 'Star', 'Pete': 'Best'}\n{'John': 'Lennon', 'Paul': 'McCartney', 'George': 'Harrison', 'Ringo': 'Star'}\n{'John': 'Lennon', 'Paul': 'McCartney', 'George': 'Harrison', 'Ringo': 'Star', 'Pete': 'Best'}\n{'John': 'Lennon', 'Paul': 'McCartney', 'George': 'Harrison', 'Ringo': 'Star'}\nYes!\nJohn\nPaul\nGeorge\nRingo\nJohn Lennon\nPaul McCartney\nGeorge Harrison\nRingo Star\nJohn Lennon\nPaul McCartney\nGeorge Harrison\nRingo Star"
+    "text": "5.2 Objetos básicos\n\n5.2.1 listas\n\n\n5.2.2 tuplas\n\n\n5.2.3 dicionarios"
   },
   {
     "objectID": "05-fundamentos_python.html#condicionais",
     "href": "05-fundamentos_python.html#condicionais",
     "title": "5  Fundamentos de Python",
     "section": "5.3 Condicionais",
-    "text": "5.3 Condicionais\n\nx = 0.25\n\nif x &gt;= 0 and x &lt;= 1:\n    print(\"Inside [0, 1]\")\nelse:\n    print(\"Outside [0, 1]\")\n\nInside [0, 1]\n\n\n\ncolor = \"red\"\n\nif color == \"red\":\n    print(\"Tomato\")\nelif color == \"orange\":\n    print(\"Carrot\")\nelse:\n    print(\"Dunno\")\n\nTomato"
+    "text": "5.3 Condicionais"
   },
   {
     "objectID": "05-fundamentos_python.html#estruturas-repetitivas",
     "href": "05-fundamentos_python.html#estruturas-repetitivas",
     "title": "5  Fundamentos de Python",
     "section": "5.4 Estruturas repetitivas",
-    "text": "5.4 Estruturas repetitivas\n\nfor x in range(0, 10, 3): # lembre da notação dos slices\n    print(x)\n\n0\n3\n6\n9\n\n\n\ndays = [\"Mondays\", \"Tuesdays\", \"Wednesdays\"]\nfruits = [\"bananas\", \"oranges\", \"apples\"]\n\nfor day, fruit in zip(days, fruits):\n    print(\"On\", day, \"she eats\", fruit)\n\nOn Mondays she eats bananas\nOn Tuesdays she eats oranges\nOn Wednesdays she eats apples\n\n\n\ncount = 10\n\nwhile count &gt; 0:\n    print(count)\n    count -= 1\n\n10\n9\n8\n7\n6\n5\n4\n3\n2\n1"
+    "text": "5.4 Estruturas repetitivas"
   },
   {
     "objectID": "05-fundamentos_python.html#comprehensions",
     "href": "05-fundamentos_python.html#comprehensions",
     "title": "5  Fundamentos de Python",
     "section": "5.5 Comprehensions",
-    "text": "5.5 Comprehensions\n\nodd_numbers = [x for x in range(0, 10) if x % 2 == 1] # list comprehension\n\nfor number in odd_numbers:\n    print(number)\n\n1\n3\n5\n7\n9"
+    "text": "5.5 Comprehensions"
   },
   {
     "objectID": "05-fundamentos_python.html#funções",
@@ -256,6 +256,6 @@
     "href": "05-fundamentos_python.html#pandas",
     "title": "5  Fundamentos de Python",
     "section": "5.9 Pandas",
-    "text": "5.9 Pandas\n4, 5 (data wrangling) e 6 (missing data)"
+    "text": "5.9 Pandas"
   }
 ]

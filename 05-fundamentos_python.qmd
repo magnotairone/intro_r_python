@@ -2,8 +2,15 @@
 output: html_document
 editor_options: 
   chunk_output_type: console
+execute:
+  echo: false
+  eval: false
 ---
 # Fundamentos de Python
+
+::: {.callout-important}
+Página ainda em construção!
+:::
 
 ## Tipos de dados fundamentais: integer, float, string, boolean
  
@@ -255,4 +262,4 @@ for number in odd_numbers:
 ## Numpy
 
 ## Pandas
-4, 5 (data wrangling) e 6 (missing data)
+<!-- aulas 4, 5 (data wrangling) e 6 (missing data) -->
