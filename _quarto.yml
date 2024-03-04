@@ -5,7 +5,7 @@ project:
 book:
   title: "Introdução à R e Python"
   author: "Magno Severino"
-  date: "28/02/2024"
+  date: "03/03/2024"
   chapters:
     - index.qmd
     - part: Aprendendo R

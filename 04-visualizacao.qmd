@@ -422,4 +422,3 @@ billboard_longer %>%
   labs(y="Rank", x="Data", color = "Música") +
   theme_bw() 
 ```
-  

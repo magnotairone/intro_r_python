@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -175,7 +209,26 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#tipos-de-dados-fundamentais-integer-float-string-boolean" id="toc-tipos-de-dados-fundamentais-integer-float-string-boolean" class="nav-link active" data-scroll-target="#tipos-de-dados-fundamentais-integer-float-string-boolean"><span class="header-section-number">5.1</span> Tipos de dados fundamentais: integer, float, string, boolean</a></li>
+  <li><a href="#objetos-básicos" id="toc-objetos-básicos" class="nav-link" data-scroll-target="#objetos-básicos"><span class="header-section-number">5.2</span> Objetos básicos</a>
+  <ul class="collapse">
+  <li><a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas"><span class="header-section-number">5.2.1</span> listas</a></li>
+  <li><a href="#tuplas" id="toc-tuplas" class="nav-link" data-scroll-target="#tuplas"><span class="header-section-number">5.2.2</span> tuplas</a></li>
+  <li><a href="#dicionarios" id="toc-dicionarios" class="nav-link" data-scroll-target="#dicionarios"><span class="header-section-number">5.2.3</span> dicionarios</a></li>
+  </ul></li>
+  <li><a href="#condicionais" id="toc-condicionais" class="nav-link" data-scroll-target="#condicionais"><span class="header-section-number">5.3</span> Condicionais</a></li>
+  <li><a href="#estruturas-repetitivas" id="toc-estruturas-repetitivas" class="nav-link" data-scroll-target="#estruturas-repetitivas"><span class="header-section-number">5.4</span> Estruturas repetitivas</a></li>
+  <li><a href="#comprehensions" id="toc-comprehensions" class="nav-link" data-scroll-target="#comprehensions"><span class="header-section-number">5.5</span> Comprehensions</a></li>
+  <li><a href="#funções" id="toc-funções" class="nav-link" data-scroll-target="#funções"><span class="header-section-number">5.6</span> Funções</a></li>
+  <li><a href="#classes-e-objetos" id="toc-classes-e-objetos" class="nav-link" data-scroll-target="#classes-e-objetos"><span class="header-section-number">5.7</span> Classes e objetos</a></li>
+  <li><a href="#numpy" id="toc-numpy" class="nav-link" data-scroll-target="#numpy"><span class="header-section-number">5.8</span> Numpy</a></li>
+  <li><a href="#pandas" id="toc-pandas" class="nav-link" data-scroll-target="#pandas"><span class="header-section-number">5.9</span> Pandas</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -197,8 +250,382 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="tipos-de-dados-fundamentais-integer-float-string-boolean" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="tipos-de-dados-fundamentais-integer-float-string-boolean"><span class="header-section-number">5.1</span> Tipos de dados fundamentais: integer, float, string, boolean</h2>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span> <span class="co"># integer</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>int</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.75</span> <span class="op">+</span> <span class="dv">2</span><span class="op">**</span><span class="dv">3</span> <span class="co"># float</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">1.25</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.25</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>float</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pais <span class="op">=</span> <span class="st">"Brasil"</span> <span class="co"># string</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pais</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pais)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(pais)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Brasil</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>str</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">==</span> <span class="dv">2</span> <span class="co"># boolean</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>bool</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># coerção (conversão forçada) de tipos</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>str_num <span class="op">=</span> <span class="st">"1.41"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(str_num)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.25 + str_num # erro!</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fl">1.25</span> <span class="op">+</span> <span class="bu">float</span>(str_num)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">int</span>(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>1</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># strings funcionam como listas/vetores</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>school<span class="op">=</span><span class="st">"Insper"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(school)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>school[<span class="dv">0</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>school[<span class="dv">3</span>]</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>school[<span class="dv">2</span>:<span class="dv">5</span>] <span class="co"># slice: o último índice não é incluído (start:stop:step)</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>school[<span class="dv">3</span>:]</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>school[<span class="dv">1</span>:<span class="dv">5</span>:<span class="dv">2</span>]</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(school[<span class="op">-</span><span class="dv">2</span>])</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(school[<span class="op">-</span><span class="dv">2</span>:])</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(school[<span class="op">-</span><span class="dv">1</span>::<span class="op">-</span><span class="dv">1</span>]) <span class="co"># reverse</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Insper
+e
+er
+repsnI</code></pre>
+</div>
+</div>
+</section>
+<section id="objetos-básicos" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="objetos-básicos"><span class="header-section-number">5.2</span> Objetos básicos</h2>
+<section id="listas" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="listas"><span class="header-section-number">5.2.1</span> listas</h3>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Listas</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>empty_list <span class="op">=</span> [ ]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>weekdays <span class="op">=</span> [<span class="st">"Monday"</span>, <span class="st">"Tuesday"</span>, <span class="st">"Wednesday"</span>, <span class="st">"Thursday"</span>, <span class="st">"Friday"</span>]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>weekend <span class="op">=</span> [<span class="st">"Saturday"</span>, <span class="st">"Sunday"</span>]</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>vowels <span class="op">=</span> <span class="bu">list</span>(<span class="st">"aeiou"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"John"</span>, <span class="st">"Paul"</span>, <span class="st">"George"</span>, <span class="st">"Ringo"</span>]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names[<span class="dv">1</span>])</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>names.append(<span class="st">"Pete"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># names += ["Pete"] # equivalente</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"John"</span>, <span class="st">"Paul"</span>, <span class="st">"George"</span>, <span class="st">"Ringo"</span>]</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>names.insert(<span class="dv">2</span>, <span class="st">"Pete"</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"John"</span>, <span class="st">"Paul"</span>, <span class="st">"George"</span>, <span class="st">"Ringo"</span>]</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> names[<span class="dv">3</span>]</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"John"</span>, <span class="st">"Paul"</span>, <span class="st">"George"</span>, <span class="st">"Ringo"</span>]</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>names.remove(<span class="st">"John"</span>)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names)</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"John"</span>, <span class="st">"Paul"</span>, <span class="st">"George"</span>, <span class="st">"Ringo"</span>]</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>beatle <span class="op">=</span> names.pop(<span class="dv">2</span>)</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beatle)</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names)</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"John"</span>, <span class="st">"Paul"</span>, <span class="st">"George"</span>, <span class="st">"Ringo"</span>]</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names.index(<span class="st">"Paul"</span>))</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"George"</span> <span class="kw">in</span> names)</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names.count(<span class="st">"George"</span>))</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">", "</span>.join(names))</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(names))</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(names))</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>names.sort() <span class="co"># in place</span></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names)</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"John"</span>, <span class="st">"Paul"</span>, <span class="st">"George"</span>, <span class="st">"Ringo"</span>] <span class="co"># voltando à lista original</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['John', 'Paul', 'George', 'Ringo']
+Paul
+['John', 'Paul', 'George', 'Ringo', 'Pete']
+['John', 'Paul', 'Pete', 'George', 'Ringo']
+['John', 'Paul', 'George']
+['Paul', 'George', 'Ringo']
+George
+['John', 'Paul', 'Ringo']
+1
+True
+1
+John, Paul, George, Ringo
+4
+['George', 'John', 'Paul', 'Ringo']
+['George', 'John', 'Paul', 'Ringo']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>week <span class="op">=</span> weekdays <span class="op">+</span> weekend</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(week)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>week <span class="op">=</span> weekdays</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>week.extend(weekend)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(week)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fatias (slices)</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>weekdays[<span class="dv">3</span>]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>weekdays[<span class="dv">1</span>:<span class="dv">4</span>]</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>weekdays[<span class="dv">0</span>:<span class="dv">4</span>:<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>['Monday', 'Wednesday']</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> beatle <span class="kw">in</span> names:</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Beatle:"</span>, beatle)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Beatle: John
+Beatle: Paul
+Beatle: George
+Beatle: Ringo</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> letter <span class="kw">in</span> <span class="bu">sorted</span>(school):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(letter.swapcase())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>i
+E
+N
+P
+R
+S</code></pre>
+</div>
+</div>
+</section>
+<section id="tuplas" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="tuplas"><span class="header-section-number">5.2.2</span> tuplas</h3>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tupla (lista imutável)</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># x[0] = 5 # erro!</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(1, 2, 3)
+(1, 2, 3)</code></pre>
+</div>
+</div>
+</section>
+<section id="dicionarios" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="dicionarios"><span class="header-section-number">5.2.3</span> dicionarios</h3>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dicionários</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>beatles <span class="op">=</span> {<span class="st">"John"</span>: <span class="st">"Lennon"</span>, <span class="st">"Paul"</span>: <span class="st">"McCartney"</span>, <span class="st">"George"</span>: <span class="st">"Harrison"</span>, <span class="st">"Ringo"</span>: <span class="st">"Star"</span>} <span class="co"># key: value</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beatles)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beatles[<span class="st">"Paul"</span>])</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co"># notação alternativa (comum em análise de dados)</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>beatles <span class="op">=</span> <span class="bu">dict</span>(John <span class="op">=</span> <span class="st">"Lennon"</span>, Paul <span class="op">=</span> <span class="st">"McCartney"</span>, George <span class="op">=</span> <span class="st">"Harrison"</span>, Ringo <span class="op">=</span><span class="st">"Star"</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>beatles[<span class="st">"Pete"</span>] <span class="op">=</span> <span class="st">"Best"</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beatles)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> beatles[<span class="st">"Pete"</span>]</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beatles)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>beatles.update({<span class="st">"Pete"</span>: <span class="st">"Best"</span>})</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beatles)</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>pairs <span class="op">=</span> ((<span class="st">"John"</span>, <span class="st">"Lennon"</span>), (<span class="st">"Paul"</span>, <span class="st">"McCartney"</span>), (<span class="st">"George"</span>, <span class="st">"Harrison"</span>), (<span class="st">"Ringo"</span>, <span class="st">"Star"</span>))</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>beatles <span class="op">=</span> <span class="bu">dict</span>(pairs)</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beatles)</span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">"John"</span> <span class="kw">in</span> beatles: <span class="co"># check the keys</span></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Yes!"</span>)</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a>beatles.keys()</span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>beatles.values()</span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(beatles.values())</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> surname <span class="kw">in</span> beatles.keys():</span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(surname)</span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> beatles.keys():</span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(name, beatles[name])</span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, surname <span class="kw">in</span> beatles.items():</span>
+<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(name, surname)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'John': 'Lennon', 'Paul': 'McCartney', 'George': 'Harrison', 'Ringo': 'Star'}
+McCartney
+{'John': 'Lennon', 'Paul': 'McCartney', 'George': 'Harrison', 'Ringo': 'Star', 'Pete': 'Best'}
+{'John': 'Lennon', 'Paul': 'McCartney', 'George': 'Harrison', 'Ringo': 'Star'}
+{'John': 'Lennon', 'Paul': 'McCartney', 'George': 'Harrison', 'Ringo': 'Star', 'Pete': 'Best'}
+{'John': 'Lennon', 'Paul': 'McCartney', 'George': 'Harrison', 'Ringo': 'Star'}
+Yes!
+John
+Paul
+George
+Ringo
+John Lennon
+Paul McCartney
+George Harrison
+Ringo Star
+John Lennon
+Paul McCartney
+George Harrison
+Ringo Star</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="condicionais" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="condicionais"><span class="header-section-number">5.3</span> Condicionais</h2>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">0.25</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;=</span> <span class="dv">0</span> <span class="kw">and</span> x <span class="op">&lt;=</span> <span class="dv">1</span>:</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Inside [0, 1]"</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Outside [0, 1]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Inside [0, 1]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>color <span class="op">=</span> <span class="st">"red"</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"red"</span>:</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Tomato"</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> color <span class="op">==</span> <span class="st">"orange"</span>:</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Carrot"</span>)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Dunno"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Tomato</code></pre>
+</div>
+</div>
+</section>
+<section id="estruturas-repetitivas" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="estruturas-repetitivas"><span class="header-section-number">5.4</span> Estruturas repetitivas</h2>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">3</span>): <span class="co"># lembre da notação dos slices</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0
+3
+6
+9</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>days <span class="op">=</span> [<span class="st">"Mondays"</span>, <span class="st">"Tuesdays"</span>, <span class="st">"Wednesdays"</span>]</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>fruits <span class="op">=</span> [<span class="st">"bananas"</span>, <span class="st">"oranges"</span>, <span class="st">"apples"</span>]</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> day, fruit <span class="kw">in</span> <span class="bu">zip</span>(days, fruits):</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"On"</span>, day, <span class="st">"she eats"</span>, fruit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>On Mondays she eats bananas
+On Tuesdays she eats oranges
+On Wednesdays she eats apples</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>count <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> count <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(count)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    count <span class="op">-=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10
+9
+8
+7
+6
+5
+4
+3
+2
+1</code></pre>
+</div>
+</div>
+</section>
+<section id="comprehensions" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="comprehensions"><span class="header-section-number">5.5</span> Comprehensions</h2>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>odd_numbers <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">10</span>) <span class="cf">if</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">1</span>] <span class="co"># list comprehension</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> number <span class="kw">in</span> odd_numbers:</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1
+3
+5
+7
+9</code></pre>
+</div>
+</div>
+</section>
+<section id="funções" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="funções"><span class="header-section-number">5.6</span> Funções</h2>
+</section>
+<section id="classes-e-objetos" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="classes-e-objetos"><span class="header-section-number">5.7</span> Classes e objetos</h2>
+</section>
+<section id="numpy" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="numpy"><span class="header-section-number">5.8</span> Numpy</h2>
+</section>
+<section id="pandas" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="pandas"><span class="header-section-number">5.9</span> Pandas</h2>
+<p>4, 5 (data wrangling) e 6 (missing data)</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

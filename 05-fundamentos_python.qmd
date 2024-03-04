@@ -1,1 +1,258 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 # Fundamentos de Python
+
+## Tipos de dados fundamentais: integer, float, string, boolean
+ 
+```{python}
+2 + 2 # integer
+x = 2
+x
+print(x)
+type(x)
+```
+
+```{python}
+1.75 + 2**3 # float
+x = 1.25
+x
+print(x)
+type(x)
+```
+
+```{python}
+pais = "Brasil" # string
+pais
+print(pais)
+type(pais)
+```
+
+```{python}
+1 == 2 # boolean
+5 % 2 == 0
+x = True
+x
+print(x)
+type(x)
+```
+
+```{python}
+# coerção (conversão forçada) de tipos
+str_num = "1.41"
+type(str_num)
+# 1.25 + str_num # erro!
+1.25 + float(str_num)
+int(True)
+```
+
+```{python}
+# strings funcionam como listas/vetores
+school="Insper"
+print(school)
+school[0]
+school[3]
+school[2:5] # slice: o último índice não é incluído (start:stop:step)
+school[3:]
+school[1:5:2]
+print(school[-2])
+print(school[-2:])
+print(school[-1::-1]) # reverse
+```
+
+## Objetos básicos
+
+### listas
+
+```{python}
+# Listas
+empty_list = [ ]
+weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+weekend = ["Saturday", "Sunday"]
+vowels = list("aeiou")
+```
+
+```{python}
+names = ["John", "Paul", "George", "Ringo"]
+print(names)
+print(names[1])
+
+names.append("Pete")
+# names += ["Pete"] # equivalente
+print(names)
+
+names = ["John", "Paul", "George", "Ringo"]
+names.insert(2, "Pete")
+print(names)
+
+names = ["John", "Paul", "George", "Ringo"]
+del names[3]
+print(names)
+
+names = ["John", "Paul", "George", "Ringo"]
+names.remove("John")
+print(names)
+
+names = ["John", "Paul", "George", "Ringo"]
+beatle = names.pop(2)
+print(beatle)
+print(names)
+
+names = ["John", "Paul", "George", "Ringo"]
+print(names.index("Paul"))
+print("George" in names)
+print(names.count("George"))
+print(", ".join(names))
+
+print(len(names))
+print(sorted(names))
+names.sort() # in place
+print(names)
+
+names = ["John", "Paul", "George", "Ringo"] # voltando à lista original
+```
+
+```{python}
+week = weekdays + weekend
+print(week)
+
+week = weekdays
+week.extend(weekend)
+print(week)
+```
+
+```{python}
+# fatias (slices)
+weekdays[3]
+weekdays[1:4]
+weekdays[0:4:2]
+```
+
+
+```{python}
+for beatle in names:
+    print("Beatle:", beatle)
+```
+
+
+```{python}
+for letter in sorted(school):
+    print(letter.swapcase())
+```
+
+### tuplas
+```{python}
+# tupla (lista imutável)
+x = (1, 2, 3)
+print(x)
+# x[0] = 5 # erro!
+x = 1, 2, 3
+print(x)
+```
+
+### dicionarios
+
+```{python}
+# dicionários
+beatles = {"John": "Lennon", "Paul": "McCartney", "George": "Harrison", "Ringo": "Star"} # key: value
+print(beatles)
+print(beatles["Paul"])
+
+# notação alternativa (comum em análise de dados)
+beatles = dict(John = "Lennon", Paul = "McCartney", George = "Harrison", Ringo ="Star")
+
+beatles["Pete"] = "Best"
+print(beatles)
+
+del beatles["Pete"]
+print(beatles)
+
+beatles.update({"Pete": "Best"})
+print(beatles)
+
+pairs = (("John", "Lennon"), ("Paul", "McCartney"), ("George", "Harrison"), ("Ringo", "Star"))
+beatles = dict(pairs)
+print(beatles)
+
+if "John" in beatles: # check the keys
+    print("Yes!")
+
+beatles.keys()
+beatles.values()
+list(beatles.values())
+
+for surname in beatles.keys():
+    print(surname)
+
+for name in beatles.keys():
+    print(name, beatles[name])
+
+for name, surname in beatles.items():
+    print(name, surname)
+```
+
+## Condicionais
+
+```{python}
+x = 0.25
+
+if x >= 0 and x <= 1:
+    print("Inside [0, 1]")
+else:
+    print("Outside [0, 1]")
+```
+
+```{python}
+color = "red"
+
+if color == "red":
+    print("Tomato")
+elif color == "orange":
+    print("Carrot")
+else:
+    print("Dunno")
+```
+
+
+## Estruturas repetitivas
+```{python}
+for x in range(0, 10, 3): # lembre da notação dos slices
+    print(x)
+```
+
+```{python}
+days = ["Mondays", "Tuesdays", "Wednesdays"]
+fruits = ["bananas", "oranges", "apples"]
+
+for day, fruit in zip(days, fruits):
+    print("On", day, "she eats", fruit)
+```
+
+```{python}
+count = 10
+
+while count > 0:
+    print(count)
+    count -= 1
+```
+
+## Comprehensions
+
+```{python}
+odd_numbers = [x for x in range(0, 10) if x % 2 == 1] # list comprehension
+
+for number in odd_numbers:
+    print(number)
+```
+
+## Funções
+
+
+## Classes e objetos
+
+## Numpy
+
+## Pandas
+4, 5 (data wrangling) e 6 (missing data)
