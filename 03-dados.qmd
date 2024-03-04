@@ -30,13 +30,31 @@ library(readxl)
 dados <- read_excel("arquivo.xlsx")
 ```
 
+::: {.callout-tip title="Definindo o seu diretório de trabalho"}
+É uma boa prática definir um diretório de trabalho em seus scripts R porque isso ajuda a manter a organização e facilita o acesso aos arquivos de dados e resultados. Ao definir um diretório de trabalho, você garante que todos os arquivos referenciados em seus scripts serão encontrados facilmente, sem a necessidade de especificar caminhos absolutos longos.
+
+Para definir o diretório de trabalho no R, você pode usar a função `setwd()`. Por exemplo, se você deseja definir o diretório como "C:/MeuDiretorio", você pode fazer o seguinte:
+```{r eval=FALSE}
+setwd("C:/MeuDiretorio")
+```
+
+Você pode definir o diretório usando a interface do RStudio.
+Basta selecionar no menu "Session" a opção "Set Working Directory" e em seguida "Choose Directory".
+Isso abrirá uma caixa de diálogo onde você pode navegar até o diretório desejado e selecioná-lo. Depois de selecionar o diretório, ele se tornará o diretório de trabalho atual.
+
+:::
+
 ## O pacote tidyverse
 
 O pacote `tidyverse` é uma coleção de pacotes do R projetados para trabalhar de forma integrada e intuitiva na análise de dados. Ele inclui uma variedade de pacotes poderosos e populares, como `ggplot2`, `dplyr`, `tidyr`, `tibble`, `readr`, `purrr`, `forcats` e `stringr`. Cada pacote no tidyverse foi projetado para lidar com uma etapa específica do fluxo de trabalho de análise de dados, desde a importação e limpeza até a visualização e modelagem. Todos os pacotes no `tidyverse` compartilham uma filosofia de design subjacente, gramática e estruturas de dados, veja mais [na página do pacote](https://www.tidyverse.org/).
 
 ### O operador pipe `%>%`
 
-O operador %\>%, conhecido como pipe, é uma ferramenta poderosa em R que facilita a encadeamento de operações em sequência. Ele permite escrever código de forma mais clara e concisa, especialmente ao trabalhar com pacotes do tidyverse. O pipe recebe o resultado de uma expressão à esquerda e o passa como primeiro argumento para a próxima expressão à direita.
+O operador `%\>%`, conhecido como pipe, é uma ferramenta poderosa em R que facilita a encadeamento de operações em sequência. Ele permite escrever código de forma mais clara e concisa, especialmente ao trabalhar com pacotes do tidyverse. O pipe recebe o resultado de uma expressão à esquerda e o passa como primeiro argumento para a próxima expressão à direita.
+
+::: {.callout-tip}
+Você não precisa digitar `%\>%` toda vez que precisar. Utilize o atalho Ctrl+Shitf+M.
+:::
 
 Vamos supor que temos uma função `f`, uma função `g` e uma variável `x`. Queremos aplicar `g` a `x` e, em seguida, aplicar `f` ao resultado. Aqui está como poderíamos fazer isso de duas maneiras: usando a abordagem encadeada tradicional e usando o pipe `%>%`.
 
@@ -82,7 +100,7 @@ A figura abaixo representa graficamente este conceito.
 
 A pivotação de dados é o processo de reorganizar um conjunto de dados para torná-lo compatível com o formato *tidy*. Isso envolve transformar os dados de um formato mais largo para um formato mais longo, ou vice-versa, para garantir que cada variável corresponda a uma coluna e cada observação a uma linha.
 
-No exemplo abaixo, estamos transformando os dados de `table2` para um formato mais largo, onde cada valor único da variável `type` se torna uma nova coluna. Note que cada unidade de informação (país, ano, casos e contagem) está quebrado em duas linhas. Então essa operação então deixa a tabela de dados mais larga, garantindo que cada unidade de dado esteja representada em uma única linha.
+No exemplo abaixo, estamos transformando os dados de `table2` para um formato mais largo, onde cada valor único da variável `type` se torna uma nova coluna. Note que cada unidade de informação (país, ano, casos e contagem) está quebrado em duas linhas. Então essa operação deixa a tabela de dados mais larga, garantindo que cada unidade de dado esteja representada em uma única linha.
 
 ```{r}
 table2 %>% 
@@ -258,5 +276,71 @@ gapminder %>%
 ```
 
 ::: {.callout-tip title="Desafio"}
-Qual mudança foi feita no código do exemplo anterior para constrir os dados usados na geração deste gráfico?
+Qual mudança foi feita no código do exemplo anterior para construir os dados usados na geração deste gráfico?
 :::
+
+## Exercícios {#sec-ex-dados}
+
+Vamos trabalhar com o conjunto de dados `billboard`. 
+Neste conjunto de dados, cada observação é uma música. As três primeiras colunas (artista, faixa e data de entrada) são variáveis que descrevem a música. Em seguida, temos 76 colunas (wk1-wk76) que descrevem o ranking da música em cada semana. Aqui, os nomes das colunas são uma variável (a semana) e os valores das células são outra (o ranking).
+```{r}
+library(tidyverse)
+billboard
+```
+
+  **a)** Aplique uma tranformação na base de dados para deixá-la no formato abaixo.
+```{r echo=FALSE}
+billboard %>% 
+  pivot_longer(
+    cols = starts_with("wk"), 
+    names_to = "week", 
+    values_to = "rank"
+  )
+```
+
+  **b)** Observe o resultado do item **a)**. O que acontece se uma música estiver no top 100 por menos de 76 semanas? Pegue a música "Baby Don't Cry" de 2 Pac, por exemplo. A saída acima sugere que ela esteve no top 100 por apenas 7 semanas, e todas as semanas restantes são preenchidas com valores ausentes (`NA`). Esses NAs na verdade não representam observações desconhecidas; eles foram forçados a existir pela estrutura do conjunto de dados. Altere o código usado em **a)** para remover esses `NA`s. Responda: Quantas linhas sobraram? (Dica: veja a documentação da função `pivot_longer`.)
+```{r eval=FALSE, echo=FALSE}
+#resposta
+billboard %>% 
+  pivot_longer(
+    cols = starts_with("wk"), 
+    names_to = "week", 
+    values_to = "rank",
+    values_drop_na = TRUE
+  )
+```
+  
+  **c)** Você deve ter percebido que no resultado do item **a)**, o tipo da coluna `week` é caractere. Faça a transformação adequada para obter uma coluna com valores numéricos.
+```{r echo=FALSE, eval=FALSE}
+#resposta
+billboard_longer <- billboard %>% 
+  pivot_longer(
+    cols = starts_with("wk"), 
+    names_to = "week", 
+    values_to = "rank",
+    values_drop_na = TRUE
+  ) %>% 
+  mutate(
+    week = parse_number(week)
+  )
+```
+
+  **d)** Qual música ficou por mais semanas no top 100 da Billboard em 2000? Por quantas semanas essa música apareceu no ranking? E qual música ficou por menos tempo no ranking.
+  
+```{r echo=FALSE, eval=FALSE}
+billboard_longer %>% 
+  group_by(track) %>% 
+  summarise(n=n()) %>% 
+  arrange(desc(n)) 
+```
+
+  **e)** Qual música ficou exatamente 10 semanas no top 100 da Billboard em 2000? Caso exista mais de uma música nessa condição, considere a que primeiro entrou no ranking.
+
+```{r echo=FALSE, eval=FALSE}
+billboard_longer %>% 
+  group_by(track, date.entered) %>% 
+  summarise(n=n()) %>% 
+  filter(n==10) %>% 
+  arrange(date.entered)
+```
+

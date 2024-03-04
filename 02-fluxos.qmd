@@ -85,7 +85,9 @@ As estruturas de repetição, também conhecidas como loops, são utilizadas par
 
 Uma das estruturas de repetição mais comuns é o loop `for.` O loop for é usado para iterar sobre uma sequência de valores, como uma sequência numérica de números inteiros ou os elementos de um vetor.
 
-Existem duas maneiras de se usar o `for` loop. - Usando for para iterar sobre índices:
+Existem duas maneiras de se usar o `for` loop. 
+
+- Usando for para iterar sobre índices:
 
 ```{r}
 # Exemplo de loop for para iterar sobre índices
@@ -96,7 +98,7 @@ for (i in 1:5) {
 
 Neste exemplo, o loop `for` itera sobre os valores de 1 a 5. Na primeira iteração, `i` é igual a 1; na segunda iteração, `i` é igual a 2; e assim por diante, até que `i` seja igual a 5.
 
--   Usando for para iterar sobre elementos:
+- Usando for para iterar sobre elementos:
 
 ```{r}
 # Exemplo de loop for para iterar sobre elementos de um vetor
@@ -107,7 +109,7 @@ for (nome in clientes) {
 
 ```
 
-Neste exemplo, o loop for itera sobre os elementos do vetor `clientes`. Na primeira iteração, nome é igual a "João"; na segunda iteração, `nome` é igual a "Maria"; e assim por diante, até que todos os elementos do vetor sejam percorridos.
+Neste exemplo acima, o loop for itera sobre os elementos do vetor `clientes`. Na primeira iteração, nome é igual a "João"; na segunda iteração, `nome` é igual a "Maria"; e assim por diante, até que todos os elementos do vetor sejam percorridos.
 
 Em ambos os exemplos, o bloco de código dentro do loop `for` é executado repetidamente para cada valor de `i` (no primeiro exemplo) ou `nome` (no segundo exemplo) até que a sequência seja completamente percorrida.
 
@@ -128,7 +130,8 @@ for (i in 1:10) {
 print(round(pib_per_capita, 3))
 ```
 
-::: {.callout-tip collapse="true" title="Clique e veja um exemplo extra"}
+::: {.callout-tip collapse="true" title="Clique e veja um exemplo extra"} 
+
 Imagine que temos uma série temporal representando o preço de fechamento diário de uma ação ao longo de um período de 30 dias. Queremos calcular a média móvel de 5 dias desse preço, ou seja, para cada dia, queremos calcular a média dos preços de fechamento dos cinco dias anteriores, incluindo o dia atual.
 
 Primeiro, vamos simular os dados do preço de fechamento diário da ação:
@@ -171,6 +174,8 @@ ggplot2::ggplot(tidyr::tibble(t=5:30, mm=media_movel), ggplot2::aes(t, mm)) +
 Você vai aprender a construir gráficos como este no [Capítulo 4](04-visualizacao.qmd).
 :::
 
+:::
+
 ### `while`
 
 A estrutura `while` é usada para repetir um bloco de código enquanto uma condição especificada for verdadeira. Aqui está a estrutura geral de um loop while:
@@ -187,7 +192,7 @@ No exemplo abaixo, vamos definir um vetor chamado `acoes`, que contém uma lista
 
 ```{r}
 acoes <- c( "Aprender a programar em R",
-        "Aprender a programar em R",
+        "Aprender a programar em Python",
         "Fazer um café",
         "Descansar")
 
@@ -199,6 +204,7 @@ print(acao)
 No trecho de código a seguir, usamos a estrutura `while` para continuar selecionando aleatoriamente uma atividade do vetor `acoes` até que a atividade selecionada seja "Descansar". O loop começa verificando se a variável `acao` é diferente de "Descansar". Se essa condição for verdadeira, uma nova atividade é selecionada aleatoriamente do vetor acoes usando a função `sample()` com `size = 1`, o que significa que estamos selecionando apenas um elemento aleatório do vetor. Em seguida, a atividade selecionada é impressa na tela usando a função `print()`. Esse processo se repete até que a atividade selecionada seja "Descansar", momento em que o loop é encerrado.
 
 ```{r}
+set.seed(420)
 while(acao != "Descansar") {
   acao <- sample(acoes, 1)
   print(acao)
@@ -241,7 +247,10 @@ print(paste("Foram necessários", anos, "anos para atingir uma população de", 
 
 ```
 
-::: {.callout-note} É possível calcular diretamente o número de anos necessários para atingir a população limite desejada. Com um pouco de álgebra você chege na seguinte fórmula para calcular o número de anos: $$\text{anos} = \frac{\log\left(\frac{\text{limite\_populacional}}{\text{populacao\_inicial}}\right)}{\log(1 + \text{taxa\_crescimento})}.$$
+::: {.callout-note} 
+É possível calcular diretamente o número de anos necessários para atingir a população limite desejada. Com um pouco de álgebra você chege na seguinte fórmula para calcular o número de anos: $$\text{anos} = \frac{\log\left(\frac{\text{limite\_populacional}}{\text{populacao\_inicial}}\right)}{\log(1 + \text{taxa\_crescimento})}.$$
+:::
+:::
 
 ## Funções
 

@@ -9,7 +9,7 @@ A visualização de dados desempenha um papel fundamental na compreensão e comu
 
 ## Gramática dos Gráficos
 
- Ele é baseado na gramática dos gráficos (*grammar of graphics*), veja @GG. A gramática dos gráficos é um conjunto de princípios e conceitos que descrevem a estrutura e as regras para criar gráficos de forma consistente e eficaz. A GG é um *framework* para visualização de dados que desmembra cada componente de um gráfico em elementos individuais, criando camadas distintas. Usando o sistema GG, podemos construir gráficos passo a passo para obter resultados flexíveis e personalizáveis. Cada aspecto do gráfico, como pontos, linhas, cores e escalas, é tratado como uma peça separada, permitindo um controle detalhado sobre a aparência e o conteúdo do gráfico final.
+Ele é baseado na gramática dos gráficos (*grammar of graphics* - GG), veja @GG. A gramática dos gráficos é um conjunto de princípios e conceitos que descrevem a estrutura e as regras para criar gráficos de forma consistente e eficaz. A GG é um *framework* para visualização de dados que desmembra cada componente de um gráfico em elementos individuais, criando camadas distintas. Usando o sistema GG, podemos construir gráficos passo a passo para obter resultados flexíveis e personalizáveis. Cada aspecto do gráfico, como pontos, linhas, cores e escalas, é tratado como uma peça separada, permitindo um controle detalhado sobre a aparência e o conteúdo do gráfico final.
 
 ![Figura de @GG.](img/gglayers.png)
 
@@ -84,7 +84,7 @@ ggplot(data = gapminder_2007,
 
 #### Outras geometrias
 Abaixo, mostramos outras possíveis geometrias. 
-Algumas alterações foram feitas na forma como foram as funções do `ggplot` são usadas. Propositalmente não foi adicionado texto descritivoos pois essas alterações devem ser fáceis de interpretar. 
+Algumas alterações foram feitas na forma como as funções do `ggplot` são usadas. Propositalmente não foi adicionado texto descritivoos pois essas alterações devem ser fáceis de interpretar. 
 
 `geom_line()`:
 ```{r}
@@ -371,3 +371,55 @@ grafico <- ggplot(data = gapminder_anos,
 ggplotly(grafico)
 ```
 
+## Dicas extras
+
+Quando você estiver explorando diferentes tipos de gráficos para visualizar seus dados, o site [Data to Viz](https://www.data-to-viz.com) pode ser uma ferramenta valiosa. Ele fornece uma galeria completa de tipos de gráficos e oferece orientações sobre quando e como usar cada um deles. Além disso, o site oferece exemplos específicos de como criar esses gráficos usando diferentes bibliotecas, como ggplot2 em R e matplotlib em Python. 
+
+## Exercícios
+
+Vamos utilizar os dados da Billboard que foram apresentados na @sec-ex-dados. Sua tarefa é reproduzir os gráficos abaixo utilizando técnicas de processamento de dados com `dplyr` e visualização de dados com `ggplot`.
+
+  **a)** O gráfico abaixo mostra o histórico de cada musica no ranking ao longo das semanas.
+```{r echo=FALSE}
+billboard_longer <- billboard %>% 
+  pivot_longer(
+    cols = starts_with("wk"), 
+    names_to = "week", 
+    values_to = "rank",
+    values_drop_na = TRUE
+  ) %>% 
+  mutate(
+    week = parse_number(week)
+  )
+
+billboard_longer %>% 
+  ggplot(aes(x = week, y = rank, group = track)) + 
+  geom_line(alpha = 0.25) + 
+  scale_y_reverse() +
+  labs(y="Rank", x="Semana", color = "Música") +
+  theme_bw() 
+```
+
+  **b)** O gráfico abaixo é uma pequena alteração do apresentado no item **a)**, no eixo x é apresentada a data que a música entrou no ranking.
+```{r echo=FALSE}
+billboard_longer %>% 
+  mutate(date = date.entered + lubridate::weeks(week)) %>% 
+  ggplot(aes(x = date, y = rank, group = track)) + 
+  geom_line(alpha = 0.25) + 
+  scale_y_reverse()+
+  labs(y="Rank", x="Data", color = "Música") +
+  theme_bw() 
+```
+  
+  **c)** O gráfico abaixo mostra o histórico de duas músicas no ranking: "Higher" e "With Arms Wide Open".
+```{r echo=FALSE}
+billboard_longer %>% 
+  mutate(date = date.entered + lubridate::weeks(week)) %>% 
+  filter(track == "Higher" | track == "With Arms Wide Open") %>% 
+  ggplot(aes(x = date, y = rank, color = track)) + 
+  geom_line(alpha = 1) + 
+  scale_y_reverse() +
+  labs(y="Rank", x="Data", color = "Música") +
+  theme_bw() 
+```
+  
