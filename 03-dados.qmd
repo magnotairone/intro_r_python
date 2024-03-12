@@ -34,25 +34,23 @@ dados <- read_excel("arquivo.xlsx")
 É uma boa prática definir um diretório de trabalho em seus scripts R porque isso ajuda a manter a organização e facilita o acesso aos arquivos de dados e resultados. Ao definir um diretório de trabalho, você garante que todos os arquivos referenciados em seus scripts serão encontrados facilmente, sem a necessidade de especificar caminhos absolutos longos.
 
 Para definir o diretório de trabalho no R, você pode usar a função `setwd()`. Por exemplo, se você deseja definir o diretório como "C:/MeuDiretorio", você pode fazer o seguinte:
+
 ```{r eval=FALSE}
 setwd("C:/MeuDiretorio")
 ```
 
-Você pode definir o diretório usando a interface do RStudio.
-Basta selecionar no menu "Session" a opção "Set Working Directory" e em seguida "Choose Directory".
-Isso abrirá uma caixa de diálogo onde você pode navegar até o diretório desejado e selecioná-lo. Depois de selecionar o diretório, ele se tornará o diretório de trabalho atual.
-
+Você pode definir o diretório usando a interface do RStudio. Basta selecionar no menu "Session" a opção "Set Working Directory" e em seguida "Choose Directory". Isso abrirá uma caixa de diálogo onde você pode navegar até o diretório desejado e selecioná-lo. Depois de selecionar o diretório, ele se tornará o diretório de trabalho atual.
 :::
 
 ## O pacote tidyverse
 
 O pacote `tidyverse` é uma coleção de pacotes do R projetados para trabalhar de forma integrada e intuitiva na análise de dados. Ele inclui uma variedade de pacotes poderosos e populares, como `ggplot2`, `dplyr`, `tidyr`, `tibble`, `readr`, `purrr`, `forcats` e `stringr`. Cada pacote no tidyverse foi projetado para lidar com uma etapa específica do fluxo de trabalho de análise de dados, desde a importação e limpeza até a visualização e modelagem. Todos os pacotes no `tidyverse` compartilham uma filosofia de design subjacente, gramática e estruturas de dados, veja mais [na página do pacote](https://www.tidyverse.org/).
 
-### O operador pipe `%>%`
+## O operador pipe `%>%`
 
 O operador `%\>%`, conhecido como pipe, é uma ferramenta poderosa em R que facilita a encadeamento de operações em sequência. Ele permite escrever código de forma mais clara e concisa, especialmente ao trabalhar com pacotes do tidyverse. O pipe recebe o resultado de uma expressão à esquerda e o passa como primeiro argumento para a próxima expressão à direita.
 
-::: {.callout-tip}
+::: callout-tip
 Você não precisa digitar `%\>%` toda vez que precisar. Utilize o atalho Ctrl+Shitf+M.
 :::
 
@@ -72,7 +70,7 @@ Ambos os métodos produzirão o mesmo resultado. No entanto, a segunda abordagem
 Uma boa prática ao usar o pipe %\>% é quebrar a linha após cada pipe para melhorar a legibilidade do código.
 :::
 
-### Dados no formato *tidy*
+## Dados no formato *tidy*
 
 > "Tidy datasets are all alike, but every messy dataset is messy in its own way." --- Hadley Wickham.
 
@@ -116,16 +114,14 @@ table4a %>%
 
 As duas funções `pivot_wider` e `pivot_longer` são suficientes para fazer a transformação de bases de dados no formato *tidy*.
 
-### Principais verbos do pacote `dplyr`
+## Principais verbos do pacote `dplyr`
 
-O pacote `dplyr` é uma das ferramentas mais poderosas para manipulação de dados no ambiente R. Ele oferece um conjunto coeso de funções que simplificam tarefas comuns de manipulação, como filtragem, seleção, agrupamento, ordenação e resumo de dados. O dplyr utiliza uma sintaxe intuitiva e consistente, facilitando a escrita de código limpo e legível. 
+O pacote `dplyr` é uma das ferramentas mais poderosas para manipulação de dados no ambiente R. Ele oferece um conjunto coeso de funções que simplificam tarefas comuns de manipulação, como filtragem, seleção, agrupamento, ordenação e resumo de dados. O dplyr utiliza uma sintaxe intuitiva e consistente, facilitando a escrita de código limpo e legível.
 
-A seguir, vamos estudar o funcionamento dos principais verbos do pacote.
-Para exemplificar, vamos utilizar a base de dados `gapminder`.
-Ela é uma coleção de informações socioeconômicas de diversos países ao longo do tempo, veja @gapminder. Ela inclui variáveis como expectativa de vida, PIB per capita, taxa de mortalidade infantil e tamanho da população para diferentes países e anos, cobrindo um período de várias décadas.
+A seguir, vamos estudar o funcionamento dos principais verbos do pacote. Para exemplificar, vamos utilizar a base de dados `gapminder`. Ela é uma coleção de informações socioeconômicas de diversos países ao longo do tempo, veja @gapminder. Ela inclui variáveis como expectativa de vida, PIB per capita, taxa de mortalidade infantil e tamanho da população para diferentes países e anos, cobrindo um período de várias décadas.
 
-Para carregar a base de dados `gapminder`, você precisa carregar o pacote `gapminder`. 
-Com o pacote gapminder carregado, a base de dados `gapminder` estará disponível para uso em seu ambiente R:
+Para carregar a base de dados `gapminder`, você precisa carregar o pacote `gapminder`. Com o pacote gapminder carregado, a base de dados `gapminder` estará disponível para uso em seu ambiente R:
+
 ```{r results='hide'}
 library(gapminder)
 head(gapminder)
@@ -137,13 +133,12 @@ A função `glimpse()` fornece uma visão geral rápida e concisa da estrutura d
 glimpse(gapminder)
 ```
 
-
 ### select
 
-O verbo `select()` é utilizado para selecionar colunas específicas de um conjunto de dados.
-Com o `select()`, é possível escolher as colunas desejadas com base em seus nomes, tipos de dados ou outros critérios.
+O verbo `select()` é utilizado para selecionar colunas específicas de um conjunto de dados. Com o `select()`, é possível escolher as colunas desejadas com base em seus nomes, tipos de dados ou outros critérios.
 
 Por exemplo, considerando a base de dados gapminder, suponha que desejamos selecionar apenas as colunas referentes ao ano, ao país, à expectativa de vida e ao PIB per capita. Podemos fazer isso da seguinte maneira:
+
 ```{r eval=FALSE}
 # Selecionando as colunas pelo nome
 gapminder %>%
@@ -158,8 +153,8 @@ gapminder %>%
   select(starts_with("co"))
 ```
 
-Note que nos exemplos acima, nenhuma das seleções foi salva em variável.
-Para salvar as seleções em uma variável, você pode atribuir o resultado de cada operação `select()` a uma variável separada. Por exemplo:
+Note que nos exemplos acima, nenhuma das seleções foi salva em variável. Para salvar as seleções em uma variável, você pode atribuir o resultado de cada operação `select()` a uma variável separada. Por exemplo:
+
 ```{r eval=FALSE}
 gapminder_character <- gapminder %>% 
   select(where(is.character))
@@ -167,10 +162,10 @@ gapminder_character <- gapminder %>%
 
 ### arrange
 
-O verbo `arrange()` é usado para reorganizar as linhas de um conjunto de dados com base nos valores de uma ou mais colunas. 
-Quando aplicado a um conjunto de dados, o `arrange()` classifica as linhas em ordem crescente ou decrescente com base nos valores das colunas especificadas.
+O verbo `arrange()` é usado para reorganizar as linhas de um conjunto de dados com base nos valores de uma ou mais colunas. Quando aplicado a um conjunto de dados, o `arrange()` classifica as linhas em ordem crescente ou decrescente com base nos valores das colunas especificadas.
 
 No primeiro exemplo usando o verbo `select()`, podemos ordenar os dados por país em ordem alfabética, podemos fazer assim:
+
 ```{r}
 gapminder %>%
   select(year, country, lifeExp, gdpPercap, pop) %>%
@@ -178,6 +173,7 @@ gapminder %>%
 ```
 
 No exemplo abaixo, estamos organizando de acordo com o ano em ordem crescente e a expectativa de vida em ordem decrescente dentro de cada ano.
+
 ```{r}
 gapminder %>%
   select(year, country, lifeExp, gdpPercap, pop) %>%
@@ -185,7 +181,8 @@ gapminder %>%
 ```
 
 ::: callout-tip
-Ao utilizar o verbo `select()` com o prefixo `-`, você pode especificar as colunas que deseja **excluir** do conjunto de dados. No exemplo abaixo, vamos excluir a coluna `continent` da seleção no conjunto de dados. 
+Ao utilizar o verbo `select()` com o prefixo `-`, você pode especificar as colunas que deseja **excluir** do conjunto de dados. No exemplo abaixo, vamos excluir a coluna `continent` da seleção no conjunto de dados.
+
 ```{r}
 gapminder %>% 
   select(-continent)
@@ -194,17 +191,16 @@ gapminder %>%
 
 ### filter
 
-Para analisar dados específicos de interesse, muitas vezes é necessário filtrar o conjunto de dados para incluir apenas as observações relevantes. O verbo `filter()` é usado para fazer isso.
-Basta definir uma ou mais condições lógicas que as linhas da base de dados devem satisfazer para serem mostradas.
+Para analisar dados específicos de interesse, muitas vezes é necessário filtrar o conjunto de dados para incluir apenas as observações relevantes. O verbo `filter()` é usado para fazer isso. Basta definir uma ou mais condições lógicas que as linhas da base de dados devem satisfazer para serem mostradas.
 
 No exemplo abaixo, estamos filtrando os dados para incluir apenas as observações onde o país é "Brasil" ou "Argentina".
+
 ```{r}
 gapminder %>%
   select(year, country, lifeExp, gdpPercap, pop) %>%
   arrange(year, desc(lifeExp)) %>% 
   filter(country == "Brazil" | country == "Argentina")
 ```
-
 
 ### mutate
 
@@ -223,16 +219,18 @@ gapminder_total_gdp <- gapminder %>%
 O verbo `summarise()` é usado para resumir os dados em uma única linha, geralmente calculando estatísticas resumidas como média, soma, mediana, etc. Ele permite calcular resumos estatísticos em um conjunto de dados, criando uma nova tabela contendo os resultados resumidos.
 
 Aqui está um exemplo de como usar `summarise()` para calcular a média da expectativa de vida usando os dados do `gapminder`:
+
 ```{r}
 gapminder %>%
   summarise(mean_lifeExp = mean(lifeExp, na.rm = TRUE))
 ```
 
-### group by
+### group by {#sec-dados-groupby}
 
 O verbo `group_by()` é usado para dividir os dados em grupos com base nos valores de uma ou mais variáveis. Ele não realiza cálculos por si só, mas altera o comportamento das funções de resumo, como summarise(), para operar em cada grupo separadamente.
 
 Aqui está um exemplo de como usar `group_by()` com os dados do gapminder para calcular a média da expectativa de vida por continente:
+
 ```{r}
 gapminder %>%
   group_by(continent) %>%
@@ -254,7 +252,6 @@ gapminder %>%
 ```
 
 O gráfico abaixo mostra a evolução da expectativa de vida média nos continentes ao longo dos anos.
-
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 library(ggplot2)
@@ -279,16 +276,20 @@ gapminder %>%
 Qual mudança foi feita no código do exemplo anterior para construir os dados usados na geração deste gráfico?
 :::
 
+<!-- ## Trabalhando com datas -->
+<!-- TODO: adicionar -->
+
 ## Exercícios {#sec-ex-dados}
 
-Vamos trabalhar com o conjunto de dados `billboard`. 
-Neste conjunto de dados, cada observação é uma música. As três primeiras colunas (artista, faixa e data de entrada) são variáveis que descrevem a música. Em seguida, temos 76 colunas (wk1-wk76) que descrevem o ranking da música em cada semana. Aqui, os nomes das colunas são uma variável (a semana) e os valores das células são outra (o ranking).
+Vamos trabalhar com o conjunto de dados `billboard`. Neste conjunto de dados, cada observação é uma música. As três primeiras colunas (artista, faixa e data de entrada) são variáveis que descrevem a música. Em seguida, temos 76 colunas (wk1-wk76) que descrevem o ranking da música em cada semana. Aqui, os nomes das colunas são uma variável (a semana) e os valores das células são outra (o ranking).
+
 ```{r}
 library(tidyverse)
 billboard
 ```
 
-  **a)** Aplique uma tranformação na base de dados para deixá-la no formato abaixo.
+**a)** Aplique uma tranformação na base de dados para deixá-la no formato abaixo.
+
 ```{r echo=FALSE}
 billboard %>% 
   pivot_longer(
@@ -298,7 +299,8 @@ billboard %>%
   )
 ```
 
-  **b)** Observe o resultado do item **a)**. O que acontece se uma música estiver no top 100 por menos de 76 semanas? Pegue a música "Baby Don't Cry" de 2 Pac, por exemplo. A saída acima sugere que ela esteve no top 100 por apenas 7 semanas, e todas as semanas restantes são preenchidas com valores ausentes (`NA`). Esses NAs na verdade não representam observações desconhecidas; eles foram forçados a existir pela estrutura do conjunto de dados. Altere o código usado em **a)** para remover esses `NA`s. Responda: Quantas linhas sobraram? (Dica: veja a documentação da função `pivot_longer`.)
+**b)** Observe o resultado do item **a)**. O que acontece se uma música estiver no top 100 por menos de 76 semanas? Pegue a música "Baby Don't Cry" de 2 Pac, por exemplo. A saída acima sugere que ela esteve no top 100 por apenas 7 semanas, e todas as semanas restantes são preenchidas com valores ausentes (`NA`). Esses NAs na verdade não representam observações desconhecidas; eles foram forçados a existir pela estrutura do conjunto de dados. Altere o código usado em **a)** para remover esses `NA`s. Responda: Quantas linhas sobraram? (Dica: veja a documentação da função `pivot_longer`.)
+
 ```{r eval=FALSE, echo=FALSE}
 #resposta
 billboard %>% 
@@ -309,8 +311,9 @@ billboard %>%
     values_drop_na = TRUE
   )
 ```
-  
-  **c)** Você deve ter percebido que no resultado do item **a)**, o tipo da coluna `week` é caractere. Faça a transformação adequada para obter uma coluna com valores numéricos.
+
+**c)** Você deve ter percebido que no resultado do item **a)**, o tipo da coluna `week` é caractere. Faça a transformação adequada para obter uma coluna com valores numéricos.
+
 ```{r echo=FALSE, eval=FALSE}
 #resposta
 billboard_longer <- billboard %>% 
@@ -325,8 +328,8 @@ billboard_longer <- billboard %>%
   )
 ```
 
-  **d)** Qual música ficou por mais semanas no top 100 da Billboard em 2000? Por quantas semanas essa música apareceu no ranking? E qual música ficou por menos tempo no ranking.
-  
+**d)** Qual música ficou por mais semanas no top 100 da Billboard em 2000? Por quantas semanas essa música apareceu no ranking? E qual música ficou por menos tempo no ranking.
+
 ```{r echo=FALSE, eval=FALSE}
 billboard_longer %>% 
   group_by(track) %>% 
@@ -334,7 +337,7 @@ billboard_longer %>%
   arrange(desc(n)) 
 ```
 
-  **e)** Qual música ficou exatamente 10 semanas no top 100 da Billboard em 2000? Caso exista mais de uma música nessa condição, considere a que primeiro entrou no ranking.
+**e)** Qual música ficou exatamente 10 semanas no top 100 da Billboard em 2000? Caso exista mais de uma música nessa condição, considere a que primeiro entrou no ranking.
 
 ```{r echo=FALSE, eval=FALSE}
 billboard_longer %>% 
@@ -343,4 +346,3 @@ billboard_longer %>%
   filter(n==10) %>% 
   arrange(date.entered)
 ```
-

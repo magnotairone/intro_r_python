@@ -220,7 +220,7 @@ Isso retornará `TRUE` se a variável `taxa_juros_aumentando` for do tipo lógic
 Esses exemplos ilustram como você pode usar as funções `is.*` para verificar o tipo de variáveis, ajudando a garantir que você esteja manipulando os dados corretamente em suas análises.
 
 Outra família de funções importantes é a das funções `as.*`.
-Elas são usadas para converter um objeto de um tipo para outro.
+Elas são usadas para fazer a coerção (converter) de um objeto de um tipo para outro.
 Elas permitem que você altere o tipo de dado de uma variável, o que pode ser útil em várias situações, como quando você precisa realizar operações específicas que exigem um determinado tipo de dado ou quando deseja garantir a consistência dos tipos de dados em seu código.
 
 Algumas das funções `as.*` mais comuns incluem:
@@ -578,5 +578,4 @@ Um dado pode ser marcado como `NA` em diversas situações, incluindo
 
 ## Exercícios
 
-1.  Considere os seguinte setores econômico. "Financeiro", "Tecnologia da Informação", "Bens Industriais" e "Saúde".
-Gere aleatoriamente uma amostra de tamanho 1.000, com estes setores, com igual probabilidade de cada um ser escolhido. Mostre os primeiros valores da variável resultante e conte quantas empresas pertencem a cada setor econômico.
+1.  Considere os seguinte setores econômico. "Financeiro", "Tecnologia da Informação", "Bens Industriais" e "Saúde". Gere aleatoriamente uma amostra de tamanho 1.000, com estes setores, com igual probabilidade de cada um ser escolhido. Mostre os primeiros valores da variável resultante e conte quantas empresas pertencem a cada setor econômico.

@@ -81,13 +81,13 @@ Neste exemplo, a empresa é classificada com base em sua receita anual. Se a rec
 
 As estruturas de repetição, também conhecidas como loops, são utilizadas para executar um bloco de código repetidamente enquanto uma condição específica for verdadeira ou para percorrer uma sequência de elementos. Isso é útil quando você precisa executar uma tarefa várias vezes ou quando deseja iterar sobre uma coleção de dados.
 
-### `for`
+### `for` {#sec-fluxos-for}
 
 Uma das estruturas de repetição mais comuns é o loop `for.` O loop for é usado para iterar sobre uma sequência de valores, como uma sequência numérica de números inteiros ou os elementos de um vetor.
 
-Existem duas maneiras de se usar o `for` loop. 
+Existem duas maneiras de se usar o `for` loop.
 
-- Usando for para iterar sobre índices:
+-   Usando for para iterar sobre índices:
 
 ```{r}
 # Exemplo de loop for para iterar sobre índices
@@ -98,7 +98,7 @@ for (i in 1:5) {
 
 Neste exemplo, o loop `for` itera sobre os valores de 1 a 5. Na primeira iteração, `i` é igual a 1; na segunda iteração, `i` é igual a 2; e assim por diante, até que `i` seja igual a 5.
 
-- Usando for para iterar sobre elementos:
+-   Usando for para iterar sobre elementos:
 
 ```{r}
 # Exemplo de loop for para iterar sobre elementos de um vetor
@@ -130,8 +130,7 @@ for (i in 1:10) {
 print(round(pib_per_capita, 3))
 ```
 
-::: {.callout-tip collapse="true" title="Clique e veja um exemplo extra"} 
-
+::: {.callout-tip collapse="true" title="Clique e veja um exemplo extra"}
 Imagine que temos uma série temporal representando o preço de fechamento diário de uma ação ao longo de um período de 30 dias. Queremos calcular a média móvel de 5 dias desse preço, ou seja, para cada dia, queremos calcular a média dos preços de fechamento dos cinco dias anteriores, incluindo o dia atual.
 
 Primeiro, vamos simular os dados do preço de fechamento diário da ação:
@@ -173,7 +172,6 @@ ggplot2::ggplot(tidyr::tibble(t=5:30, mm=media_movel), ggplot2::aes(t, mm)) +
 ::: callout-note
 Você vai aprender a construir gráficos como este no [Capítulo 4](04-visualizacao.qmd).
 :::
-
 :::
 
 ### `while`
@@ -211,8 +209,7 @@ while(acao != "Descansar") {
 }
 ```
 
-:::{.callout-tip collapse="true" title="Clique e veja um exemplo extra"}
-
+::: {.callout-tip collapse="true" title="Clique e veja um exemplo extra"}
 Vamos considerar um exemplo onde queremos simular a evolução de uma população ao longo do tempo, onde não sabemos exatamente quantos períodos serão necessários para que a população atinja um determinado limite. Neste caso, usaremos um loop `while` para continuar simulando o crescimento populacional até que a população alcance um certo valor limite.
 
 ```{r}
@@ -247,12 +244,12 @@ print(paste("Foram necessários", anos, "anos para atingir uma população de", 
 
 ```
 
-::: {.callout-note} 
+::: callout-note
 É possível calcular diretamente o número de anos necessários para atingir a população limite desejada. Com um pouco de álgebra você chege na seguinte fórmula para calcular o número de anos: $$\text{anos} = \frac{\log\left(\frac{\text{limite\_populacional}}{\text{populacao\_inicial}}\right)}{\log(1 + \text{taxa\_crescimento})}.$$
 :::
 :::
 
-## Funções
+## Funções {#sec-fluxos-funcoes}
 
 Uma função em R é um bloco de código que realiza uma tarefa específica e pode ser reutilizado várias vezes. A sintaxe para definir uma função em R segue o padrão:
 
