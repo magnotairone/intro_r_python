@@ -1,5 +1,13 @@
-# Visualização de dados
+# Processamento e visualização de dados
 
-::: {.callout-important}
+::: callout-important
 Página ainda em construção!
 :::
+
+## Numpy
+
+## Pandas
+
+<!-- aulas 4, 5 (data wrangling) e 6 (missing data) -->
+
+## Plotnine

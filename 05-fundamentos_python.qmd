@@ -7,8 +7,6 @@ editor_options:
 # Fundamentos de Python
 
 ::: {.callout-important title="Atenção"}
-Página ainda em construção!
-
 A partir de agora, todo o código apreesntado neste livro está na linguagem Python!
 :::
 
@@ -574,9 +572,3 @@ transacao1.print_info()
 transacao2.print_info()
 ```
 
-
-## Numpy
-
-## Pandas
-
-<!-- aulas 4, 5 (data wrangling) e 6 (missing data) -->
