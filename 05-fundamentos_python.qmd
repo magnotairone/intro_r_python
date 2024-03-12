@@ -10,6 +10,8 @@ editor_options:
 A partir de agora, todo o código apreesntado neste livro está na linguagem Python!
 :::
 
+A fonte para a contrução deste material é @mckinney2022.
+
 
 ## Instalação
 

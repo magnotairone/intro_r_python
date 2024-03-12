@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introdução à R e Python - 6&nbsp; Visualização de dados</title>
+<title>Introdução à R e Python - 6&nbsp; Processamento e visualização de dados</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./07-casos.html" rel="next">
 <link href="./05-fundamentos_python.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -62,6 +96,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -74,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-fundamentos_python.html">Aprendendo Python</a></li><li class="breadcrumb-item"><a href="./06-visualizacao_python.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Visualização de dados</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-fundamentos_python.html">Aprendendo Python</a></li><li class="breadcrumb-item"><a href="./06-visualizacao_python.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Processamento e visualização de dados</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -158,7 +194,24 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-visualizacao_python.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Visualização de dados</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Processamento e visualização de dados</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Estudo de casos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-casos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estudo de casos práticos</span></span></a>
   </div>
 </li>
       </ul>
@@ -175,14 +228,33 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#instalação-de-bibliotecas" id="toc-instalação-de-bibliotecas" class="nav-link active" data-scroll-target="#instalação-de-bibliotecas"><span class="header-section-number">6.1</span> Instalação de bibliotecas</a></li>
+  <li><a href="#processamento-de-dados-numéricos" id="toc-processamento-de-dados-numéricos" class="nav-link" data-scroll-target="#processamento-de-dados-numéricos"><span class="header-section-number">6.2</span> Processamento de dados numéricos</a></li>
+  <li><a href="#análise-e-processamento-de-dados" id="toc-análise-e-processamento-de-dados" class="nav-link" data-scroll-target="#análise-e-processamento-de-dados"><span class="header-section-number">6.3</span> Análise e processamento de dados</a></li>
+  <li><a href="#visualização-de-dados" id="toc-visualização-de-dados" class="nav-link" data-scroll-target="#visualização-de-dados"><span class="header-section-number">6.4</span> Visualização de dados</a>
+  <ul class="collapse">
+  <li><a href="#matplotlib" id="toc-matplotlib" class="nav-link" data-scroll-target="#matplotlib"><span class="header-section-number">6.4.1</span> Matplotlib</a></li>
+  <li><a href="#plotnine" id="toc-plotnine" class="nav-link" data-scroll-target="#plotnine"><span class="header-section-number">6.4.2</span> Plotnine</a></li>
+  </ul></li>
+  <li><a href="#análise-de-dados-avançada" id="toc-análise-de-dados-avançada" class="nav-link" data-scroll-target="#análise-de-dados-avançada"><span class="header-section-number">6.5</span> Análise de Dados Avançada</a>
+  <ul class="collapse">
+  <li><a href="#caso-1-visualizando-dados-numpy-com-matplotlib" id="toc-caso-1-visualizando-dados-numpy-com-matplotlib" class="nav-link" data-scroll-target="#caso-1-visualizando-dados-numpy-com-matplotlib">Caso 1: Visualizando dados <code>NumPy</code> com <code>Matplotlib</code></a></li>
+  <li><a href="#caso-2-gapminder" id="toc-caso-2-gapminder" class="nav-link" data-scroll-target="#caso-2-gapminder">Caso 2: Gapminder</a></li>
+  </ul></li>
+  <li><a href="#exercícios" id="toc-exercícios" class="nav-link" data-scroll-target="#exercícios"><span class="header-section-number">6.6</span> Exercícios</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Visualização de dados</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Processamento e visualização de dados</span></h1>
 </div>
 
 
@@ -210,8 +282,244 @@ Important
 <p>Página ainda em construção!</p>
 </div>
 </div>
+<section id="instalação-de-bibliotecas" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="instalação-de-bibliotecas"><span class="header-section-number">6.1</span> Instalação de bibliotecas</h2>
+<p>A instalação de bibliotecas em Python é essencial para expandir a funcionalidade da linguagem. Existem várias maneiras de instalar bibliotecas, mas a mais comum é usando um gerenciador de pacotes. O pip é o gerenciador de pacotes padrão para Python e geralmente acompanha a instalação do Python.</p>
+<p>Para instalar uma biblioteca com pip, abra o terminal ou prompt de comando e digite o seguinte comando:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pip install nome_da_biblioteca</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Substitua nome_da_biblioteca pelo nome da biblioteca que você deseja instalar.</p>
+</section>
+<section id="processamento-de-dados-numéricos" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="processamento-de-dados-numéricos"><span class="header-section-number">6.2</span> Processamento de dados numéricos</h2>
+<p>O <code>NumPy</code> (Numerical Python) é uma biblioteca essencial para computação numérica em Python. Ele fornece estruturas de dados eficientes para trabalhar com arrays multidimensionais e funções matemáticas poderosas para manipulação de dados.</p>
+<p>Para instalar o NumPy, você pode usar o pip, que é o gerenciador de pacotes padrão do Python:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pip install numpy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O principal objeto em <code>NumPy</code> é o array multidimensional. Você pode criar arrays <code>NumPy</code> usando a função <code>numpy.array()</code> e realizar operações matemáticas básicas com eles:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando um array NumPy</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Operações matemáticas básicas</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Soma:"</span>, np.<span class="bu">sum</span>(arr))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Média:"</span>, np.mean(arr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Soma: 15
+Média: 3.0</code></pre>
+</div>
+</div>
+<p>Além das operações básicas, o NumPy oferece funções universais (<code>ufuncs</code>) para aplicar operações em todos os elementos de um array de uma vez:</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Funções universais (ufuncs)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Quadrado de cada elemento:"</span>, np.square(arr))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Exponencial de cada elemento:"</span>, np.exp(arr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Quadrado de cada elemento: [ 1  4  9 16 25]
+Exponencial de cada elemento: [  2.71828183   7.3890561   20.08553692  54.59815003 148.4131591 ]</code></pre>
+</div>
+</div>
+<p>A seguir, apresentamos três exemplos práticos de utilização das funções do <code>NumPy</code>.</p>
+<p><strong>Exemplo 1: Cálculo de Estatísticas Descritivas</strong></p>
+<p>O <code>NumPy</code> pode ser usado para calcular estatísticas descritivas, como média, mediana, desvio padrão, mínimo e máximo de séries temporais de dados econômicos, como o preço das ações de uma empresa ao longo do tempo.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Preço das ações de uma empresa ao longo do tempo (em dólares)</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>precos <span class="op">=</span> np.array([<span class="dv">100</span>, <span class="dv">102</span>, <span class="dv">105</span>, <span class="dv">110</span>, <span class="dv">108</span>, <span class="dv">115</span>, <span class="dv">120</span>])</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando estatísticas descritivas</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Média:"</span>, np.mean(precos))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Desvio padrão:"</span>, np.std(precos))</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Máximo:"</span>, np.<span class="bu">max</span>(precos))</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mínimo:"</span>, np.<span class="bu">min</span>(precos))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Média: 108.57142857142857
+Desvio padrão: 6.58693821908486
+Máximo: 120
+Mínimo: 100</code></pre>
+</div>
+</div>
+<p><strong>Exemplo 2: Análise de Séries Temporais</strong> O <code>NumPy</code> é útil para manipulação e análise de séries temporais. Por exemplo, você pode usar <code>NumPy</code> para calcular a taxa de retorno de um investimento ao longo do tempo ou para suavizar uma série temporal usando médias móveis.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>precos <span class="op">=</span> np.array([<span class="dv">100</span>, <span class="dv">102</span>, <span class="dv">105</span>, <span class="dv">110</span>, <span class="dv">108</span>, <span class="dv">115</span>, <span class="dv">120</span>])</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular a taxa de retorno de um investimento ao longo do tempo</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>retornos <span class="op">=</span> np.diff(precos) <span class="op">/</span> precos[:<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Taxa de retorno:"</span>, retornos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Taxa de retorno: [ 2.          2.94117647  4.76190476 -1.81818182  6.48148148  4.34782609]</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A função np.diff em NumPy é usada para calcular a diferença entre elementos consecutivos ao longo de um determinado eixo de um array. <em>Atenção</em>: O tamanho do retorno da função np.diff será sempre menor que o tamanho do vetor original de entrada por um elemento. Por exemplo, se tivermos um vetor unidimensional com <span class="math inline">\(n\)</span> elementos, a função np.diff retornará um vetor com <span class="math inline">\(n−1\)</span> elementos, pois não há diferença para o último elemento.</p>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>precos <span class="op">=</span> np.array([<span class="dv">100</span>, <span class="dv">102</span>, <span class="dv">105</span>, <span class="dv">110</span>, <span class="dv">108</span>, <span class="dv">115</span>, <span class="dv">120</span>])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Suavizar uma série temporal usando médias móveis</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>tamanho_janela <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>media_movel <span class="op">=</span> np.convolve(precos, np.ones(tamanho_janela) <span class="op">/</span> tamanho_janela, mode<span class="op">=</span><span class="st">'valid'</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Médias móveis:"</span>, media_movel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Médias móveis: [102.33333333 105.66666667 107.66666667 111.         114.33333333]</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A função <code>np.convolve</code> em <code>NumPy</code> é usada para realizar a convolução entre duas sequências, representadas por dois vetores unidimensionais. A convolução é uma operação matemática que combina duas funções para produzir uma terceira função que representa a quantidade de sobreposição entre elas conforme uma delas é deslocada ao longo do eixo.</p>
+<p>A sintaxe básica da função é <code>np.convolve(a, b, mode='full')</code>, onde <code>a</code> e <code>b</code> são os dois vetores unidimensionais a serem convolvidos e <code>mode</code> é um parâmetro opcional que define o modo de convolução. Os modos mais comuns são: - <code>'full'</code>: Retorna a saída completa da convolução. O comprimento do resultado será <code>len(a) + len(b) - 1</code>. - <code>'valid'</code>: Retorna apenas pontos onde as sequências se sobrepõem completamente. O comprimento do resultado será <code>max(len(a), len(b)) - min(len(a), len(b)) + 1</code>. - <code>'same'</code>: Retorna a saída do mesmo tamanho que o vetor de entrada mais longo. O comprimento do resultado será <code>max(len(a), len(b))</code>.</p>
+<p>No exemplo anterior, a função <code>np.convolve</code> foi usada aqui para calcular a média móvel dos preços. Nesse caso, a primeira sequência é o vetor de preços e a segunda sequência é um vetor de 1s dividido pelo tamanho da janela de média móvel. Isso cria uma sequência que representa uma média ponderada dos valores.</p>
+</div>
+</div>
+<p><strong>Exemplo 3: Simulação Monte Carlo</strong> O NumPy pode ser usado para realizar simulações Monte Carlo, que são amplamente utilizadas na modelagem financeira e na avaliação de risco. Por exemplo, você pode simular o desempenho de uma carteira de investimentos ao longo do tempo sob diferentes cenários de mercado.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulação Monte Carlo do desempenho de uma carteira de investimentos</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>num_simulacoes <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>num_anos <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>retorno_medio <span class="op">=</span> <span class="fl">0.08</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>volatilidade <span class="op">=</span> <span class="fl">0.15</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerar retornos aleatórios usando uma distribuição normal</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>retornos <span class="op">=</span> np.random.normal(retorno_medio, volatilidade, size<span class="op">=</span>(num_simulacoes, num_anos))</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular o valor final da carteira para cada simulação</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>investimento_inicial <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>valores_finais <span class="op">=</span> investimento_inicial <span class="op">*</span> np.cumprod(<span class="dv">1</span> <span class="op">+</span> retornos, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Estatísticas descritivas dos valores finais da carteira</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Valor final médio:"</span>, np.mean(valores_finais[:,<span class="op">-</span><span class="dv">1</span>]))</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Desvio padrão dos valores finais:"</span>, np.std(valores_finais[:,<span class="op">-</span><span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Valor final médio: 21165.949264537718
+Desvio padrão dos valores finais: 9888.947340076622</code></pre>
+</div>
+</div>
+<p>Mais referências sobre <code>NumPy</code>:</p>
+<ul>
+<li><p><strong>Documentação oficial do NumPy:</strong> <a href="https://numpy.org/doc/stable/">https://numpy.org/doc/stable/</a> A documentação oficial do NumPy contém informações detalhadas sobre todas as funções e métodos disponíveis, além de tutoriais e exemplos.</p></li>
+<li><p><strong>NumPy Quickstart Tutorial:</strong> <a href="https://numpy.org/doc/stable/user/quickstart.html">https://numpy.org/doc/stable/user/quickstart.html</a> Este tutorial rápido fornece uma introdução rápida ao NumPy e suas funcionalidades básicas.</p></li>
+</ul>
+</section>
+<section id="análise-e-processamento-de-dados" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="análise-e-processamento-de-dados"><span class="header-section-number">6.3</span> Análise e processamento de dados</h2>
+<p>Pandas</p>
+<!-- aulas 4, 5 (data wrangling) e 6 (missing data) -->
+</section>
+<section id="visualização-de-dados" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="visualização-de-dados"><span class="header-section-number">6.4</span> Visualização de dados</h2>
+<section id="matplotlib" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="matplotlib"><span class="header-section-number">6.4.1</span> Matplotlib</h3>
+</section>
+<section id="plotnine" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="plotnine"><span class="header-section-number">6.4.2</span> Plotnine</h3>
+</section>
+</section>
+<section id="análise-de-dados-avançada" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="análise-de-dados-avançada"><span class="header-section-number">6.5</span> Análise de Dados Avançada</h2>
+<section id="caso-1-visualizando-dados-numpy-com-matplotlib" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="caso-1-visualizando-dados-numpy-com-matplotlib">Caso 1: Visualizando dados <code>NumPy</code> com <code>Matplotlib</code></h3>
+<p>O objetivo deste exemplo é demonstrar como usar NumPy e Matplotlib em conjunto para analisar dados econômicos simulados. Leia o código abaixo e tente entender o que está sendo feito.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerando dados aleatórios para simular valores de PIB</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>pib <span class="op">=</span> np.random.normal(<span class="dv">500</span>, <span class="dv">100</span>, <span class="dv">100</span>)  <span class="co"># Simulando 100 valores de PIB</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando média, mediana e desvio padrão do PIB</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>media_pib <span class="op">=</span> np.mean(pib)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>mediana_pib <span class="op">=</span> np.median(pib)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>desvio_padrao_pib <span class="op">=</span> np.std(pib)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Média do PIB:"</span>, media_pib)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mediana do PIB:"</span>, mediana_pib)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Desvio padrão do PIB:"</span>, desvio_padrao_pib)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotando um histograma dos valores do PIB</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>plt.hist(pib, bins<span class="op">=</span><span class="dv">10</span>, color<span class="op">=</span><span class="st">'skyblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribuição do PIB'</span>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'PIB'</span>)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Frequência'</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Média do PIB: 489.61534826059057
+Mediana do PIB: 487.3043708220287
+Desvio padrão do PIB: 90.36161766446295</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="06-visualizacao_python_files/figure-html/cell-10-output-2.png" width="603" height="450"></p>
+</div>
+</div>
+<p>No exemplo acima, começamos gerando dados aleatórios para simular valores de PIB usando a distribuição normal com uma média de 500 e um desvio padrão de 100. Em seguida, calculamos a média, a mediana e o desvio padrão desses valores usando funções NumPy. Para facilitar a visualização e análise dos dados, plotamos um histograma usando Matplotlib. Este histograma nos permite visualizar a distribuição dos valores do PIB e identificar tendências ou padrões nos dados.</p>
+</section>
+<section id="caso-2-gapminder" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="caso-2-gapminder">Caso 2: Gapminder</h3>
+<p>O objetivo deste exemplo é demonstrar como usar Pandas, NumPy e Matplotlib em conjunto para realizar análises exploratórias de dados do Gapminder.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar os dados do Gapminder usando Pandas</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>gapminder <span class="op">=</span> pd.read_csv(<span class="st">'caminho/do/arquivo/gapminder.csv'</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular a média da expectativa de vida usando NumPy</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>mean_life_expectancy <span class="op">=</span> np.mean(gapminder[<span class="st">'lifeExp'</span>])</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular a mediana do PIB per capita usando NumPy</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>median_gdp_per_capita <span class="op">=</span> np.median(gapminder[<span class="st">'gdpPercap'</span>])</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotar um histograma da expectativa de vida usando Matplotlib</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>plt.hist(gapminder[<span class="st">'lifeExp'</span>], bins<span class="op">=</span><span class="dv">20</span>, color<span class="op">=</span><span class="st">'skyblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>plt.axvline(mean_life_expectancy, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plt.text(mean_life_expectancy <span class="op">+</span> <span class="dv">1</span>, <span class="dv">50</span>, <span class="ss">f'Média: </span><span class="sc">{</span>mean_life_expectancy<span class="sc">:.2f}</span><span class="ss">'</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Expectativa de Vida'</span>)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Frequência'</span>)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribuição da Expectativa de Vida'</span>)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotar um gráfico de dispersão entre expectativa de vida e PIB per capita usando Matplotlib</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>plt.scatter(gapminder[<span class="st">'gdpPercap'</span>], gapminder[<span class="st">'lifeExp'</span>], alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>plt.axhline(mean_life_expectancy, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>plt.axvline(median_gdp_per_capita, color<span class="op">=</span><span class="st">'green'</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>plt.text(median_gdp_per_capita <span class="op">+</span> <span class="dv">500</span>, mean_life_expectancy <span class="op">+</span> <span class="dv">1</span>, <span class="ss">f'Mediana: </span><span class="sc">{</span>median_gdp_per_capita<span class="sc">:.2f}</span><span class="ss">'</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'PIB per Capita'</span>)</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Expectativa de Vida'</span>)</span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'PIB per Capita vs Expectativa de Vida'</span>)</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>No código acima, começamos carregando os dados do Gapminder usando a função pd.read_csv() do Pandas. Em seguida, calculamos a média da expectativa de vida e a mediana do PIB per capita usando funções NumPy np.mean() e np.median(), respectivamente. Para visualizar a distribuição da expectativa de vida, plotamos um histograma usando a função plt.hist() do Matplotlib.</p>
+</section>
+</section>
+<section id="exercícios" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">6.6</span> Exercícios</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -454,8 +762,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./07-casos.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estudo de casos práticos</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

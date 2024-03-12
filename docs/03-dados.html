@@ -211,7 +211,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-visualizacao_python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Visualização de dados</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Processamento e visualização de dados</span></span></a>
   </div>
 </li>
       </ul>
@@ -233,19 +233,19 @@ div.csl-indent {
    
   <ul>
   <li><a href="#importar-arquivos-externos" id="toc-importar-arquivos-externos" class="nav-link active" data-scroll-target="#importar-arquivos-externos"><span class="header-section-number">3.1</span> Importar arquivos externos</a></li>
-  <li><a href="#o-pacote-tidyverse" id="toc-o-pacote-tidyverse" class="nav-link" data-scroll-target="#o-pacote-tidyverse"><span class="header-section-number">3.2</span> O pacote tidyverse</a>
+  <li><a href="#o-pacote-tidyverse" id="toc-o-pacote-tidyverse" class="nav-link" data-scroll-target="#o-pacote-tidyverse"><span class="header-section-number">3.2</span> O pacote tidyverse</a></li>
+  <li><a href="#o-operador-pipe" id="toc-o-operador-pipe" class="nav-link" data-scroll-target="#o-operador-pipe"><span class="header-section-number">3.3</span> O operador pipe <code>%&gt;%</code></a></li>
+  <li><a href="#dados-no-formato-tidy" id="toc-dados-no-formato-tidy" class="nav-link" data-scroll-target="#dados-no-formato-tidy"><span class="header-section-number">3.4</span> Dados no formato <em>tidy</em></a></li>
+  <li><a href="#principais-verbos-do-pacote-dplyr" id="toc-principais-verbos-do-pacote-dplyr" class="nav-link" data-scroll-target="#principais-verbos-do-pacote-dplyr"><span class="header-section-number">3.5</span> Principais verbos do pacote <code>dplyr</code></a>
   <ul class="collapse">
-  <li><a href="#o-operador-pipe" id="toc-o-operador-pipe" class="nav-link" data-scroll-target="#o-operador-pipe"><span class="header-section-number">3.2.1</span> O operador pipe <code>%&gt;%</code></a></li>
-  <li><a href="#dados-no-formato-tidy" id="toc-dados-no-formato-tidy" class="nav-link" data-scroll-target="#dados-no-formato-tidy"><span class="header-section-number">3.2.2</span> Dados no formato <em>tidy</em></a></li>
-  <li><a href="#principais-verbos-do-pacote-dplyr" id="toc-principais-verbos-do-pacote-dplyr" class="nav-link" data-scroll-target="#principais-verbos-do-pacote-dplyr"><span class="header-section-number">3.2.3</span> Principais verbos do pacote <code>dplyr</code></a></li>
-  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><span class="header-section-number">3.2.4</span> select</a></li>
-  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange"><span class="header-section-number">3.2.5</span> arrange</a></li>
-  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><span class="header-section-number">3.2.6</span> filter</a></li>
-  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><span class="header-section-number">3.2.7</span> mutate</a></li>
-  <li><a href="#summarise" id="toc-summarise" class="nav-link" data-scroll-target="#summarise"><span class="header-section-number">3.2.8</span> summarise</a></li>
-  <li><a href="#sec-dados-groupby" id="toc-sec-dados-groupby" class="nav-link" data-scroll-target="#sec-dados-groupby"><span class="header-section-number">3.2.9</span> group by</a></li>
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><span class="header-section-number">3.5.1</span> select</a></li>
+  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange"><span class="header-section-number">3.5.2</span> arrange</a></li>
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><span class="header-section-number">3.5.3</span> filter</a></li>
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><span class="header-section-number">3.5.4</span> mutate</a></li>
+  <li><a href="#summarise" id="toc-summarise" class="nav-link" data-scroll-target="#summarise"><span class="header-section-number">3.5.5</span> summarise</a></li>
+  <li><a href="#sec-dados-groupby" id="toc-sec-dados-groupby" class="nav-link" data-scroll-target="#sec-dados-groupby"><span class="header-section-number">3.5.6</span> group by</a></li>
   </ul></li>
-  <li><a href="#sec-ex-dados" id="toc-sec-ex-dados" class="nav-link" data-scroll-target="#sec-ex-dados"><span class="header-section-number">3.3</span> Exercícios</a></li>
+  <li><a href="#sec-ex-dados" id="toc-sec-ex-dados" class="nav-link" data-scroll-target="#sec-ex-dados"><span class="header-section-number">3.6</span> Exercícios</a></li>
   </ul>
 </nav>
     </div>
@@ -309,8 +309,9 @@ Definindo o seu diretório de trabalho
 <section id="o-pacote-tidyverse" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="o-pacote-tidyverse"><span class="header-section-number">3.2</span> O pacote tidyverse</h2>
 <p>O pacote <code>tidyverse</code> é uma coleção de pacotes do R projetados para trabalhar de forma integrada e intuitiva na análise de dados. Ele inclui uma variedade de pacotes poderosos e populares, como <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, <code>tibble</code>, <code>readr</code>, <code>purrr</code>, <code>forcats</code> e <code>stringr</code>. Cada pacote no tidyverse foi projetado para lidar com uma etapa específica do fluxo de trabalho de análise de dados, desde a importação e limpeza até a visualização e modelagem. Todos os pacotes no <code>tidyverse</code> compartilham uma filosofia de design subjacente, gramática e estruturas de dados, veja mais <a href="https://www.tidyverse.org/">na página do pacote</a>.</p>
-<section id="o-operador-pipe" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="o-operador-pipe"><span class="header-section-number">3.2.1</span> O operador pipe <code>%&gt;%</code></h3>
+</section>
+<section id="o-operador-pipe" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="o-operador-pipe"><span class="header-section-number">3.3</span> O operador pipe <code>%&gt;%</code></h2>
 <p>O operador <code>%\&gt;%</code>, conhecido como pipe, é uma ferramenta poderosa em R que facilita a encadeamento de operações em sequência. Ele permite escrever código de forma mais clara e concisa, especialmente ao trabalhar com pacotes do tidyverse. O pipe recebe o resultado de uma expressão à esquerda e o passa como primeiro argumento para a próxima expressão à direita.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -348,8 +349,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="dados-no-formato-tidy" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="dados-no-formato-tidy"><span class="header-section-number">3.2.2</span> Dados no formato <em>tidy</em></h3>
+<section id="dados-no-formato-tidy" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="dados-no-formato-tidy"><span class="header-section-number">3.4</span> Dados no formato <em>tidy</em></h2>
 <blockquote class="blockquote">
 <p>“Tidy datasets are all alike, but every messy dataset is messy in its own way.” — Hadley Wickham.</p>
 </blockquote>
@@ -443,8 +444,8 @@ Tip
 </div>
 <p>As duas funções <code>pivot_wider</code> e <code>pivot_longer</code> são suficientes para fazer a transformação de bases de dados no formato <em>tidy</em>.</p>
 </section>
-<section id="principais-verbos-do-pacote-dplyr" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="principais-verbos-do-pacote-dplyr"><span class="header-section-number">3.2.3</span> Principais verbos do pacote <code>dplyr</code></h3>
+<section id="principais-verbos-do-pacote-dplyr" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="principais-verbos-do-pacote-dplyr"><span class="header-section-number">3.5</span> Principais verbos do pacote <code>dplyr</code></h2>
 <p>O pacote <code>dplyr</code> é uma das ferramentas mais poderosas para manipulação de dados no ambiente R. Ele oferece um conjunto coeso de funções que simplificam tarefas comuns de manipulação, como filtragem, seleção, agrupamento, ordenação e resumo de dados. O dplyr utiliza uma sintaxe intuitiva e consistente, facilitando a escrita de código limpo e legível.</p>
 <p>A seguir, vamos estudar o funcionamento dos principais verbos do pacote. Para exemplificar, vamos utilizar a base de dados <code>gapminder</code>. Ela é uma coleção de informações socioeconômicas de diversos países ao longo do tempo, veja <span class="citation" data-cites="gapminder">Rosling (<a href="references.html#ref-gapminder" role="doc-biblioref">2012</a>)</span>. Ela inclui variáveis como expectativa de vida, PIB per capita, taxa de mortalidade infantil e tamanho da população para diferentes países e anos, cobrindo um período de várias décadas.</p>
 <p>Para carregar a base de dados <code>gapminder</code>, você precisa carregar o pacote <code>gapminder</code>. Com o pacote gapminder carregado, a base de dados <code>gapminder</code> estará disponível para uso em seu ambiente R:</p>
@@ -469,9 +470,8 @@ $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372
 $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
 </div>
 </div>
-</section>
-<section id="select" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="select"><span class="header-section-number">3.2.4</span> select</h3>
+<section id="select" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="select"><span class="header-section-number">3.5.1</span> select</h3>
 <p>O verbo <code>select()</code> é utilizado para selecionar colunas específicas de um conjunto de dados. Com o <code>select()</code>, é possível escolher as colunas desejadas com base em seus nomes, tipos de dados ou outros critérios.</p>
 <p>Por exemplo, considerando a base de dados gapminder, suponha que desejamos selecionar apenas as colunas referentes ao ano, ao país, à expectativa de vida e ao PIB per capita. Podemos fazer isso da seguinte maneira:</p>
 <div class="cell">
@@ -493,8 +493,8 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.character))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="arrange" class="level3" data-number="3.2.5">
-<h3 data-number="3.2.5" class="anchored" data-anchor-id="arrange"><span class="header-section-number">3.2.5</span> arrange</h3>
+<section id="arrange" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="arrange"><span class="header-section-number">3.5.2</span> arrange</h3>
 <p>O verbo <code>arrange()</code> é usado para reorganizar as linhas de um conjunto de dados com base nos valores de uma ou mais colunas. Quando aplicado a um conjunto de dados, o <code>arrange()</code> classifica as linhas em ordem crescente ou decrescente com base nos valores das colunas especificadas.</p>
 <p>No primeiro exemplo usando o verbo <code>select()</code>, podemos ordenar os dados por país em ordem alfabética, podemos fazer assim:</p>
 <div class="cell">
@@ -574,8 +574,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="filter" class="level3" data-number="3.2.6">
-<h3 data-number="3.2.6" class="anchored" data-anchor-id="filter"><span class="header-section-number">3.2.6</span> filter</h3>
+<section id="filter" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="filter"><span class="header-section-number">3.5.3</span> filter</h3>
 <p>Para analisar dados específicos de interesse, muitas vezes é necessário filtrar o conjunto de dados para incluir apenas as observações relevantes. O verbo <code>filter()</code> é usado para fazer isso. Basta definir uma ou mais condições lógicas que as linhas da base de dados devem satisfazer para serem mostradas.</p>
 <p>No exemplo abaixo, estamos filtrando os dados para incluir apenas as observações onde o país é “Brasil” ou “Argentina”.</p>
 <div class="cell">
@@ -601,8 +601,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="mutate" class="level3" data-number="3.2.7">
-<h3 data-number="3.2.7" class="anchored" data-anchor-id="mutate"><span class="header-section-number">3.2.7</span> mutate</h3>
+<section id="mutate" class="level3" data-number="3.5.4">
+<h3 data-number="3.5.4" class="anchored" data-anchor-id="mutate"><span class="header-section-number">3.5.4</span> mutate</h3>
 <p>O verbo <code>mutate()</code> é usado para criar ou modificar colunas em um conjunto de dados existente. Ele permite adicionar novas variáveis calculadas com base em variáveis existentes ou modificar as variáveis existentes de acordo com alguma lógica específica.</p>
 <p>Por exemplo, podemos usar o mutate() para calcular uma nova variável que represente o PIB total de cada país multiplicando o PIB per capita pelo tamanho da população. Aqui está um exemplo de como fazer isso com o conjunto de dados gapminder:</p>
 <div class="cell">
@@ -611,8 +611,8 @@ Tip
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_gdp =</span> gdpPercap <span class="sc">*</span> pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="summarise" class="level3" data-number="3.2.8">
-<h3 data-number="3.2.8" class="anchored" data-anchor-id="summarise"><span class="header-section-number">3.2.8</span> summarise</h3>
+<section id="summarise" class="level3" data-number="3.5.5">
+<h3 data-number="3.5.5" class="anchored" data-anchor-id="summarise"><span class="header-section-number">3.5.5</span> summarise</h3>
 <p>O verbo <code>summarise()</code> é usado para resumir os dados em uma única linha, geralmente calculando estatísticas resumidas como média, soma, mediana, etc. Ele permite calcular resumos estatísticos em um conjunto de dados, criando uma nova tabela contendo os resultados resumidos.</p>
 <p>Aqui está um exemplo de como usar <code>summarise()</code> para calcular a média da expectativa de vida usando os dados do <code>gapminder</code>:</p>
 <div class="cell">
@@ -626,8 +626,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="sec-dados-groupby" class="level3" data-number="3.2.9">
-<h3 data-number="3.2.9" class="anchored" data-anchor-id="sec-dados-groupby"><span class="header-section-number">3.2.9</span> group by</h3>
+<section id="sec-dados-groupby" class="level3" data-number="3.5.6">
+<h3 data-number="3.5.6" class="anchored" data-anchor-id="sec-dados-groupby"><span class="header-section-number">3.5.6</span> group by</h3>
 <p>O verbo <code>group_by()</code> é usado para dividir os dados em grupos com base nos valores de uma ou mais variáveis. Ele não realiza cálculos por si só, mas altera o comportamento das funções de resumo, como summarise(), para operar em cada grupo separadamente.</p>
 <p>Aqui está um exemplo de como usar <code>group_by()</code> com os dados do gapminder para calcular a média da expectativa de vida por continente:</p>
 <div class="cell">
@@ -685,10 +685,12 @@ Desafio
 <p>Qual mudança foi feita no código do exemplo anterior para construir os dados usados na geração deste gráfico?</p>
 </div>
 </div>
+<!-- ## Trabalhando com datas -->
+<!-- TODO: adicionar -->
 </section>
 </section>
-<section id="sec-ex-dados" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="sec-ex-dados"><span class="header-section-number">3.3</span> Exercícios</h2>
+<section id="sec-ex-dados" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="sec-ex-dados"><span class="header-section-number">3.6</span> Exercícios</h2>
 <p>Vamos trabalhar com o conjunto de dados <code>billboard</code>. Neste conjunto de dados, cada observação é uma música. As três primeiras colunas (artista, faixa e data de entrada) são variáveis que descrevem a música. Em seguida, temos 76 colunas (wk1-wk76) que descrevem o ranking da música em cada semana. Aqui, os nomes das colunas são uma variável (a semana) e os valores das células são outra (o ranking).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
