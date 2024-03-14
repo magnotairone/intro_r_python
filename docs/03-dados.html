@@ -216,6 +216,23 @@ div.csl-indent {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Estudo de casos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-casos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Estudo de casos práticos</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -245,7 +262,8 @@ div.csl-indent {
   <li><a href="#summarise" id="toc-summarise" class="nav-link" data-scroll-target="#summarise"><span class="header-section-number">3.5.5</span> summarise</a></li>
   <li><a href="#sec-dados-groupby" id="toc-sec-dados-groupby" class="nav-link" data-scroll-target="#sec-dados-groupby"><span class="header-section-number">3.5.6</span> group by</a></li>
   </ul></li>
-  <li><a href="#sec-ex-dados" id="toc-sec-ex-dados" class="nav-link" data-scroll-target="#sec-ex-dados"><span class="header-section-number">3.6</span> Exercícios</a></li>
+  <li><a href="#funções-auxiliares" id="toc-funções-auxiliares" class="nav-link" data-scroll-target="#funções-auxiliares"><span class="header-section-number">3.6</span> Funções auxiliares</a></li>
+  <li><a href="#sec-ex-dados" id="toc-sec-ex-dados" class="nav-link" data-scroll-target="#sec-ex-dados"><span class="header-section-number">3.7</span> Exercícios</a></li>
   </ul>
 </nav>
     </div>
@@ -685,16 +703,181 @@ Desafio
 <p>Qual mudança foi feita no código do exemplo anterior para construir os dados usados na geração deste gráfico?</p>
 </div>
 </div>
+<!-- TODO: adicionar sobre lubridate-->
 <!-- ## Trabalhando com datas -->
-<!-- TODO: adicionar -->
+<!-- TODO: adicionar auxiliares -->
 </section>
 </section>
-<section id="sec-ex-dados" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="sec-ex-dados"><span class="header-section-number">3.6</span> Exercícios</h2>
+<section id="funções-auxiliares" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="funções-auxiliares"><span class="header-section-number">3.6</span> Funções auxiliares</h2>
+<p>Apresentando funções auxiliares do pacote <code>dplyr</code> que podem ser muito úteis em diversos contextos.</p>
+<ul>
+<li><code>pull</code>, <code>distinct</code>, <code>unite</code>, <code>separate_wider_delim</code>, e a familia de funções <code>slice_*</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">1952</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] Asia     Europe   Africa   Africa   Americas Oceania  Europe   Asia    
+  [9] Asia     Europe   Africa   Americas Europe   Africa   Americas Europe  
+ [17] Africa   Africa   Asia     Africa   Americas Africa   Africa   Americas
+ [25] Asia     Americas Africa   Africa   Africa   Americas Africa   Europe  
+ [33] Americas Europe   Europe   Africa   Americas Americas Africa   Americas
+ [41] Africa   Africa   Africa   Europe   Europe   Africa   Africa   Europe  
+ [49] Africa   Europe   Americas Africa   Africa   Americas Americas Asia    
+ [57] Europe   Europe   Asia     Asia     Asia     Asia     Europe   Asia    
+ [65] Europe   Americas Asia     Asia     Africa   Asia     Asia     Asia    
+ [73] Asia     Africa   Africa   Africa   Africa   Africa   Asia     Africa  
+ [81] Africa   Africa   Americas Asia     Europe   Africa   Africa   Asia    
+ [89] Africa   Asia     Europe   Oceania  Americas Africa   Africa   Europe  
+ [97] Asia     Asia     Americas Americas Americas Asia     Europe   Europe  
+[105] Americas Africa   Europe   Africa   Africa   Asia     Africa   Europe  
+[113] Africa   Asia     Europe   Europe   Africa   Africa   Europe   Asia    
+[121] Africa   Africa   Europe   Europe   Asia     Asia     Africa   Asia    
+[129] Africa   Americas Africa   Europe   Africa   Europe   Americas Americas
+[137] Americas Asia     Asia     Asia     Africa   Africa  
+Levels: Africa Americas Asia Europe Oceania</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 1
+  continent
+  &lt;fct&gt;    
+1 Asia     
+2 Europe   
+3 Africa   
+4 Americas 
+5 Oceania  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  country     continent  year lifeExp      pop gdpPercap
+  &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+1 Afghanistan Asia       1952    28.8  8425333      779.
+2 Afghanistan Asia       1957    30.3  9240934      821.
+3 Afghanistan Asia       1962    32.0 10267083      853.
+4 Afghanistan Asia       1967    34.0 11537966      836.
+5 Afghanistan Asia       1972    36.1 13079460      740.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 6
+  country  continent  year lifeExp      pop gdpPercap
+  &lt;fct&gt;    &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+1 Zimbabwe Africa     1987    62.4  9216418      706.
+2 Zimbabwe Africa     1992    60.4 10704340      693.
+3 Zimbabwe Africa     1997    46.8 11404948      792.
+4 Zimbabwe Africa     2002    40.0 11926563      672.
+5 Zimbabwe Africa     2007    43.5 12311143      470.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+   country     continent  year lifeExp        pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;      &lt;int&gt;     &lt;dbl&gt;
+ 1 Montenegro  Europe     1992    75.4     621621     7003.
+ 2 Hungary     Europe     1982    69.4   10705535    12546.
+ 3 Benin       Africa     1992    53.9    4981671     1191.
+ 4 Malawi      Africa     1977    43.8    5637246      663.
+ 5 Thailand    Asia       1992    67.3   56667095     4617.
+ 6 El Salvador Americas   1962    52.3    2747687     3777.
+ 7 China       Asia       2002    72.0 1280400000     3119.
+ 8 Chad        Africa     1977    47.4    4388260     1134.
+ 9 Peru        Americas   2002    69.9   26769436     5909.
+10 Senegal     Africa     2002    61.6   10870037     1520.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(lifeExp, <span class="at">n =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  country          continent  year lifeExp       pop gdpPercap
+  &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+1 Japan            Asia       2007    82.6 127467972    31656.
+2 Hong Kong, China Asia       2007    82.2   6980412    39725.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(lifeExp, <span class="at">n =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  country    continent  year lifeExp      pop gdpPercap
+  &lt;fct&gt;      &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+1 Swaziland  Africa     2007    39.6  1133066     4513.
+2 Mozambique Africa     2007    42.1 19951656      824.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span> <span class="sc">|</span> year <span class="sc">==</span> <span class="dv">1952</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(lifeExp, <span class="at">n =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 6
+# Groups:   year [2]
+  country          continent  year lifeExp       pop gdpPercap
+  &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+1 Norway           Europe     1952    72.7   3327728    10095.
+2 Iceland          Europe     1952    72.5    147962     7268.
+3 Japan            Asia       2007    82.6 127467972    31656.
+4 Hong Kong, China Asia       2007    82.2   6980412    39725.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>gapminder_united <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="st">"country_continent"</span>, <span class="fu">c</span>(country, continent),</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">sep =</span> <span class="st">"_"</span>,</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">remove =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>gapminder_united <span class="sc">%&gt;%</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(country_continent,</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>                       <span class="at">delim =</span> <span class="st">"_"</span>,</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>                       <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"country"</span>, <span class="st">"continent"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,704 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;chr&gt;       &lt;chr&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+# ℹ 1,694 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="sec-ex-dados" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="sec-ex-dados"><span class="header-section-number">3.7</span> Exercícios</h2>
 <p>Vamos trabalhar com o conjunto de dados <code>billboard</code>. Neste conjunto de dados, cada observação é uma música. As três primeiras colunas (artista, faixa e data de entrada) são variáveis que descrevem a música. Em seguida, temos 76 colunas (wk1-wk76) que descrevem o ranking da música em cada semana. Aqui, os nomes das colunas são uma variável (a semana) e os valores das células são outra (o ranking).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>billboard</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>billboard</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 317 × 79
    artist     track date.entered   wk1   wk2   wk3   wk4   wk5   wk6   wk7   wk8

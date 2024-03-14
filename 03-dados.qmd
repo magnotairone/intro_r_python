@@ -276,8 +276,68 @@ gapminder %>%
 Qual mudança foi feita no código do exemplo anterior para construir os dados usados na geração deste gráfico?
 :::
 
+<!-- TODO: adicionar sobre lubridate-->
+
 <!-- ## Trabalhando com datas -->
-<!-- TODO: adicionar -->
+
+<!-- TODO: adicionar auxiliares -->
+
+## Funções auxiliares
+
+Apresentando funções auxiliares do pacote `dplyr` que podem ser muito úteis em diversos contextos.
+
+- `pull`, `distinct`, `unite`, `separate_wider_delim`, e a familia de funções `slice_*`.
+
+```{r}
+
+gapminder %>% 
+  filter(year == 1952) %>% 
+  pull(continent)
+
+gapminder %>% 
+  distinct(continent)
+
+gapminder %>% 
+  slice(1:10)
+
+gapminder %>% 
+  slice_head(n = 5)
+
+gapminder %>% 
+  slice_tail(n = 5)
+
+set.seed(1)
+gapminder %>% 
+  slice_sample(n = 10)
+
+gapminder %>% 
+  filter(year == 2007) %>% 
+  slice_max(lifeExp, n = 2)
+
+gapminder %>% 
+  filter(year == 2007) %>% 
+  slice_min(lifeExp, n = 2)
+
+
+gapminder %>% 
+  filter(year == 2007 | year == 1952) %>% 
+  group_by(year) %>% 
+  slice_max(lifeExp, n = 2)
+
+
+gapminder_united <- gapminder %>% 
+  unite("country_continent", c(country, continent),
+        sep = "_",
+        remove = TRUE,
+        na.rm = FALSE)
+
+gapminder_united %>%
+  separate_wider_delim(country_continent,
+                       delim = "_",
+                       names = c("country", "continent"))
+
+```
+
 
 ## Exercícios {#sec-ex-dados}
 
