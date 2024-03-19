@@ -30,7 +30,9 @@ Siga os passos abaixo para realizar a instalação do Anaconda e do JupyterLab:
 
 ## Tipos de dados fundamentais
 
-Em Python, os tipos de dados fundamentais incluem `integer`, `float`, `string` e `boolean.` Integers são números inteiros, como 1, 2, -3, etc. Floats são números decimais, como 3.14, -0.5, etc. Strings são sequências de caracteres, como "hello", "world", "python", etc. Booleans são valores lógicos que representam verdadeiro (True) ou falso (False).
+Em Python, os tipos de dados fundamentais incluem `integer`, `float`, `string` e `boolean`:
+  - Integers são números inteiros, como 1, 2, -3, etc.     - Floats são números decimais, como 3.14, -0.5, etc.     - Strings são sequências de caracteres, como "hello", "world", "python", etc. 
+  - Booleans são valores lógicos que representam verdadeiro (`True`) ou falso (`False`).
 
 Esses tipos de dados são os blocos básicos para representar diferentes tipos de informações em Python, e são amplamente utilizados em programação para realizar operações e manipulações de dados.
 
@@ -50,7 +52,7 @@ print(quantidade)
 type(quantidade)
 ```
 
-Acima, atribuímos o valor 2 à variável `quantidade` e a imprimimos usando `print(quantidade)`. Por fim, verificamos o tipo de dado da variável `quantidade` com `type(quantidade)`, que retorna `<class 'int'>`, indicando que é um número inteiro.
+Acima, atribuímos o valor 200 à variável `quantidade` e a imprimimos usando `print(quantidade)`. Por fim, verificamos o tipo de dado da variável `quantidade` com `type(quantidade)`, que retorna `<class 'int'>`, indicando que é um número inteiro.
 
 ### O tipo de dado ponto flutuante
 
@@ -138,37 +140,24 @@ num_str = str(num_float)
 print(num_str) 
 ```
 
-<!-- TODO: corrigir -->
-
-No código acima,
-
-```{python}
-# strings funcionam como listas/vetores
-school="Insper"
-print(school)
-school[0]
-school[3]
-school[2:5] # slice: o último índice não é incluído (start:stop:step)
-school[3:]
-school[1:5:2]
-print(school[-2])
-print(school[-2:])
-print(school[-1::-1]) # reverse
-```
+No código acima, estamos convertendo um valor float em string.
 
 ## Objetos básicos
 
-Em Python, há três estruturas de dados básicas: listas, tuplas e dicionários. As listas são coleções ordenadas e mutáveis de elementos, permitindo a inclusão de itens de diferentes tipos e a modificação dos valores contidos nelas. As tuplas são semelhantes às listas, porém são imutáveis, ou seja, não podem ser alteradas após a sua criação. Já os dicionários são coleções não ordenadas de pares chave-valor, onde cada valor é associado a uma chave única, proporcionando acesso eficiente aos dados por meio das chaves.
+Em Python, há três estruturas de dados básicas: listas, tuplas e dicionários:
+  - As listas são coleções ordenadas e mutáveis de elementos, permitindo a inclusão de itens de diferentes tipos e a modificação dos valores contidos nelas. 
+  - As tuplas são semelhantes às listas, porém são imutáveis, ou seja, não podem ser alteradas após a sua criação. 
+  - Já os dicionários são coleções não ordenadas de pares chave-valor, onde cada valor é associado a uma chave única, proporcionando acesso eficiente aos dados por meio das chaves.
 
 ### Listas
 
-Em Python, uma lista é uma estrutura de dados que permite armazenar uma coleção ordenada de elementos. Para criar uma lista, utilizamos colchetes \[\], e os elementos são separados por vírgulas. Podemos instanciar uma lista vazia simplesmente utilizando \[\] ou a função list(). Por exemplo:
+Em Python, uma lista é uma estrutura de dados que permite armazenar uma coleção ordenada de elementos. Para criar uma lista, utilizamos colchetes `[]`, e os elementos são separados por vírgulas. Podemos instanciar uma lista vazia simplesmente utilizando `[]` ou a função `list()`. Por exemplo:
 
 ```{python}
 lista_vazia = [] # Lista vazia
 lista_vazia = list() # alternativa
 
-# lista co
+# lista com PIB de paises
 pib_paises = [1800, 2500, 3200, 5600, 6700]
 ```
 
@@ -191,7 +180,7 @@ print(penultimo_elemento)
 
 ```
 
-Podemos usar o método append() se desejamos adicionar um elemento ao final da lista, ou o método insert() se queremos adicionar um elemento em uma posição específica. Veja os exemplos de como usar ambos os métodos:
+Podemos usar o método `append() `se desejamos adicionar um elemento ao final da lista, ou o método `insert()` se queremos adicionar um elemento em uma posição específica. Veja os exemplos de como usar ambos os métodos:
 
 ```{python}
 # Adicionando elementos ao final da lista usando append()
@@ -208,7 +197,7 @@ tamanho_lista = len(pib_paises)
 print("Tamanho da lista:", tamanho_lista) 
 ```
 
-Para ordenar uma lista, podemos usar o método sort() para ordenação in-place (ou seja, a lista é modificada) ou a função sorted() para retornar uma nova lista ordenada sem modificar a original. Aqui estão exemplos de como fazer isso:
+Para ordenar uma lista, podemos usar o método `sort()` para ordenação _in-place_ (ou seja, a lista é modificada) ou a função `sorted()` para retornar uma nova lista ordenada sem modificar a original: 
 
 ```{python}
 # Usando a função sorted() para retornar uma nova lista ordenada
@@ -427,7 +416,7 @@ Neste exemplo, o loop calcula o valor do investimento ao longo de 10 anos, consi
 
 ## Comprehensions
 
-As compreensões (ou comprehensions) são uma maneira concisa e poderosa de criar coleções em Python, como listas, dicionários e conjuntos, a partir de iteráveis existentes, como listas, dicionários, conjuntos ou sequências. Elas permitem criar essas coleções de forma mais eficiente e legível em comparação com a abordagem tradicional de usar loops. As compreensões podem incluir expressões condicionais para filtrar elementos ou expressões para transformar os elementos durante a criação da coleção.
+As comprehensions são uma maneira concisa e poderosa de criar coleções em Python, como listas, dicionários e conjuntos, a partir de iteráveis existentes, como listas, dicionários, conjuntos ou sequências. Elas permitem criar essas coleções de forma mais eficiente e legível em comparação com a abordagem tradicional de usar loops. As _comprehensions_ podem incluir expressões condicionais para filtrar elementos ou expressões para transformar os elementos durante a criação da coleção.
 
 Por exemplo, você pode criar uma lista de quadrados dos números de 1 a 10 usando uma compreensão de lista:
 
@@ -444,7 +433,7 @@ for x in range(1, 11):
     quadrados.append(x ** 2)
 ```
 
-As compreensões podem ser aplicadas a listas, dicionários e conjuntos, e você pode adicionar cláusulas condicionais para filtrar elementos com base em uma condição específica.
+As _comprehensions_ podem ser aplicadas a listas, dicionários e conjuntos, e você pode adicionar cláusulas condicionais para filtrar elementos com base em uma condição específica.
 
 Abaixo, as variáveis `linhas` e `colunas` são definidas como intervalos de números de 1 a 3 e de 1 a 2, respectivamente. Em seguida, é utilizada uma compreensão de lista para gerar todos os pares possíveis, combinando cada valor de `linha` com cada valor de `coluna.` Por fim, um loop `for` é usado para iterar sobre a lista de pares e imprimir cada par na saída. O resultado será a impressão de todos os pares ordenados possíveis, combinando os valores de linha e coluna especificados.
 
@@ -633,7 +622,7 @@ for i, crescimento in enumerate(crescimento_pib):
   - precos_atual: Um dicionário que mapeia cada produto ao seu preço atual.
   - precos_base: Um dicionário que mapeia cada produto ao seu preço base (preço de referência).
 O IPC é calculado utilizando a seguinte fórmula:
-$$IPC = \sum_i \frac{\text{preço atual do produto}_i}{\text{preço base do produto0}_i}\times \text{quantidade do produto}_i.$$
+$$IPC = \sum_i \frac{\text{preço atual do produto}_i}{\text{preço base do produto}_i}\times \text{quantidade do produto}_i.$$
 A função deve retornar o valor calculado do IPC.
 Use o código abaixo para testar sua função.
 ```{python}
