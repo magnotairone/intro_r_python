@@ -31,6 +31,7 @@ Siga os passos abaixo para realizar a instalação do Anaconda e do JupyterLab:
 ## Tipos de dados fundamentais
 
 Em Python, os tipos de dados fundamentais incluem `integer`, `float`, `string` e `boolean`:
+
   - Integers são números inteiros, como 1, 2, -3, etc.     - Floats são números decimais, como 3.14, -0.5, etc.     - Strings são sequências de caracteres, como "hello", "world", "python", etc. 
   - Booleans são valores lógicos que representam verdadeiro (`True`) ou falso (`False`).
 
@@ -618,6 +619,7 @@ for i, crescimento in enumerate(crescimento_pib):
 ```
 
 **5.** Escreva uma função chamada `calcular_ipc` que receba três argumentos:
+
   - cesta_de_produtos: Um dicionário que mapeia cada produto a sua quantidade na cesta.
   - precos_atual: Um dicionário que mapeia cada produto ao seu preço atual.
   - precos_base: Um dicionário que mapeia cada produto ao seu preço base (preço de referência).
@@ -664,6 +666,7 @@ print("O Índice de Preços ao Consumidor (IPC) é:", ipc)
 
 A classe `Transacao` representa uma única transação de compra ou venda de ações.
 Ela possui os seguintes atributos:
+
   - `data`: uma string representando a data da transação no formato 'AAAA-MM-DD'.
 tipo: uma string indicando o tipo da transação, que pode ser 'compra' ou 'venda'.
   - `valor`: um número inteiro representando a quantidade de ações transacionadas.
@@ -673,6 +676,7 @@ Ela possui os seguintes atributos:
   - `transacoes`: uma lista que armazena todas as transações de ações realizadas.
 
 Além disso, a classe `Carteira` possui os seguintes métodos:
+
   - `adicionar_transacao(transacao)`: adiciona uma nova transação à carteira.
   - `calcular_posicao_atual(valor_atual_acao)`: calcula a posição atual da ação na carteira com base no valor atual da ação.
   - `calcular_valor_presente(valor_atual_acao)`: calcula o valor presente da ação na carteira com base no valor atual da ação.
