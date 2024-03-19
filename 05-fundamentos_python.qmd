@@ -32,8 +32,9 @@ Siga os passos abaixo para realizar a instalação do Anaconda e do JupyterLab:
 
 Em Python, os tipos de dados fundamentais incluem `integer`, `float`, `string` e `boolean`:
 
-  - Integers são números inteiros, como 1, 2, -3, etc.     - Floats são números decimais, como 3.14, -0.5, etc.     - Strings são sequências de caracteres, como "hello", "world", "python", etc. 
-  - Booleans são valores lógicos que representam verdadeiro (`True`) ou falso (`False`).
+-   Integers são números inteiros, como 1, 2, -3, etc. - Floats são números decimais, como 3.14, -0.5, etc. 
+- Strings são sequências de caracteres, como "hello", "world", "python", etc.
+-   Booleans são valores lógicos que representam verdadeiro (`True`) ou falso (`False`).
 
 Esses tipos de dados são os blocos básicos para representar diferentes tipos de informações em Python, e são amplamente utilizados em programação para realizar operações e manipulações de dados.
 
@@ -145,10 +146,7 @@ No código acima, estamos convertendo um valor float em string.
 
 ## Objetos básicos
 
-Em Python, há três estruturas de dados básicas: listas, tuplas e dicionários:
-  - As listas são coleções ordenadas e mutáveis de elementos, permitindo a inclusão de itens de diferentes tipos e a modificação dos valores contidos nelas. 
-  - As tuplas são semelhantes às listas, porém são imutáveis, ou seja, não podem ser alteradas após a sua criação. 
-  - Já os dicionários são coleções não ordenadas de pares chave-valor, onde cada valor é associado a uma chave única, proporcionando acesso eficiente aos dados por meio das chaves.
+Em Python, há três estruturas de dados básicas: listas, tuplas e dicionários: - As listas são coleções ordenadas e mutáveis de elementos, permitindo a inclusão de itens de diferentes tipos e a modificação dos valores contidos nelas. - As tuplas são semelhantes às listas, porém são imutáveis, ou seja, não podem ser alteradas após a sua criação. - Já os dicionários são coleções não ordenadas de pares chave-valor, onde cada valor é associado a uma chave única, proporcionando acesso eficiente aos dados por meio das chaves.
 
 ### Listas
 
@@ -181,7 +179,7 @@ print(penultimo_elemento)
 
 ```
 
-Podemos usar o método `append() `se desejamos adicionar um elemento ao final da lista, ou o método `insert()` se queremos adicionar um elemento em uma posição específica. Veja os exemplos de como usar ambos os métodos:
+Podemos usar o método `append()`se desejamos adicionar um elemento ao final da lista, ou o método `insert()` se queremos adicionar um elemento em uma posição específica. Veja os exemplos de como usar ambos os métodos:
 
 ```{python}
 # Adicionando elementos ao final da lista usando append()
@@ -198,7 +196,7 @@ tamanho_lista = len(pib_paises)
 print("Tamanho da lista:", tamanho_lista) 
 ```
 
-Para ordenar uma lista, podemos usar o método `sort()` para ordenação _in-place_ (ou seja, a lista é modificada) ou a função `sorted()` para retornar uma nova lista ordenada sem modificar a original: 
+Para ordenar uma lista, podemos usar o método `sort()` para ordenação *in-place* (ou seja, a lista é modificada) ou a função `sorted()` para retornar uma nova lista ordenada sem modificar a original:
 
 ```{python}
 # Usando a função sorted() para retornar uma nova lista ordenada
@@ -324,7 +322,7 @@ nomes_paises[:3]
 
 Isso retorna os elementos da lista do índice 0 (inclusivo) ao índice 3 (exclusivo).
 
-Se quisermos acessar os países do segundo ao quarto:
+Se quisermos acessar os países do segundo ao terceiro:
 
 ```{python}
 nomes_paises[1:4]
@@ -417,7 +415,7 @@ Neste exemplo, o loop calcula o valor do investimento ao longo de 10 anos, consi
 
 ## Comprehensions
 
-As comprehensions são uma maneira concisa e poderosa de criar coleções em Python, como listas, dicionários e conjuntos, a partir de iteráveis existentes, como listas, dicionários, conjuntos ou sequências. Elas permitem criar essas coleções de forma mais eficiente e legível em comparação com a abordagem tradicional de usar loops. As _comprehensions_ podem incluir expressões condicionais para filtrar elementos ou expressões para transformar os elementos durante a criação da coleção.
+As comprehensions são uma maneira concisa e poderosa de criar coleções em Python, como listas, dicionários e conjuntos, a partir de iteráveis existentes, como listas, dicionários, conjuntos ou sequências. Elas permitem criar essas coleções de forma mais eficiente e legível em comparação com a abordagem tradicional de usar loops. As *comprehensions* podem incluir expressões condicionais para filtrar elementos ou expressões para transformar os elementos durante a criação da coleção.
 
 Por exemplo, você pode criar uma lista de quadrados dos números de 1 a 10 usando uma compreensão de lista:
 
@@ -434,7 +432,7 @@ for x in range(1, 11):
     quadrados.append(x ** 2)
 ```
 
-As _comprehensions_ podem ser aplicadas a listas, dicionários e conjuntos, e você pode adicionar cláusulas condicionais para filtrar elementos com base em uma condição específica.
+As *comprehensions* podem ser aplicadas a listas, dicionários e conjuntos, e você pode adicionar cláusulas condicionais para filtrar elementos com base em uma condição específica.
 
 Abaixo, as variáveis `linhas` e `colunas` são definidas como intervalos de números de 1 a 3 e de 1 a 2, respectivamente. Em seguida, é utilizada uma compreensão de lista para gerar todos os pares possíveis, combinando cada valor de `linha` com cada valor de `coluna.` Por fim, um loop `for` é usado para iterar sobre a lista de pares e imprimir cada par na saída. O resultado será a impressão de todos os pares ordenados possíveis, combinando os valores de linha e coluna especificados.
 
@@ -560,16 +558,14 @@ transacao2.print_info()
 
 **1.** Trabalhando com tipos de dados básicos
 
-  **a)** Crie variáveis para representar dados econômicos, como o PIB de pelo menos três países, taxas de inflação ou taxas de desemprego. 
-Use valores recentes e históricos para criar um conjunto diversificado de dados econômicos que representem diferentes contextos econômicos ao redor do mundo.
+**a)** Crie variáveis para representar dados econômicos, como o PIB de pelo menos três países, taxas de inflação ou taxas de desemprego. Use valores recentes e históricos para criar um conjunto diversificado de dados econômicos que representem diferentes contextos econômicos ao redor do mundo.
 
-  **b)** Realize operações matemáticas básicas com esses dados, como calcular médias, taxas de crescimento ou proporções. 
-Por exemplo, você pode calcular médias dos valores do PIB, taxas de crescimento do PIB ao longo do tempo, proporções entre diferentes indicadores econômicos (como o PIB per capita em relação ao PIB total), entre outras operações.
+**b)** Realize operações matemáticas básicas com esses dados, como calcular médias, taxas de crescimento ou proporções. Por exemplo, você pode calcular médias dos valores do PIB, taxas de crescimento do PIB ao longo do tempo, proporções entre diferentes indicadores econômicos (como o PIB per capita em relação ao PIB total), entre outras operações.
 
-**2.** Durante a análise de dados, pode ser necessário converter entre diferentes tipos de dados. Utilize os tipos de dados fundamentais (integers, floats, strings) e aplique coerção de tipos conforme necessário. Considere, por exemplo  que as variáveis representando o PIB foram dadas em formato `string`. Então, converta um tipo `float` para computar a média dos PIBs considerados. 
-Depois disso, converta novamente os valores de PIB em uma `string` para formatação de saída ser no seguinte formato `1,111%`.
+**2.** Durante a análise de dados, pode ser necessário converter entre diferentes tipos de dados. Utilize os tipos de dados fundamentais (integers, floats, strings) e aplique coerção de tipos conforme necessário. Considere, por exemplo que as variáveis representando o PIB foram dadas em formato `string`. Então, converta um tipo `float` para computar a média dos PIBs considerados. Depois disso, converta novamente os valores de PIB em uma `string` para formatação de saída ser no seguinte formato `1,111%`.
 
 **3.** Utilize o código abaixo para gerar um pandas dataframe que representa o preço de fechamento de uma ação
+
 ```{python}
 import pandas as pd
 
@@ -588,11 +584,12 @@ df_precos_acoes = pd.DataFrame({'Data': datas, 'Preço de Fechamento': precos_fe
 print(df_precos_acoes.head())
 ```
 
-  **a)** Obtenha os preços de fechamento da ação durante do mês de janeiro determinado.
-  
-  **b)** Obtenha os preços de fechamento da ação entre 2023-06-01 e 2023-12-31.
-  
-  **c)** Obtenha os preços de fechamento da ação às sextas-feiras ao longo de todo o período. Calcule o preço de fechamento médio às segundas-feiras e compare com o das sextas-feiras. Qual deles apresenta maior desvio padrão?
+**a)** Obtenha os preços de fechamento da ação durante do mês de janeiro determinado.
+
+**b)** Obtenha os preços de fechamento da ação entre 2023-06-01 e 2023-12-31.
+
+**c)** Obtenha os preços de fechamento da ação às sextas-feiras ao longo de todo o período. Calcule o preço de fechamento médio às segundas-feiras e compare com o das sextas-feiras. Qual deles apresenta maior desvio padrão?
+
 ```{python}
 # Criando uma coluna para armazenar o dia da semana
 df_precos_acoes['Dia da Semana'] = df_precos_acoes['Data'].dt.weekday
@@ -602,13 +599,12 @@ print(df_precos_acoes.head())
 
 ```
 
-**4.**  Considere a lista armazenada na variável `pib_anos` abaixo e  utilize uma compreensão de lista para calcular o crescimento percentual do PIB em relação ao ano anterior para cada país.
+**4.** Considere a lista armazenada na variável `pib_anos` abaixo e utilize uma compreensão de lista para calcular o crescimento percentual do PIB em relação ao ano anterior para cada país.
 
 ```{python}
 # Lista de PIB de um pais nos últimos cinco anos
 pib_anos = [1000, 1200, 800, 1500, 2000]  # Exemplo de valores fictícios para o PIB
 ```
-
 
 ```{python}
 #| eval: false
@@ -622,13 +618,10 @@ for i, crescimento in enumerate(crescimento_pib):
 
 **5.** Escreva uma função chamada `calcular_ipc` que receba três argumentos:
 
-  - cesta_de_produtos: Um dicionário que mapeia cada produto a sua quantidade na cesta.
-  - precos_atual: Um dicionário que mapeia cada produto ao seu preço atual.
-  - precos_base: Um dicionário que mapeia cada produto ao seu preço base (preço de referência).
-O IPC é calculado utilizando a seguinte fórmula:
-$$IPC = \sum_i \frac{\text{preço atual do produto}_i}{\text{preço base do produto}_i}\times \text{quantidade do produto}_i.$$
-A função deve retornar o valor calculado do IPC.
-Use o código abaixo para testar sua função.
+-   cesta_de_produtos: Um dicionário que mapeia cada produto a sua quantidade na cesta.
+-   precos_atual: Um dicionário que mapeia cada produto ao seu preço atual.
+-   precos_base: Um dicionário que mapeia cada produto ao seu preço base (preço de referência). O IPC é calculado utilizando a seguinte fórmula: $$IPC = \sum_i \frac{\text{preço atual do produto}_i}{\text{preço base do produto}_i}\times \text{quantidade do produto}_i.$$ A função deve retornar o valor calculado do IPC. Use o código abaixo para testar sua função.
+
 ```{python}
 #| eval: false
 #| echo: false
@@ -666,22 +659,18 @@ print("O Índice de Preços ao Consumidor (IPC) é:", ipc)
 
 **6.** Você está encarregado de desenvolver um sistema para registrar e gerenciar transações de compra e venda de ações, além de calcular informações importantes sobre a carteira de investimentos. Para isso, você deve implementar duas classes em Python: `Transacao` e `Carteira.`
 
-A classe `Transacao` representa uma única transação de compra ou venda de ações.
-Ela possui os seguintes atributos:
+A classe `Transacao` representa uma única transação de compra ou venda de ações. Ela possui os seguintes atributos:
 
-  - `data`: uma string representando a data da transação no formato 'AAAA-MM-DD'.
-tipo: uma string indicando o tipo da transação, que pode ser 'compra' ou 'venda'.
-  - `valor`: um número inteiro representando a quantidade de ações transacionadas.
+-   `data`: uma string representando a data da transação no formato 'AAAA-MM-DD'. tipo: uma string indicando o tipo da transação, que pode ser 'compra' ou 'venda'.
+-   `valor`: um número inteiro representando a quantidade de ações transacionadas.
 
-A classe `Carteira` representa a carteira de investimentos do usuário, que contém várias transações de ações.
-Ela possui os seguintes atributos:
-  - `transacoes`: uma lista que armazena todas as transações de ações realizadas.
+A classe `Carteira` representa a carteira de investimentos do usuário, que contém várias transações de ações. Ela possui os seguintes atributos: - `transacoes`: uma lista que armazena todas as transações de ações realizadas.
 
 Além disso, a classe `Carteira` possui os seguintes métodos:
 
-  - `adicionar_transacao(transacao)`: adiciona uma nova transação à carteira.
-  - `calcular_posicao_atual(valor_atual_acao)`: calcula a posição atual da ação na carteira com base no valor atual da ação.
-  - `calcular_valor_presente(valor_atual_acao)`: calcula o valor presente da ação na carteira com base no valor atual da ação.
+-   `adicionar_transacao(transacao)`: adiciona uma nova transação à carteira.
+-   `calcular_posicao_atual(valor_atual_acao)`: calcula a posição atual da ação na carteira com base no valor atual da ação.
+-   `calcular_valor_presente(valor_atual_acao)`: calcula o valor presente da ação na carteira com base no valor atual da ação.
 
 ```{python}
 #| eval: false
@@ -739,14 +728,14 @@ print("Valor presente na carteira:", valor_presente)
 
 ```
 
-  **a)** Implemente as classes Transacao e Carteira com os atributos e métodos descritos acima.
-  
-  **b)** Crie três instâncias da classe Transacao para representar diferentes transações de compra e venda de ações. 
-  
-  **c)** Crie uma instância da classe Carteira e adicione as transações criadas à carteira.
-  
-  **d)** Teste os métodos da classe Carteira, utilizando os exemplos fornecidos no código de teste abaixo.
-  
+**a)** Implemente as classes Transacao e Carteira com os atributos e métodos descritos acima.
+
+**b)** Crie três instâncias da classe Transacao para representar diferentes transações de compra e venda de ações.
+
+**c)** Crie uma instância da classe Carteira e adicione as transações criadas à carteira.
+
+**d)** Teste os métodos da classe Carteira, utilizando os exemplos fornecidos no código de teste abaixo.
+
 ```{python}
 #| eval: false
 # Criando algumas transações

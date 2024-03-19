@@ -1,4 +1,4 @@
-knitr::purl("04-visualizacao.qmd")
+knitr::purl("05-fundamentos_python.qmd")
 
 
 # git status
