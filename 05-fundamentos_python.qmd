@@ -728,13 +728,13 @@ print("Valor presente na carteira:", valor_presente)
 
 ```
 
-**a)** Implemente as classes Transacao e Carteira com os atributos e métodos descritos acima.
-
-**b)** Crie três instâncias da classe Transacao para representar diferentes transações de compra e venda de ações.
-
-**c)** Crie uma instância da classe Carteira e adicione as transações criadas à carteira.
-
-**d)** Teste os métodos da classe Carteira, utilizando os exemplos fornecidos no código de teste abaixo.
+  **a)** Implemente as classes Transacao e Carteira com os atributos e métodos descritos acima.
+  
+  **b)** Crie três instâncias da classe Transacao para representar diferentes transações de compra e venda de ações.
+  
+  **c)** Crie uma instância da classe Carteira e adicione as transações criadas à carteira.
+  
+  **d)** Teste os métodos da classe Carteira, utilizando os exemplos fornecidos no código de teste abaixo.
 
 ```{python}
 #| eval: false
