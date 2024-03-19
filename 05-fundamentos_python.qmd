@@ -589,7 +589,9 @@ print(df_precos_acoes.head())
 ```
 
   **a)** Obtenha os preços de fechamento da ação durante do mês de janeiro determinado.
+  
   **b)** Obtenha os preços de fechamento da ação entre 2023-06-01 e 2023-12-31.
+  
   **c)** Obtenha os preços de fechamento da ação às sextas-feiras ao longo de todo o período. Calcule o preço de fechamento médio às segundas-feiras e compare com o das sextas-feiras. Qual deles apresenta maior desvio padrão?
 ```{python}
 # Criando uma coluna para armazenar o dia da semana
@@ -738,9 +740,13 @@ print("Valor presente na carteira:", valor_presente)
 ```
 
   **a)** Implemente as classes Transacao e Carteira com os atributos e métodos descritos acima.
+  
   **b)** Crie três instâncias da classe Transacao para representar diferentes transações de compra e venda de ações. 
+  
   **c)** Crie uma instância da classe Carteira e adicione as transações criadas à carteira.
+  
   **d)** Teste os métodos da classe Carteira, utilizando os exemplos fornecidos no código de teste abaixo.
+  
 ```{python}
 #| eval: false
 # Criando algumas transações
