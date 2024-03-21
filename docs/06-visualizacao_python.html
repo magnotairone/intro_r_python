@@ -380,7 +380,12 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <p>A função <code>np.convolve</code> em <code>NumPy</code> é usada para realizar a convolução entre duas sequências, representadas por dois vetores unidimensionais. A convolução é uma operação matemática que combina duas funções para produzir uma terceira função que representa a quantidade de sobreposição entre elas conforme uma delas é deslocada ao longo do eixo.</p>
-<p>A sintaxe básica da função é <code>np.convolve(a, b, mode='full')</code>, onde <code>a</code> e <code>b</code> são os dois vetores unidimensionais a serem convolvidos e <code>mode</code> é um parâmetro opcional que define o modo de convolução. Os modos mais comuns são: - <code>'full'</code>: Retorna a saída completa da convolução. O comprimento do resultado será <code>len(a) + len(b) - 1</code>. - <code>'valid'</code>: Retorna apenas pontos onde as sequências se sobrepõem completamente. O comprimento do resultado será <code>max(len(a), len(b)) - min(len(a), len(b)) + 1</code>. - <code>'same'</code>: Retorna a saída do mesmo tamanho que o vetor de entrada mais longo. O comprimento do resultado será <code>max(len(a), len(b))</code>.</p>
+<p>A sintaxe básica da função é <code>np.convolve(a, b, mode='full')</code>, onde <code>a</code> e <code>b</code> são os dois vetores unidimensionais a serem convolvidos e <code>mode</code> é um parâmetro opcional que define o modo de convolução. Os modos mais comuns são:</p>
+<ul>
+<li><code>'full'</code>: Retorna a saída completa da convolução. O comprimento do resultado será <code>len(a) + len(b) - 1</code>.</li>
+<li><code>'valid'</code>: Retorna apenas pontos onde as sequências se sobrepõem completamente. O comprimento do resultado será <code>max(len(a), len(b)) - min(len(a), len(b)) + 1</code>.</li>
+<li><code>'same'</code>: Retorna a saída do mesmo tamanho que o vetor de entrada mais longo. O comprimento do resultado será <code>max(len(a), len(b))</code>.</li>
+</ul>
 <p>No exemplo anterior, a função <code>np.convolve</code> foi usada aqui para calcular a média móvel dos preços. Nesse caso, a primeira sequência é o vetor de preços e a segunda sequência é um vetor de 1s dividido pelo tamanho da janela de média móvel. Isso cria uma sequência que representa uma média ponderada dos valores.</p>
 </div>
 </div>
@@ -403,8 +408,8 @@ Tip
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Valor final médio:"</span>, np.mean(valores_finais[:,<span class="op">-</span><span class="dv">1</span>]))</span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Desvio padrão dos valores finais:"</span>, np.std(valores_finais[:,<span class="op">-</span><span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Valor final médio: 21258.914569391716
-Desvio padrão dos valores finais: 9684.55628751278</code></pre>
+<pre><code>Valor final médio: 21478.814991786447
+Desvio padrão dos valores finais: 9552.492912400698</code></pre>
 </div>
 </div>
 <p>Mais referências sobre <code>NumPy</code>:</p>
@@ -420,7 +425,12 @@ Desvio padrão dos valores finais: 9684.55628751278</code></pre>
 <section id="o-que-é-pandas" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="o-que-é-pandas"><span class="header-section-number">6.4</span> O que é pandas?</h2>
 <p>Pandas é uma biblioteca Python de código aberto que oferece estruturas de dados de alto desempenho e ferramentas de análise de dados. O pandas foi projetado para lidar com as complexidades do mundo real em análise de dados, oferecendo uma interface simples e intuitiva para trabalhar com dados tabulares.</p>
-<p>Pandas é amplamente utilizado em análise de dados devido à sua capacidade de: - Importar e exportar dados de uma variedade de fontes, incluindo arquivos CSV, Excel, SQL, JSON, HDF5 e mais. - Manipular dados de forma eficiente, incluindo indexação, filtragem, agregação e limpeza. - Realizar operações estatísticas e matemáticas em dados, como média, soma, desvio padrão, correlação, etc.</p>
+<p>Pandas é amplamente utilizado em análise de dados devido à sua capacidade de:</p>
+<ul>
+<li>Importar e exportar dados de uma variedade de fontes, incluindo arquivos CSV, Excel, SQL, JSON, HDF5 e mais.</li>
+<li>Manipular dados de forma eficiente, incluindo indexação, filtragem, agregação e limpeza.</li>
+<li>Realizar operações estatísticas e matemáticas em dados, como média, soma, desvio padrão, correlação, etc.</li>
+</ul>
 <p>As duas principais estruturas de dados fornecidas pelo pandas são series e dataframes.</p>
 <section id="séries" class="level3" data-number="6.4.1">
 <h3 data-number="6.4.1" class="anchored" data-anchor-id="séries"><span class="header-section-number">6.4.1</span> Séries</h3>
@@ -508,7 +518,7 @@ Name: Preço da Ação, dtype: int64</code></pre>
 <p>Se aplicarmos <code>df_precos_acoes.isna()</code>, obteremos:</p>
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_precos_acoes.isna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="49">
 <div>
 
 
@@ -555,7 +565,7 @@ Name: Preço da Ação, dtype: int64</code></pre>
 <p>Para contar a quantidade de <code>NaN</code> em cada coluna, combine <code>is.na()</code> com <code>sum()</code>:</p>
 <div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df_precos_acoes.isna().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="50">
 <pre><code>Ação 1    1
 Ação 2    0
 Ação 3    1
@@ -565,7 +575,7 @@ dtype: int64</code></pre>
 <p>O método <code>dropna()</code> no pandas é usado para remover linhas ou colunas que contenham valores ausentes (NaN).</p>
 <div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_precos_acoes.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="51">
 <div>
 
 
@@ -600,7 +610,7 @@ dtype: int64</code></pre>
 <p>O parâmetro subset é usado para especificar em quais colunas ou linhas o pandas deve procurar por valores ausentes antes de remover. Quando usamos <code>df.dropna(subset=["Ação 3"])</code>, estamos instruindo o pandas a remover todas as linhas onde houver um valor ausente na coluna “Ação 3”.</p>
 <div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_precos_acoes.dropna(subset<span class="op">=</span>[<span class="st">"Ação 3"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="52">
 <div>
 
 
@@ -654,7 +664,12 @@ dtype: int64</code></pre>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">'Limite de Crédito'</span>: [<span class="dv">10000</span>, np.nan, <span class="dv">8000</span>, <span class="dv">12000</span>, np.nan]}</span>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>df_clientes <span class="op">=</span> pd.DataFrame(dados)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Neste exemplo, - Os valores ausentes na coluna “Idade” foram preenchidos com a mediana das idades existentes no DataFrame. - Os valores ausentes na coluna “Limite de Crédito” foram preenchidos com a moda dos limites de crédito existentes no DataFrame. - Os valores ausentes na coluna “Renda Mensal” foram preenchidos com a média das rendas mensais existentes no DataFrame.</p>
+<p>Neste exemplo,</p>
+<ul>
+<li>Os valores ausentes na coluna “Idade” foram preenchidos com a mediana das idades existentes no DataFrame.</li>
+<li>Os valores ausentes na coluna “Limite de Crédito” foram preenchidos com a moda dos limites de crédito existentes no DataFrame.</li>
+<li>Os valores ausentes na coluna “Renda Mensal” foram preenchidos com a média das rendas mensais existentes no DataFrame.</li>
+</ul>
 <div class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Preenchendo valores ausentes na coluna 'Idade' com a mediana das idades</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df_clientes[<span class="st">'Idade'</span>] <span class="op">=</span> df_clientes[<span class="st">'Idade'</span>].fillna(df_clientes[<span class="st">'Idade'</span>].median())</span>
@@ -666,7 +681,7 @@ dtype: int64</code></pre>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>df_clientes[<span class="st">'Renda Mensal'</span>] <span class="op">=</span> df_clientes[<span class="st">'Renda Mensal'</span>].fillna(df_clientes[<span class="st">'Renda Mensal'</span>].mean())</span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>df_clientes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="55">
 <div>
 
 
@@ -729,7 +744,7 @@ dtype: int64</code></pre>
 <p>A função head() é usada para visualizar as primeiras linhas do conjunto de dados gapminder, oferecendo uma rápida visão geral da sua estrutura e conteúdo.</p>
 <div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>gapminder.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="57">
 <div>
 
 
@@ -819,7 +834,7 @@ memory usage: 80.0+ KB</code></pre>
 <p>A função describe() gera estatísticas descritivas para cada coluna numérica do conjunto de dados, como contagem, média, desvio padrão, mínimo e máximo.</p>
 <div class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>gapminder.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="59">
 <div>
 
 
@@ -899,7 +914,7 @@ memory usage: 80.0+ KB</code></pre>
 <p>A função <code>value_counts()</code> conta o número de ocorrências de cada categoria na coluna “continent” do conjunto de dados gapminder, transforma os resultados em um DataFrame, renomeia as colunas para “continent” e “n” (indicando a contagem), e reconfigura o índice.</p>
 <div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>gapminder.value_counts(<span class="st">"continent"</span>).to_frame(<span class="st">"n"</span>).reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="60">
 <div>
 
 
@@ -946,7 +961,7 @@ memory usage: 80.0+ KB</code></pre>
 <p>No trecho abaixo, fazemos uma contagem de valores para as combinações únicas de categorias nas colunas “continent” e “year” do DataFrame gapminder. Os resultados são transformados em um DataFrame, renomeados como “continent”, “year” e “n” (indicando a contagem), e o índice é reconfigurado.</p>
 <div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>gapminder.value_counts([<span class="st">"continent"</span>, <span class="st">"year"</span>]).to_frame(<span class="st">"n"</span>).reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
+<div class="cell-output cell-output-display" data-execution_count="61">
 <div>
 
 
@@ -1340,7 +1355,7 @@ memory usage: 80.0+ KB</code></pre>
 </div>
 <div class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>table1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
+<div class="cell-output cell-output-display" data-execution_count="63">
 <div>
 
 
@@ -1405,7 +1420,7 @@ memory usage: 80.0+ KB</code></pre>
 </div>
 <div class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>table2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="64">
 <div>
 
 
@@ -1512,7 +1527,7 @@ memory usage: 80.0+ KB</code></pre>
 </div>
 <div class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>table3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="65">
 <div>
 
 
@@ -1570,7 +1585,7 @@ memory usage: 80.0+ KB</code></pre>
 </div>
 <div class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>table4a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="66">
 <div>
 
 
@@ -1610,7 +1625,7 @@ memory usage: 80.0+ KB</code></pre>
 </div>
 <div class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>table4b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="67">
 <div>
 
 
@@ -1651,7 +1666,7 @@ memory usage: 80.0+ KB</code></pre>
 <p>O exemplo abaixo cria uma nova coluna chamada rate no DataFrame <code>table1.</code> A função <code>assign</code> adiciona uma nova coluna ao DataFrame, enquanto a expressão <code>lambda</code> calcula os valores para essa nova coluna.</p>
 <div class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>table1.assign(rate <span class="op">=</span> <span class="kw">lambda</span> _: <span class="dv">10000</span> <span class="op">*</span> (_.cases <span class="op">/</span> _.population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="68">
 <div>
 
 
@@ -1725,7 +1740,7 @@ memory usage: 80.0+ KB</code></pre>
 <div class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>(table1.groupby(<span class="st">"year"</span>, as_index <span class="op">=</span> <span class="va">False</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>       .agg(total_cases <span class="op">=</span> (<span class="st">"cases"</span>, np.<span class="bu">sum</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="69">
 <div>
 
 
@@ -1761,7 +1776,7 @@ memory usage: 80.0+ KB</code></pre>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>               .rename_axis(<span class="va">None</span>, axis <span class="op">=</span> <span class="dv">1</span>))</span>
 <span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>table2_tidy.assign(rate <span class="op">=</span> <span class="kw">lambda</span> _: <span class="dv">10000</span> <span class="op">*</span> (_.cases <span class="op">/</span> _.population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="70">
 <div>
 
 
@@ -1831,7 +1846,12 @@ memory usage: 80.0+ KB</code></pre>
 </div>
 </div>
 </div>
-<p>No exemplo acima, usamos o método <code>pivot_table</code> do pandas para reorganizar os dados do DataFrame <code>table2</code>. Ele reorganiza os dados de forma que os valores da coluna “count” sejam pivotados (transformados em colunas) com base nos valores únicos da combinação de “country” e “year”. Os parâmetros index, columns e values especificam respectivamente as colunas que serão usadas como índice, as que serão transformadas em colunas e os valores a serem preenchidos na tabela pivô. Após a operação de pivotagem, são encadeados métodos adicionais para modificar a estrutura do DataFrame resultante: - <code>reset_index()</code> redefine os índices do DataFrame para índices numéricos padrão, movendo os índices anteriores (no caso, “country” e “year”) para colunas. - <code>rename_axis(None, axis=1)</code> remove os nomes dos índices das colunas, substituindo-os por None. Isso é feito especificamente para limpar os nomes das colunas do DataFrame. Após a transformação dos dados, a função <code>assign</code> é usada para criar uma nova coluna chamada <code>rate</code> no DataFrame resultante <code>table2_tidy</code>.</p>
+<p>No exemplo acima, usamos o método <code>pivot_table</code> do pandas para reorganizar os dados do DataFrame <code>table2</code>. Ele reorganiza os dados de forma que os valores da coluna “count” sejam pivotados (transformados em colunas) com base nos valores únicos da combinação de “country” e “year”. Os parâmetros index, columns e values especificam respectivamente as colunas que serão usadas como índice, as que serão transformadas em colunas e os valores a serem preenchidos na tabela pivô. Após a operação de pivotagem, são encadeados métodos adicionais para modificar a estrutura do DataFrame resultante:</p>
+<ul>
+<li><code>reset_index()</code> redefine os índices do DataFrame para índices numéricos padrão, movendo os índices anteriores (no caso, “country” e “year”) para colunas.</li>
+<li><code>rename_axis(None, axis=1)</code> remove os nomes dos índices das colunas, substituindo-os por None. Isso é feito especificamente para limpar os nomes das colunas do DataFrame.</li>
+</ul>
+<p>Após a transformação dos dados, a função <code>assign</code> é usada para criar uma nova coluna chamada <code>rate</code> no DataFrame resultante <code>table2_tidy</code>.</p>
 <p>Agora, vamos fazer o mesmo para a <code>table4a</code> e <code>table4b</code>:</p>
 <div class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>table4_tidy <span class="op">=</span> (table4a.melt(id_vars <span class="op">=</span> <span class="st">"country"</span>, value_vars <span class="op">=</span> [<span class="st">"1999"</span>, <span class="st">"2000"</span>], var_name <span class="op">=</span> <span class="st">"year"</span>, value_name <span class="op">=</span> <span class="st">"cases"</span>)</span>
@@ -1839,7 +1859,7 @@ memory usage: 80.0+ KB</code></pre>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                       on <span class="op">=</span> (<span class="st">"country"</span>, <span class="st">"year"</span>)))</span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>table4_tidy.assign(rate <span class="op">=</span> <span class="kw">lambda</span> _: <span class="dv">10000</span> <span class="op">*</span> (_.cases <span class="op">/</span> _.population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="71">
 <div>
 
 
@@ -1909,7 +1929,11 @@ memory usage: 80.0+ KB</code></pre>
 </div>
 </div>
 </div>
-<p>Os DataFrames <code>table4a</code> e <code>table4b</code> são derretidos usando o método <code>melt</code>: - Para <code>table4a</code>, as colunas que permanecerão fixas são especificadas através do argumento id_vars = “country”, enquanto as colunas “1999” e “2000” são derretidas como variáveis usando value_vars = [“1999”, “2000”]. Os nomes das variáveis derretidas são renomeadas para “year” e “cases” usando var_name = “year” e value_name = “cases”, respectivamente. - Da mesma forma, para <code>table4b</code>, as colunas “country” e “1999”, “2000” são derretidas, com os nomes das variáveis renomeadas para “year” e “population”, respectivamente.</p>
+<p>Os DataFrames <code>table4a</code> e <code>table4b</code> são derretidos usando o método <code>melt</code>:</p>
+<ul>
+<li><p>Para <code>table4a</code>, as colunas que permanecerão fixas são especificadas através do argumento id_vars = “country”, enquanto as colunas “1999” e “2000” são derretidas como variáveis usando value_vars = [“1999”, “2000”]. Os nomes das variáveis derretidas são renomeadas para “year” e “cases” usando var_name = “year” e value_name = “cases”, respectivamente.</p></li>
+<li><p>Da mesma forma, para <code>table4b</code>, as colunas “country” e “1999”, “2000” são derretidas, com os nomes das variáveis renomeadas para “year” e “population”, respectivamente.</p></li>
+</ul>
 <p>Os DataFrames resultantes do derretimento de table4a e table4b são mesclados usando o método merge. A mesclagem é feita com base nas colunas “country” e “year”, garantindo que os dados correspondentes de table4a e table4b sejam combinados corretamente.</p>
 <p>Finalmente, o método <code>assign</code> é usado para criar uma nova coluna chamada “rate”, que representa a taxa de casos por 10.000 habitantes.</p>
 <p>Para a <code>table3</code>, basta separar a coluna <code>cases</code> considerando o separador <code>\</code>:</p>
@@ -1932,7 +1956,7 @@ memory usage: 80.0+ KB</code></pre>
 4        China  1999  212258/1272915272
 5        China  2000  213766/1280428583</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="72">
 <div>
 
 
@@ -2115,7 +2139,7 @@ memory usage: 80.0+ KB</code></pre>
 <div class="cell-output cell-output-display">
 <p><img src="06-visualizacao_python_files/figure-html/cell-41-output-1.png" class="img-fluid"></p>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="38">
+<div class="cell-output cell-output-display" data-execution_count="78">
 <pre><code>&lt;bound method ggplot.show of &lt;Figure Size: (1200 x 200)&gt;&gt;</code></pre>
 </div>
 </div>
