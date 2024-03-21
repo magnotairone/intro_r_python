@@ -134,13 +134,9 @@ O pandas é uma biblioteca de código aberto amplamente utilizada em Python para
 
 ## O que é pandas?
 
-Pandas é uma biblioteca Python de código aberto que oferece estruturas de dados de alto desempenho e ferramentas de análise de dados.
-O pandas foi projetado para lidar com as complexidades do mundo real em análise de dados, oferecendo uma interface simples e intuitiva para trabalhar com dados tabulares.
+Pandas é uma biblioteca Python de código aberto que oferece estruturas de dados de alto desempenho e ferramentas de análise de dados. O pandas foi projetado para lidar com as complexidades do mundo real em análise de dados, oferecendo uma interface simples e intuitiva para trabalhar com dados tabulares.
 
-Pandas é amplamente utilizado em análise de dados devido à sua capacidade de:
-- Importar e exportar dados de uma variedade de fontes, incluindo arquivos CSV, Excel, SQL, JSON, HDF5 e mais.
-- Manipular dados de forma eficiente, incluindo indexação, filtragem, agregação e limpeza.
-- Realizar operações estatísticas e matemáticas em dados, como média, soma, desvio padrão, correlação, etc.
+Pandas é amplamente utilizado em análise de dados devido à sua capacidade de: - Importar e exportar dados de uma variedade de fontes, incluindo arquivos CSV, Excel, SQL, JSON, HDF5 e mais. - Manipular dados de forma eficiente, incluindo indexação, filtragem, agregação e limpeza. - Realizar operações estatísticas e matemáticas em dados, como média, soma, desvio padrão, correlação, etc.
 
 As duas principais estruturas de dados fornecidas pelo pandas são series e dataframes.
 
@@ -175,9 +171,7 @@ print(serie_precos_acao)
 
 DataFrame é uma estrutura de dados bidimensional semelhante a uma tabela de banco de dados ou uma planilha do Excel. Ele é composto por linhas e colunas, onde cada coluna pode conter um tipo de dado diferente. Cada coluna e linha em um DataFrame possui um rótulo exclusivo chamado de índice e nome, respectivamente. O DataFrame permite realizar uma ampla gama de operações de manipulação e análise de dados, como indexação, filtragem, agregação, limpeza, entre outras.
 
-Suponha que temos um DataFrame representando os preços diários de várias ações.
-Podemos criar um DataFrame pandas para representar esses dados.
-Veja no exemplo abaixo.
+Suponha que temos um DataFrame representando os preços diários de várias ações. Podemos criar um DataFrame pandas para representar esses dados. Veja no exemplo abaixo.
 
 ```{python}
 import pandas as pd
@@ -197,7 +191,6 @@ print(df_precos_acoes)
 
 ```
 
-
 ### Principais funcionalidades
 
 A função `df.isna()` é uma função fornecida pelo pandas em um DataFrame (df) que retorna uma matriz booleana indicando se cada elemento do DataFrame é um valor ausente (NaN).
@@ -207,36 +200,36 @@ Quando aplicada a um DataFrame, a função `isna()` retorna um DataFrame com o m
 Isso é útil para identificar rapidamente os valores ausentes em um DataFrame e realizar operações de limpeza ou tratamento de dados, como preenchimento de valores ausentes ou remoção de linhas ou colunas contendo esses valores.
 
 Se aplicarmos `df_precos_acoes.isna()`, obteremos:
+
 ```{python}
 df_precos_acoes.isna()
 ```
 
 Para contar a quantidade de `NaN` em cada coluna, combine `is.na()` com `sum()`:
+
 ```{python}
 df_precos_acoes.isna().sum()
 ```
 
-O método `dropna()` no pandas é usado para remover linhas ou colunas que contenham valores ausentes (NaN). 
+O método `dropna()` no pandas é usado para remover linhas ou colunas que contenham valores ausentes (NaN).
 
 ```{python}
 df_precos_acoes.dropna()
 ```
 
-O parâmetro subset é usado para especificar em quais colunas ou linhas o pandas deve procurar por valores ausentes antes de remover.
-Quando usamos `df.dropna(subset=["Ação 3"])`, estamos instruindo o pandas a remover todas as linhas onde houver um valor ausente na coluna "Ação 3".
+O parâmetro subset é usado para especificar em quais colunas ou linhas o pandas deve procurar por valores ausentes antes de remover. Quando usamos `df.dropna(subset=["Ação 3"])`, estamos instruindo o pandas a remover todas as linhas onde houver um valor ausente na coluna "Ação 3".
 
 ```{python}
 df_precos_acoes.dropna(subset=["Ação 3"])
 ```
 
-Na função `dropna()`, o parâmetro `inplace=True` especifica que a modificação deve ser feita diretamente no DataFrame original, em vez de retornar um novo DataFrame sem os valores ausentes.
-Quando `inplace=True` é usado com dropna(), o DataFrame original é modificado e as linhas ou colunas com valores ausentes são removidas permanentemente.
+Na função `dropna()`, o parâmetro `inplace=True` especifica que a modificação deve ser feita diretamente no DataFrame original, em vez de retornar um novo DataFrame sem os valores ausentes. Quando `inplace=True` é usado com dropna(), o DataFrame original é modificado e as linhas ou colunas com valores ausentes são removidas permanentemente.
 
 ```{python}
 df_precos_acoes.dropna(inplace = True)
 ```
 
-A função `fillna()` no pandas é usada para preencher valores ausentes (NaN) em um DataFrame com um valor específico. 
+A função `fillna()` no pandas é usada para preencher valores ausentes (NaN) em um DataFrame com um valor específico.
 
 Considere o seguinte DataFrame `df` que representa os dados de clientes de um banco com alguns dados faltantes:
 
@@ -251,10 +244,7 @@ dados = {'Nome': ['João', 'Maria', 'Pedro', 'Ana', 'Mariana'],
 df_clientes = pd.DataFrame(dados)
 ```
 
-Neste exemplo, 
-  - Os valores ausentes na coluna "Idade" foram preenchidos com a mediana das idades existentes no DataFrame.
-  - Os valores ausentes na coluna "Limite de Crédito" foram preenchidos com a moda dos limites de crédito existentes no DataFrame.
-  - Os valores ausentes na coluna "Renda Mensal" foram preenchidos com a média das rendas mensais existentes no DataFrame.
+Neste exemplo, - Os valores ausentes na coluna "Idade" foram preenchidos com a mediana das idades existentes no DataFrame. - Os valores ausentes na coluna "Limite de Crédito" foram preenchidos com a moda dos limites de crédito existentes no DataFrame. - Os valores ausentes na coluna "Renda Mensal" foram preenchidos com a média das rendas mensais existentes no DataFrame.
 
 ```{python}
 # Preenchendo valores ausentes na coluna 'Idade' com a mediana das idades
@@ -276,31 +266,34 @@ gapminder = pd.read_csv("data/gapminder.zip", sep = "\t")
 ```
 
 A função head() é usada para visualizar as primeiras linhas do conjunto de dados gapminder, oferecendo uma rápida visão geral da sua estrutura e conteúdo.
+
 ```{python}
 gapminder.head()
 ```
 
 O método info() fornece informações sobre o conjunto de dados, incluindo o número de entradas, o tipo de dados de cada coluna e se há valores nulos.
+
 ```{python}
 gapminder.info()
 ```
 
 A função describe() gera estatísticas descritivas para cada coluna numérica do conjunto de dados, como contagem, média, desvio padrão, mínimo e máximo.
+
 ```{python}
 gapminder.describe()
 ```
 
-A função `value_counts()` conta o número de ocorrências de cada categoria na coluna "continent" do conjunto de dados gapminder, transforma os resultados em um DataFrame, renomeia as colunas para "continent" e "n" (indicando a contagem), e reconfigura o índice. 
+A função `value_counts()` conta o número de ocorrências de cada categoria na coluna "continent" do conjunto de dados gapminder, transforma os resultados em um DataFrame, renomeia as colunas para "continent" e "n" (indicando a contagem), e reconfigura o índice.
 
 ```{python}
 gapminder.value_counts("continent").to_frame("n").reset_index()
 ```
 
 No trecho abaixo, fazemos uma contagem de valores para as combinações únicas de categorias nas colunas "continent" e "year" do DataFrame gapminder. Os resultados são transformados em um DataFrame, renomeados como "continent", "year" e "n" (indicando a contagem), e o índice é reconfigurado.
+
 ```{python}
 gapminder.value_counts(["continent", "year"]).to_frame("n").reset_index()
 ```
-
 
 ## Dados organizados (tidy data)
 
@@ -335,17 +328,15 @@ table4b
 ```
 
 O exemplo abaixo cria uma nova coluna chamada rate no DataFrame `table1.` A função `assign` adiciona uma nova coluna ao DataFrame, enquanto a expressão `lambda` calcula os valores para essa nova coluna.
+
 ```{python}
 table1.assign(rate = lambda _: 10000 * (_.cases / _.population))
 ```
 
-
-No exemplo abaixo, agrupamos os dados do DataFrame `table1` pela coluna "year" (ano) e depois calcula a soma dos casos para cada ano.
-O método `groupby("year")` agrupa os dados por ano, criando grupos separados para cada ano.
-`as_index = False` especifica que a coluna usada para agrupamento ("year") não deve ser definida como índice no DataFrame resultante.
-O método `agg` é usado para realizar uma operação de agregação nos grupos. Aqui, np.sum é usado para calcular a soma dos valores da coluna "cases" para cada grupo.
+No exemplo abaixo, agrupamos os dados do DataFrame `table1` pela coluna "year" (ano) e depois calcula a soma dos casos para cada ano. O método `groupby("year")` agrupa os dados por ano, criando grupos separados para cada ano. `as_index = False` especifica que a coluna usada para agrupamento ("year") não deve ser definida como índice no DataFrame resultante. O método `agg` é usado para realizar uma operação de agregação nos grupos. Aqui, np.sum é usado para calcular a soma dos valores da coluna "cases" para cada grupo.
 
 ```{python}
+#| warning: false
 (table1.groupby("year", as_index = False)
        .agg(total_cases = ("cases", np.sum)))
 ```
@@ -353,6 +344,7 @@ O método `agg` é usado para realizar uma operação de agregação nos grupos.
 Para fazer o mesmo com os dados da table1, temos que usar a função `pivot_table`:
 
 ```{python}
+#| warning: false
 table2_tidy = (table2.pivot_table(index = ["country", "year"], columns = "type", values = "count")
                .reset_index()
                .rename_axis(None, axis = 1))
@@ -360,17 +352,12 @@ table2_tidy = (table2.pivot_table(index = ["country", "year"], columns = "type",
 table2_tidy.assign(rate = lambda _: 10000 * (_.cases / _.population))
 ```
 
-No exemplo acima, usamos o método `pivot_table` do pandas para reorganizar os dados do DataFrame `table2`.
-Ele reorganiza os dados de forma que os valores da coluna "count" sejam pivotados (transformados em colunas) com base nos valores únicos da combinação de "country" e "year".
-Os parâmetros index, columns e values especificam respectivamente as colunas que serão usadas como índice, as que serão transformadas em colunas e os valores a serem preenchidos na tabela pivô.
-Após a operação de pivotagem, são encadeados métodos adicionais para modificar a estrutura do DataFrame resultante:
-  - `reset_index()` redefine os índices do DataFrame para índices numéricos padrão, movendo os índices anteriores (no caso, "country" e "year") para colunas.
-  - `rename_axis(None, axis=1)` remove os nomes dos índices das colunas, substituindo-os por None. Isso é feito especificamente para limpar os nomes das colunas do DataFrame.
-Após a transformação dos dados, a função `assign` é usada para criar uma nova coluna chamada `rate` no DataFrame resultante `table2_tidy`.
+No exemplo acima, usamos o método `pivot_table` do pandas para reorganizar os dados do DataFrame `table2`. Ele reorganiza os dados de forma que os valores da coluna "count" sejam pivotados (transformados em colunas) com base nos valores únicos da combinação de "country" e "year". Os parâmetros index, columns e values especificam respectivamente as colunas que serão usadas como índice, as que serão transformadas em colunas e os valores a serem preenchidos na tabela pivô. Após a operação de pivotagem, são encadeados métodos adicionais para modificar a estrutura do DataFrame resultante: - `reset_index()` redefine os índices do DataFrame para índices numéricos padrão, movendo os índices anteriores (no caso, "country" e "year") para colunas. - `rename_axis(None, axis=1)` remove os nomes dos índices das colunas, substituindo-os por None. Isso é feito especificamente para limpar os nomes das colunas do DataFrame. Após a transformação dos dados, a função `assign` é usada para criar uma nova coluna chamada `rate` no DataFrame resultante `table2_tidy`.
 
 Agora, vamos fazer o mesmo para a `table4a` e `table4b`:
 
 ```{python}
+#| warning: false
 table4_tidy = (table4a.melt(id_vars = "country", value_vars = ["1999", "2000"], var_name = "year", value_name = "cases")
                 .merge(table4b.melt(id_vars = "country", value_vars = ["1999", "2000"], var_name = "year", value_name = "population"),
                        on = ("country", "year")))
@@ -378,19 +365,16 @@ table4_tidy = (table4a.melt(id_vars = "country", value_vars = ["1999", "2000"], 
 table4_tidy.assign(rate = lambda _: 10000 * (_.cases / _.population))
 ```
 
-Os DataFrames `table4a` e `table4b` são derretidos usando o método `melt`:
-  - Para `table4a`, as colunas que permanecerão fixas são especificadas através do argumento id_vars = "country", enquanto as colunas "1999" e "2000" são derretidas como variáveis usando value_vars = ["1999", "2000"]. Os nomes das variáveis derretidas são renomeadas para "year" e "cases" usando var_name = "year" e value_name = "cases", respectivamente.
-  - Da mesma forma, para `table4b`, as colunas "country" e "1999", "2000" são derretidas, com os nomes das variáveis renomeadas para "year" e "population", respectivamente.
+Os DataFrames `table4a` e `table4b` são derretidos usando o método `melt`: - Para `table4a`, as colunas que permanecerão fixas são especificadas através do argumento id_vars = "country", enquanto as colunas "1999" e "2000" são derretidas como variáveis usando value_vars = \["1999", "2000"\]. Os nomes das variáveis derretidas são renomeadas para "year" e "cases" usando var_name = "year" e value_name = "cases", respectivamente. - Da mesma forma, para `table4b`, as colunas "country" e "1999", "2000" são derretidas, com os nomes das variáveis renomeadas para "year" e "population", respectivamente.
 
-Os DataFrames resultantes do derretimento de table4a e table4b são mesclados usando o método merge.
-A mesclagem é feita com base nas colunas "country" e "year", garantindo que os dados correspondentes de table4a e table4b sejam combinados corretamente.
+Os DataFrames resultantes do derretimento de table4a e table4b são mesclados usando o método merge. A mesclagem é feita com base nas colunas "country" e "year", garantindo que os dados correspondentes de table4a e table4b sejam combinados corretamente.
 
 Finalmente, o método `assign` é usado para criar uma nova coluna chamada "rate", que representa a taxa de casos por 10.000 habitantes.
-
 
 Para a `table3`, basta separar a coluna `cases` considerando o separador `\`:
 
 ```{python}
+#| warning: false
 print(table3)
 
 table3_tidy = (table3.assign(cases = lambda _: _.rate.str.split("/", expand = True)[0].astype(int),
@@ -402,33 +386,30 @@ table3_tidy
 table3_tidy.assign(rate = lambda _: 10000 * (_.cases / _.population))
 ```
 
-O parâmetro `expand` é utilizado no método` str.split()` para especificar se o resultado da divisão deve ser expandido em um DataFrame (se True) ou mantido como uma lista de valores (se False, que é o padrão).
+O parâmetro `expand` é utilizado no método`str.split()` para especificar se o resultado da divisão deve ser expandido em um DataFrame (se True) ou mantido como uma lista de valores (se False, que é o padrão).
 
-Principais funcionaldiades
-  - ver aulas paulo
-
-
+Principais funcionaldiades - ver aulas paulo
 
 <!-- aulas 4, 5 (data wrangling) e 6 (missing data) -->
 
 ## Visualização de dados
 
-Duas bibliotecas amplamente utilizadas para visualização em Python são o `Matplotlib` e o `Plotnine.` O `Matplotlib` oferece uma ampla gama de opções para criar visualizações estáticas, desde gráficos simples até gráficos complexos e personalizados. Por outro lado, o `Plotnine` é uma biblioteca baseada na gramática de gráficos (parecido com o `ggplot2` do R), o que facilita a criação de visualizações elegantes e concisas usando uma sintaxe intuitiva e expressiva. 
-
+Duas bibliotecas amplamente utilizadas para visualização em Python são o `Matplotlib` e o `Plotnine.` O `Matplotlib` oferece uma ampla gama de opções para criar visualizações estáticas, desde gráficos simples até gráficos complexos e personalizados. Por outro lado, o `Plotnine` é uma biblioteca baseada na gramática de gráficos (parecido com o `ggplot2` do R), o que facilita a criação de visualizações elegantes e concisas usando uma sintaxe intuitiva e expressiva.
 
 ### Matplotlib
 
 Antes de começarmos a criar visualizações, é importante entender alguns conceitos básicos do Matplotlib:
 
-- **Figura e Eixo (Axes)**: No Matplotlib, uma figura é a janela ou página na qual tudo é desenhado. Dentro de uma figura, pode haver vários eixos (ou subplots), onde os dados são efetivamente plotados.
+-   **Figura e Eixo (Axes)**: No Matplotlib, uma figura é a janela ou página na qual tudo é desenhado. Dentro de uma figura, pode haver vários eixos (ou subplots), onde os dados são efetivamente plotados.
 
-- **Método plot()**: O método plot() é usado para criar gráficos de linha, pontos ou marcadores. Ele aceita uma variedade de argumentos para personalizar a aparência do gráfico, como cor, estilo de linha, largura da linha, etc.
+-   **Método plot()**: O método plot() é usado para criar gráficos de linha, pontos ou marcadores. Ele aceita uma variedade de argumentos para personalizar a aparência do gráfico, como cor, estilo de linha, largura da linha, etc.
 
-- **Customização**: O Matplotlib oferece muitas opções de personalização para ajustar a aparência dos gráficos, incluindo a adição de rótulos aos eixos, título do gráfico, legendas, entre outros.
+-   **Customização**: O Matplotlib oferece muitas opções de personalização para ajustar a aparência dos gráficos, incluindo a adição de rótulos aos eixos, título do gráfico, legendas, entre outros.
 
 Agora, vamos ver um exemplo de como criar um gráfico de pontos usando dados fictícios, onde cada unidade de dado está relacionada a uma empresa.
 
 ```{python}
+#| warning: false
 import matplotlib.pyplot as plt
 
 # Dados de exemplo: Nome das empresas, receita e número de funcionários
@@ -457,9 +438,10 @@ plt.show()
 
 Neste exemplo, cada ponto no gráfico representa uma empresa, onde o eixo x representa a receita (em milhões de reais) e o eixo y representa o número de funcionários. As anotações são usadas para identificar cada empresa no gráfico.
 
-Na sequência, utilizamos o Matplotlib para criar um gráfico de linha que representa a evolução das vendas de dois produtos ao longo de vários anos. Cada ponto no gráfico representa o número de vendas em um ano específico. 
+Na sequência, utilizamos o Matplotlib para criar um gráfico de linha que representa a evolução das vendas de dois produtos ao longo de vários anos. Cada ponto no gráfico representa o número de vendas em um ano específico.
 
 ```{python}
+#| warning: false
 import matplotlib.pyplot as plt
 
 # Dados de exemplo: Anos e vendas de produtos
@@ -485,19 +467,19 @@ plt.grid(True)
 plt.show()
 ```
 
-
 ### Plotnine
 
 Plotnine é uma biblioteca em Python que permite criar visualizações de dados estatísticos de uma forma simples e concisa, utilizando a gramática de gráficos do R (também conhecida como ggplot2). Essa gramática consiste em uma abordagem declarativa para a construção de gráficos, onde os elementos visuais são adicionados em camadas para formar o gráfico final.
 
 ```{python}
+#| warning: false
 from plotnine import *
 ```
-
 
 Para exemplificar, vamos utilizar a base de dados `gapminder`.
 
 ```{python}
+#| warning: false
 ((ggplot(gapminder, aes(x = "continent", fill = "continent")) +
      geom_bar(aes(y = "stat(count) / 12"), alpha = 0.75) +
      labs(x = "", y = "Number of countries", title = "Continents") +
@@ -508,6 +490,7 @@ Para exemplificar, vamos utilizar a base de dados `gapminder`.
 ```
 
 ```{python}
+#| warning: false
 ((ggplot(gapminder, aes(x = "lifeExp", y = "stat(density)")) +
      geom_histogram(fill = "blue", color = "white", alpha = 0.5) +
      labs(x = "Life Expectancy", y = "", title = "Gapminder"))
@@ -515,6 +498,7 @@ Para exemplificar, vamos utilizar a base de dados `gapminder`.
 ```
 
 ```{python}
+#| warning: false
 ((ggplot(gapminder, aes(x = "lifeExp", y = "stat(density)")) +
      geom_histogram(fill = "blue", color = "white", alpha = 0.5) +
      labs(x = "Life Expectancy", y = "", title = "Gapminder") +
@@ -524,6 +508,7 @@ Para exemplificar, vamos utilizar a base de dados `gapminder`.
 ```
 
 ```{python}
+#| warning: false
 ((gapminder.groupby(["continent", "year"], as_index = False)
       .agg(median_lifeExp = ("lifeExp", np.median))
       .pipe(lambda _: ggplot(_, aes(x = "year", y = "median_lifeExp", color = "continent")) +
@@ -533,14 +518,15 @@ Para exemplificar, vamos utilizar a base de dados `gapminder`.
                           .show())
 ```
 
+<!-- ## Análise de Dados Avançada -->
 
-## Análise de Dados Avançada
+<!-- ### Caso 1: Visualizando dados `NumPy` com `Matplotlib` {.unnumbered} -->
 
-### Caso 1: Visualizando dados `NumPy` com `Matplotlib` {.unnumbered}
-
-O objetivo deste exemplo é demonstrar como usar NumPy e Matplotlib em conjunto para analisar dados econômicos simulados. Leia o código abaixo e tente entender o que está sendo feito.
+<!-- O objetivo deste exemplo é demonstrar como usar NumPy e Matplotlib em conjunto para analisar dados econômicos simulados. Leia o código abaixo e tente entender o que está sendo feito. -->
 
 ```{python}
+#| warning: false
+#| include: false
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -566,14 +552,16 @@ plt.ylabel('Frequência')
 plt.show()
 ```
 
-No exemplo acima, começamos gerando dados aleatórios para simular valores de PIB usando a distribuição normal com uma média de 500 e um desvio padrão de 100. Em seguida, calculamos a média, a mediana e o desvio padrão desses valores usando funções NumPy. Para facilitar a visualização e análise dos dados, plotamos um histograma usando Matplotlib. Este histograma nos permite visualizar a distribuição dos valores do PIB e identificar tendências ou padrões nos dados.
+<!-- No exemplo acima, começamos gerando dados aleatórios para simular valores de PIB usando a distribuição normal com uma média de 500 e um desvio padrão de 100. Em seguida, calculamos a média, a mediana e o desvio padrão desses valores usando funções NumPy. Para facilitar a visualização e análise dos dados, plotamos um histograma usando Matplotlib. Este histograma nos permite visualizar a distribuição dos valores do PIB e identificar tendências ou padrões nos dados. -->
 
-### Caso 2: Gapminder {.unnumbered}
+<!-- ### Caso 2: Gapminder {.unnumbered} -->
 
-O objetivo deste exemplo é demonstrar como usar Pandas, NumPy e Matplotlib em conjunto para realizar análises exploratórias de dados do Gapminder.
+<!-- O objetivo deste exemplo é demonstrar como usar Pandas, NumPy e Matplotlib em conjunto para realizar análises exploratórias de dados do Gapminder. -->
 
 ```{python}
+#| warning: false
 #| eval: false
+#| include: false
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -605,6 +593,6 @@ plt.show()
 
 ```
 
-No código acima, começamos carregando os dados do Gapminder usando a função pd.read_csv() do Pandas. Em seguida, calculamos a média da expectativa de vida e a mediana do PIB per capita usando funções NumPy np.mean() e np.median(), respectivamente. Para visualizar a distribuição da expectativa de vida, plotamos um histograma usando a função plt.hist() do Matplotlib.
+<!-- No código acima, começamos carregando os dados do Gapminder usando a função pd.read_csv() do Pandas. Em seguida, calculamos a média da expectativa de vida e a mediana do PIB per capita usando funções NumPy np.mean() e np.median(), respectivamente. Para visualizar a distribuição da expectativa de vida, plotamos um histograma usando a função plt.hist() do Matplotlib. -->
 
 <!-- ## Exercícios -->

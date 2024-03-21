@@ -250,11 +250,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#matplotlib" id="toc-matplotlib" class="nav-link" data-scroll-target="#matplotlib"><span class="header-section-number">6.6.1</span> Matplotlib</a></li>
   <li><a href="#plotnine" id="toc-plotnine" class="nav-link" data-scroll-target="#plotnine"><span class="header-section-number">6.6.2</span> Plotnine</a></li>
   </ul></li>
-  <li><a href="#análise-de-dados-avançada" id="toc-análise-de-dados-avançada" class="nav-link" data-scroll-target="#análise-de-dados-avançada"><span class="header-section-number">6.7</span> Análise de Dados Avançada</a>
-  <ul class="collapse">
-  <li><a href="#caso-1-visualizando-dados-numpy-com-matplotlib" id="toc-caso-1-visualizando-dados-numpy-com-matplotlib" class="nav-link" data-scroll-target="#caso-1-visualizando-dados-numpy-com-matplotlib">Caso 1: Visualizando dados <code>NumPy</code> com <code>Matplotlib</code></a></li>
-  <li><a href="#caso-2-gapminder" id="toc-caso-2-gapminder" class="nav-link" data-scroll-target="#caso-2-gapminder">Caso 2: Gapminder</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -408,8 +403,8 @@ Tip
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Valor final médio:"</span>, np.mean(valores_finais[:,<span class="op">-</span><span class="dv">1</span>]))</span>
 <span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Desvio padrão dos valores finais:"</span>, np.std(valores_finais[:,<span class="op">-</span><span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Valor final médio: 21776.434536452558
-Desvio padrão dos valores finais: 10085.792969784981</code></pre>
+<pre><code>Valor final médio: 21258.914569391716
+Desvio padrão dos valores finais: 9684.55628751278</code></pre>
 </div>
 </div>
 <p>Mais referências sobre <code>NumPy</code>:</p>
@@ -1730,12 +1725,6 @@ memory usage: 80.0+ KB</code></pre>
 <div class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>(table1.groupby(<span class="st">"year"</span>, as_index <span class="op">=</span> <span class="va">False</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>       .agg(total_cases <span class="op">=</span> (<span class="st">"cases"</span>, np.<span class="bu">sum</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\m_tai\AppData\Local\Temp\ipykernel_9100\959933880.py:2: FutureWarning:
-
-The provided callable &lt;function sum at 0x0000020318F69620&gt; is currently using SeriesGroupBy.sum. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "sum" instead.
-</code></pre>
-</div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <div>
 
@@ -1767,11 +1756,11 @@ The provided callable &lt;function sum at 0x0000020318F69620&gt; is currently us
 </div>
 <p>Para fazer o mesmo com os dados da table1, temos que usar a função <code>pivot_table</code>:</p>
 <div class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>table2_tidy <span class="op">=</span> (table2.pivot_table(index <span class="op">=</span> [<span class="st">"country"</span>, <span class="st">"year"</span>], columns <span class="op">=</span> <span class="st">"type"</span>, values <span class="op">=</span> <span class="st">"count"</span>)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>               .reset_index()</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>               .rename_axis(<span class="va">None</span>, axis <span class="op">=</span> <span class="dv">1</span>))</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>table2_tidy.assign(rate <span class="op">=</span> <span class="kw">lambda</span> _: <span class="dv">10000</span> <span class="op">*</span> (_.cases <span class="op">/</span> _.population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>table2_tidy <span class="op">=</span> (table2.pivot_table(index <span class="op">=</span> [<span class="st">"country"</span>, <span class="st">"year"</span>], columns <span class="op">=</span> <span class="st">"type"</span>, values <span class="op">=</span> <span class="st">"count"</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>               .reset_index()</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>               .rename_axis(<span class="va">None</span>, axis <span class="op">=</span> <span class="dv">1</span>))</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>table2_tidy.assign(rate <span class="op">=</span> <span class="kw">lambda</span> _: <span class="dv">10000</span> <span class="op">*</span> (_.cases <span class="op">/</span> _.population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <div>
 
@@ -1845,11 +1834,11 @@ The provided callable &lt;function sum at 0x0000020318F69620&gt; is currently us
 <p>No exemplo acima, usamos o método <code>pivot_table</code> do pandas para reorganizar os dados do DataFrame <code>table2</code>. Ele reorganiza os dados de forma que os valores da coluna “count” sejam pivotados (transformados em colunas) com base nos valores únicos da combinação de “country” e “year”. Os parâmetros index, columns e values especificam respectivamente as colunas que serão usadas como índice, as que serão transformadas em colunas e os valores a serem preenchidos na tabela pivô. Após a operação de pivotagem, são encadeados métodos adicionais para modificar a estrutura do DataFrame resultante: - <code>reset_index()</code> redefine os índices do DataFrame para índices numéricos padrão, movendo os índices anteriores (no caso, “country” e “year”) para colunas. - <code>rename_axis(None, axis=1)</code> remove os nomes dos índices das colunas, substituindo-os por None. Isso é feito especificamente para limpar os nomes das colunas do DataFrame. Após a transformação dos dados, a função <code>assign</code> é usada para criar uma nova coluna chamada <code>rate</code> no DataFrame resultante <code>table2_tidy</code>.</p>
 <p>Agora, vamos fazer o mesmo para a <code>table4a</code> e <code>table4b</code>:</p>
 <div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>table4_tidy <span class="op">=</span> (table4a.melt(id_vars <span class="op">=</span> <span class="st">"country"</span>, value_vars <span class="op">=</span> [<span class="st">"1999"</span>, <span class="st">"2000"</span>], var_name <span class="op">=</span> <span class="st">"year"</span>, value_name <span class="op">=</span> <span class="st">"cases"</span>)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>                .merge(table4b.melt(id_vars <span class="op">=</span> <span class="st">"country"</span>, value_vars <span class="op">=</span> [<span class="st">"1999"</span>, <span class="st">"2000"</span>], var_name <span class="op">=</span> <span class="st">"year"</span>, value_name <span class="op">=</span> <span class="st">"population"</span>),</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>                       on <span class="op">=</span> (<span class="st">"country"</span>, <span class="st">"year"</span>)))</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>table4_tidy.assign(rate <span class="op">=</span> <span class="kw">lambda</span> _: <span class="dv">10000</span> <span class="op">*</span> (_.cases <span class="op">/</span> _.population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>table4_tidy <span class="op">=</span> (table4a.melt(id_vars <span class="op">=</span> <span class="st">"country"</span>, value_vars <span class="op">=</span> [<span class="st">"1999"</span>, <span class="st">"2000"</span>], var_name <span class="op">=</span> <span class="st">"year"</span>, value_name <span class="op">=</span> <span class="st">"cases"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>                .merge(table4b.melt(id_vars <span class="op">=</span> <span class="st">"country"</span>, value_vars <span class="op">=</span> [<span class="st">"1999"</span>, <span class="st">"2000"</span>], var_name <span class="op">=</span> <span class="st">"year"</span>, value_name <span class="op">=</span> <span class="st">"population"</span>),</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                       on <span class="op">=</span> (<span class="st">"country"</span>, <span class="st">"year"</span>)))</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>table4_tidy.assign(rate <span class="op">=</span> <span class="kw">lambda</span> _: <span class="dv">10000</span> <span class="op">*</span> (_.cases <span class="op">/</span> _.population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <div>
 
@@ -1925,15 +1914,15 @@ The provided callable &lt;function sum at 0x0000020318F69620&gt; is currently us
 <p>Finalmente, o método <code>assign</code> é usado para criar uma nova coluna chamada “rate”, que representa a taxa de casos por 10.000 habitantes.</p>
 <p>Para a <code>table3</code>, basta separar a coluna <code>cases</code> considerando o separador <code>\</code>:</p>
 <div class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table3)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>table3_tidy <span class="op">=</span> (table3.assign(cases <span class="op">=</span> <span class="kw">lambda</span> _: _.rate.<span class="bu">str</span>.split(<span class="st">"/"</span>, expand <span class="op">=</span> <span class="va">True</span>)[<span class="dv">0</span>].astype(<span class="bu">int</span>),</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>                       population <span class="op">=</span> <span class="kw">lambda</span> _: _.rate.<span class="bu">str</span>.split(<span class="st">"/"</span>,  expand <span class="op">=</span> <span class="va">True</span>)[<span class="dv">1</span>].astype(<span class="bu">int</span>))</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>               .drop(<span class="st">"rate"</span>, axis <span class="op">=</span> <span class="dv">1</span>))</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>table3_tidy</span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>table3_tidy.assign(rate <span class="op">=</span> <span class="kw">lambda</span> _: <span class="dv">10000</span> <span class="op">*</span> (_.cases <span class="op">/</span> _.population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table3)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>table3_tidy <span class="op">=</span> (table3.assign(cases <span class="op">=</span> <span class="kw">lambda</span> _: _.rate.<span class="bu">str</span>.split(<span class="st">"/"</span>, expand <span class="op">=</span> <span class="va">True</span>)[<span class="dv">0</span>].astype(<span class="bu">int</span>),</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>                       population <span class="op">=</span> <span class="kw">lambda</span> _: _.rate.<span class="bu">str</span>.split(<span class="st">"/"</span>,  expand <span class="op">=</span> <span class="va">True</span>)[<span class="dv">1</span>].astype(<span class="bu">int</span>))</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>               .drop(<span class="st">"rate"</span>, axis <span class="op">=</span> <span class="dv">1</span>))</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>table3_tidy</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>table3_tidy.assign(rate <span class="op">=</span> <span class="kw">lambda</span> _: <span class="dv">10000</span> <span class="op">*</span> (_.cases <span class="op">/</span> _.population))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       country  year               rate
 0  Afghanistan  1999       745/19987071
@@ -2030,29 +2019,29 @@ The provided callable &lt;function sum at 0x0000020318F69620&gt; is currently us
 </ul>
 <p>Agora, vamos ver um exemplo de como criar um gráfico de pontos usando dados fictícios, onde cada unidade de dado está relacionada a uma empresa.</p>
 <div class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados de exemplo: Nome das empresas, receita e número de funcionários</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>empresas <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>, <span class="st">'D'</span>, <span class="st">'E'</span>]</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>receita <span class="op">=</span> [<span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">400</span>, <span class="dv">250</span>, <span class="dv">350</span>]  <span class="co"># em milhões de reais</span></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>funcionarios <span class="op">=</span> [<span class="dv">1000</span>, <span class="dv">1200</span>, <span class="dv">1500</span>, <span class="dv">900</span>, <span class="dv">1100</span>]</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando o gráfico de pontos</span></span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>plt.scatter(receita, funcionarios, color<span class="op">=</span><span class="st">'blue'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionando rótulos e título</span></span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Receita (em milhões de reais)'</span>)</span>
-<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Número de Funcionários'</span>)</span>
-<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Receita vs. Número de Funcionários'</span>)</span>
-<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionando anotações para cada ponto</span></span>
-<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(empresas)):</span>
-<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>    plt.annotate(empresas[i], (receita[i], funcionarios[i]))</span>
-<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo o gráfico</span></span>
-<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados de exemplo: Nome das empresas, receita e número de funcionários</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>empresas <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>, <span class="st">'D'</span>, <span class="st">'E'</span>]</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>receita <span class="op">=</span> [<span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">400</span>, <span class="dv">250</span>, <span class="dv">350</span>]  <span class="co"># em milhões de reais</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>funcionarios <span class="op">=</span> [<span class="dv">1000</span>, <span class="dv">1200</span>, <span class="dv">1500</span>, <span class="dv">900</span>, <span class="dv">1100</span>]</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando o gráfico de pontos</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>plt.scatter(receita, funcionarios, color<span class="op">=</span><span class="st">'blue'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionando rótulos e título</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Receita (em milhões de reais)'</span>)</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Número de Funcionários'</span>)</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Receita vs. Número de Funcionários'</span>)</span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionando anotações para cada ponto</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(empresas)):</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>    plt.annotate(empresas[i], (receita[i], funcionarios[i]))</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo o gráfico</span></span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06-visualizacao_python_files/figure-html/cell-36-output-1.png" width="676" height="523"></p>
 </div>
@@ -2060,29 +2049,29 @@ The provided callable &lt;function sum at 0x0000020318F69620&gt; is currently us
 <p>Neste exemplo, cada ponto no gráfico representa uma empresa, onde o eixo x representa a receita (em milhões de reais) e o eixo y representa o número de funcionários. As anotações são usadas para identificar cada empresa no gráfico.</p>
 <p>Na sequência, utilizamos o Matplotlib para criar um gráfico de linha que representa a evolução das vendas de dois produtos ao longo de vários anos. Cada ponto no gráfico representa o número de vendas em um ano específico.</p>
 <div class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados de exemplo: Anos e vendas de produtos</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>anos <span class="op">=</span> [<span class="dv">2010</span>, <span class="dv">2011</span>, <span class="dv">2012</span>, <span class="dv">2013</span>, <span class="dv">2014</span>, <span class="dv">2015</span>, <span class="dv">2016</span>]</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>vendas_produto_A <span class="op">=</span> [<span class="dv">500</span>, <span class="dv">600</span>, <span class="dv">550</span>, <span class="dv">700</span>, <span class="dv">800</span>, <span class="dv">750</span>, <span class="dv">900</span>]</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>vendas_produto_B <span class="op">=</span> [<span class="dv">400</span>, <span class="dv">450</span>, <span class="dv">500</span>, <span class="dv">550</span>, <span class="dv">600</span>, <span class="dv">650</span>, <span class="dv">700</span>]</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando o gráfico de linha</span></span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>plt.plot(anos, vendas_produto_A, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'Produto A'</span>)</span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>plt.plot(anos, vendas_produto_B, marker<span class="op">=</span><span class="st">'s'</span>, label<span class="op">=</span><span class="st">'Produto B'</span>)</span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionando rótulos e título</span></span>
-<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Ano'</span>)</span>
-<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Vendas'</span>)</span>
-<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Vendas ao longo do tempo'</span>)</span>
-<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionando legenda</span></span>
-<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo o gráfico</span></span>
-<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados de exemplo: Anos e vendas de produtos</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>anos <span class="op">=</span> [<span class="dv">2010</span>, <span class="dv">2011</span>, <span class="dv">2012</span>, <span class="dv">2013</span>, <span class="dv">2014</span>, <span class="dv">2015</span>, <span class="dv">2016</span>]</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>vendas_produto_A <span class="op">=</span> [<span class="dv">500</span>, <span class="dv">600</span>, <span class="dv">550</span>, <span class="dv">700</span>, <span class="dv">800</span>, <span class="dv">750</span>, <span class="dv">900</span>]</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>vendas_produto_B <span class="op">=</span> [<span class="dv">400</span>, <span class="dv">450</span>, <span class="dv">500</span>, <span class="dv">550</span>, <span class="dv">600</span>, <span class="dv">650</span>, <span class="dv">700</span>]</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando o gráfico de linha</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>plt.plot(anos, vendas_produto_A, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'Produto A'</span>)</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>plt.plot(anos, vendas_produto_B, marker<span class="op">=</span><span class="st">'s'</span>, label<span class="op">=</span><span class="st">'Produto B'</span>)</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionando rótulos e título</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Ano'</span>)</span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Vendas'</span>)</span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Vendas ao longo do tempo'</span>)</span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionando legenda</span></span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo o gráfico</span></span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06-visualizacao_python_files/figure-html/cell-37-output-1.png" width="816" height="523"></p>
 </div>
@@ -2092,142 +2081,63 @@ The provided callable &lt;function sum at 0x0000020318F69620&gt; is currently us
 <h3 data-number="6.6.2" class="anchored" data-anchor-id="plotnine"><span class="header-section-number">6.6.2</span> Plotnine</h3>
 <p>Plotnine é uma biblioteca em Python que permite criar visualizações de dados estatísticos de uma forma simples e concisa, utilizando a gramática de gráficos do R (também conhecida como ggplot2). Essa gramática consiste em uma abordagem declarativa para a construção de gráficos, onde os elementos visuais são adicionados em camadas para formar o gráfico final.</p>
 <div class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para exemplificar, vamos utilizar a base de dados <code>gapminder</code>.</p>
 <div class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>((ggplot(gapminder, aes(x <span class="op">=</span> <span class="st">"continent"</span>, fill <span class="op">=</span> <span class="st">"continent"</span>)) <span class="op">+</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>     geom_bar(aes(y <span class="op">=</span> <span class="st">"stat(count) / 12"</span>), alpha <span class="op">=</span> <span class="fl">0.75</span>) <span class="op">+</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>     labs(x <span class="op">=</span> <span class="st">""</span>, y <span class="op">=</span> <span class="st">"Number of countries"</span>, title <span class="op">=</span> <span class="st">"Continents"</span>) <span class="op">+</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>     theme(legend_position <span class="op">=</span> <span class="st">"none"</span>) <span class="op">+</span></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>     coord_flip()<span class="op">+</span></span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>     theme_bw())</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>     .show())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>((ggplot(gapminder, aes(x <span class="op">=</span> <span class="st">"continent"</span>, fill <span class="op">=</span> <span class="st">"continent"</span>)) <span class="op">+</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>     geom_bar(aes(y <span class="op">=</span> <span class="st">"stat(count) / 12"</span>), alpha <span class="op">=</span> <span class="fl">0.75</span>) <span class="op">+</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>     labs(x <span class="op">=</span> <span class="st">""</span>, y <span class="op">=</span> <span class="st">"Number of countries"</span>, title <span class="op">=</span> <span class="st">"Continents"</span>) <span class="op">+</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>     theme(legend_position <span class="op">=</span> <span class="st">"none"</span>) <span class="op">+</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>     coord_flip()<span class="op">+</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>     theme_bw())</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>     .show())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="06-visualizacao_python_files/figure-html/cell-39-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>((ggplot(gapminder, aes(x <span class="op">=</span> <span class="st">"lifeExp"</span>, y <span class="op">=</span> <span class="st">"stat(density)"</span>)) <span class="op">+</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>     geom_histogram(fill <span class="op">=</span> <span class="st">"blue"</span>, color <span class="op">=</span> <span class="st">"white"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>     labs(x <span class="op">=</span> <span class="st">"Life Expectancy"</span>, y <span class="op">=</span> <span class="st">""</span>, title <span class="op">=</span> <span class="st">"Gapminder"</span>))</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>     .show())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\m_tai\anaconda3_2023\Lib\site-packages\plotnine\stats\stat_bin.py:109: PlotnineWarning: 'stat_bin()' using 'bins = 16'. Pick better value with 'binwidth'.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>((ggplot(gapminder, aes(x <span class="op">=</span> <span class="st">"lifeExp"</span>, y <span class="op">=</span> <span class="st">"stat(density)"</span>)) <span class="op">+</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>     geom_histogram(fill <span class="op">=</span> <span class="st">"blue"</span>, color <span class="op">=</span> <span class="st">"white"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>     labs(x <span class="op">=</span> <span class="st">"Life Expectancy"</span>, y <span class="op">=</span> <span class="st">""</span>, title <span class="op">=</span> <span class="st">"Gapminder"</span>))</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>     .show())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="06-visualizacao_python_files/figure-html/cell-40-output-2.png" class="img-fluid"></p>
+<p><img src="06-visualizacao_python_files/figure-html/cell-40-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <div class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>((ggplot(gapminder, aes(x <span class="op">=</span> <span class="st">"lifeExp"</span>, y <span class="op">=</span> <span class="st">"stat(density)"</span>)) <span class="op">+</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>     geom_histogram(fill <span class="op">=</span> <span class="st">"blue"</span>, color <span class="op">=</span> <span class="st">"white"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>     labs(x <span class="op">=</span> <span class="st">"Life Expectancy"</span>, y <span class="op">=</span> <span class="st">""</span>, title <span class="op">=</span> <span class="st">"Gapminder"</span>) <span class="op">+</span></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>     facet_wrap(<span class="st">"~ continent"</span>, nrow <span class="op">=</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>     theme(figure_size <span class="op">=</span> (<span class="dv">12</span>, <span class="dv">2</span>))).</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>     show)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\m_tai\anaconda3_2023\Lib\site-packages\IPython\lib\pretty.py:778: FutureWarning: Using repr(plot) to draw and show the plot figure is deprecated and will be removed in a future version. Use plot.show().
-C:\Users\m_tai\anaconda3_2023\Lib\site-packages\plotnine\stats\stat_bin.py:109: PlotnineWarning: 'stat_bin()' using 'bins = 16'. Pick better value with 'binwidth'.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>((ggplot(gapminder, aes(x <span class="op">=</span> <span class="st">"lifeExp"</span>, y <span class="op">=</span> <span class="st">"stat(density)"</span>)) <span class="op">+</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>     geom_histogram(fill <span class="op">=</span> <span class="st">"blue"</span>, color <span class="op">=</span> <span class="st">"white"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>) <span class="op">+</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>     labs(x <span class="op">=</span> <span class="st">"Life Expectancy"</span>, y <span class="op">=</span> <span class="st">""</span>, title <span class="op">=</span> <span class="st">"Gapminder"</span>) <span class="op">+</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>     facet_wrap(<span class="st">"~ continent"</span>, nrow <span class="op">=</span> <span class="dv">1</span>) <span class="op">+</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>     theme(figure_size <span class="op">=</span> (<span class="dv">12</span>, <span class="dv">2</span>))).</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>     show)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="06-visualizacao_python_files/figure-html/cell-41-output-2.png" class="img-fluid"></p>
+<p><img src="06-visualizacao_python_files/figure-html/cell-41-output-1.png" class="img-fluid"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="38">
 <pre><code>&lt;bound method ggplot.show of &lt;Figure Size: (1200 x 200)&gt;&gt;</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>((gapminder.groupby([<span class="st">"continent"</span>, <span class="st">"year"</span>], as_index <span class="op">=</span> <span class="va">False</span>)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>      .agg(median_lifeExp <span class="op">=</span> (<span class="st">"lifeExp"</span>, np.median))</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>      .pipe(<span class="kw">lambda</span> _: ggplot(_, aes(x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"median_lifeExp"</span>, color <span class="op">=</span> <span class="st">"continent"</span>)) <span class="op">+</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>                          geom_line(size <span class="op">=</span> <span class="fl">0.75</span>) <span class="op">+</span></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>                          geom_point(size <span class="op">=</span> <span class="fl">1.5</span>) <span class="op">+</span></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>                          labs(x <span class="op">=</span> <span class="st">"Year"</span>, y <span class="op">=</span> <span class="st">"Median Life Expectancy"</span>, color <span class="op">=</span> <span class="st">"Continent"</span>, title <span class="op">=</span> <span class="st">"Gapminder"</span>)))</span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>                          .show())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\m_tai\AppData\Local\Temp\ipykernel_9100\117403799.py:2: FutureWarning: The provided callable &lt;function median at 0x000002031909CEA0&gt; is currently using SeriesGroupBy.median. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "median" instead.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>((gapminder.groupby([<span class="st">"continent"</span>, <span class="st">"year"</span>], as_index <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>      .agg(median_lifeExp <span class="op">=</span> (<span class="st">"lifeExp"</span>, np.median))</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>      .pipe(<span class="kw">lambda</span> _: ggplot(_, aes(x <span class="op">=</span> <span class="st">"year"</span>, y <span class="op">=</span> <span class="st">"median_lifeExp"</span>, color <span class="op">=</span> <span class="st">"continent"</span>)) <span class="op">+</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>                          geom_line(size <span class="op">=</span> <span class="fl">0.75</span>) <span class="op">+</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>                          geom_point(size <span class="op">=</span> <span class="fl">1.5</span>) <span class="op">+</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>                          labs(x <span class="op">=</span> <span class="st">"Year"</span>, y <span class="op">=</span> <span class="st">"Median Life Expectancy"</span>, color <span class="op">=</span> <span class="st">"Continent"</span>, title <span class="op">=</span> <span class="st">"Gapminder"</span>)))</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>                          .show())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="06-visualizacao_python_files/figure-html/cell-42-output-2.png" class="img-fluid"></p>
+<p><img src="06-visualizacao_python_files/figure-html/cell-42-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-</section>
-</section>
-<section id="análise-de-dados-avançada" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="análise-de-dados-avançada"><span class="header-section-number">6.7</span> Análise de Dados Avançada</h2>
-<section id="caso-1-visualizando-dados-numpy-com-matplotlib" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="caso-1-visualizando-dados-numpy-com-matplotlib">Caso 1: Visualizando dados <code>NumPy</code> com <code>Matplotlib</code></h3>
-<p>O objetivo deste exemplo é demonstrar como usar NumPy e Matplotlib em conjunto para analisar dados econômicos simulados. Leia o código abaixo e tente entender o que está sendo feito.</p>
-<div class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerando dados aleatórios para simular valores de PIB</span></span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>pib <span class="op">=</span> np.random.normal(<span class="dv">500</span>, <span class="dv">100</span>, <span class="dv">100</span>)  <span class="co"># Simulando 100 valores de PIB</span></span>
-<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando média, mediana e desvio padrão do PIB</span></span>
-<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>media_pib <span class="op">=</span> np.mean(pib)</span>
-<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>mediana_pib <span class="op">=</span> np.median(pib)</span>
-<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>desvio_padrao_pib <span class="op">=</span> np.std(pib)</span>
-<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Média do PIB:"</span>, media_pib)</span>
-<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mediana do PIB:"</span>, mediana_pib)</span>
-<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Desvio padrão do PIB:"</span>, desvio_padrao_pib)</span>
-<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotando um histograma dos valores do PIB</span></span>
-<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>plt.hist(pib, bins<span class="op">=</span><span class="dv">10</span>, color<span class="op">=</span><span class="st">'skyblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb58-20"><a href="#cb58-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribuição do PIB'</span>)</span>
-<span id="cb58-21"><a href="#cb58-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'PIB'</span>)</span>
-<span id="cb58-22"><a href="#cb58-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Frequência'</span>)</span>
-<span id="cb58-23"><a href="#cb58-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Média do PIB: 489.61534826059057
-Mediana do PIB: 487.3043708220287
-Desvio padrão do PIB: 90.36161766446295</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="06-visualizacao_python_files/figure-html/cell-43-output-2.png" width="603" height="450"></p>
-</div>
-</div>
-<p>No exemplo acima, começamos gerando dados aleatórios para simular valores de PIB usando a distribuição normal com uma média de 500 e um desvio padrão de 100. Em seguida, calculamos a média, a mediana e o desvio padrão desses valores usando funções NumPy. Para facilitar a visualização e análise dos dados, plotamos um histograma usando Matplotlib. Este histograma nos permite visualizar a distribuição dos valores do PIB e identificar tendências ou padrões nos dados.</p>
-</section>
-<section id="caso-2-gapminder" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="caso-2-gapminder">Caso 2: Gapminder</h3>
-<p>O objetivo deste exemplo é demonstrar como usar Pandas, NumPy e Matplotlib em conjunto para realizar análises exploratórias de dados do Gapminder.</p>
-<div class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular a média da expectativa de vida usando NumPy</span></span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>mean_life_expectancy <span class="op">=</span> np.mean(gapminder[<span class="st">'lifeExp'</span>])</span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular a mediana do PIB per capita usando NumPy</span></span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>median_gdp_per_capita <span class="op">=</span> np.median(gapminder[<span class="st">'gdpPercap'</span>])</span>
-<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotar um histograma da expectativa de vida usando Matplotlib</span></span>
-<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>plt.hist(gapminder[<span class="st">'lifeExp'</span>], bins<span class="op">=</span><span class="dv">20</span>, color<span class="op">=</span><span class="st">'skyblue'</span>, edgecolor<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>plt.axvline(mean_life_expectancy, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>plt.text(mean_life_expectancy <span class="op">+</span> <span class="dv">1</span>, <span class="dv">50</span>, <span class="ss">f'Média: </span><span class="sc">{</span>mean_life_expectancy<span class="sc">:.2f}</span><span class="ss">'</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
-<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Expectativa de Vida'</span>)</span>
-<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Frequência'</span>)</span>
-<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Distribuição da Expectativa de Vida'</span>)</span>
-<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotar um gráfico de dispersão entre expectativa de vida e PIB per capita usando Matplotlib</span></span>
-<span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a>plt.scatter(gapminder[<span class="st">'gdpPercap'</span>], gapminder[<span class="st">'lifeExp'</span>], alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb60-22"><a href="#cb60-22" aria-hidden="true" tabindex="-1"></a>plt.axhline(mean_life_expectancy, color<span class="op">=</span><span class="st">'red'</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb60-23"><a href="#cb60-23" aria-hidden="true" tabindex="-1"></a>plt.axvline(median_gdp_per_capita, color<span class="op">=</span><span class="st">'green'</span>, linestyle<span class="op">=</span><span class="st">'dashed'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb60-24"><a href="#cb60-24" aria-hidden="true" tabindex="-1"></a>plt.text(median_gdp_per_capita <span class="op">+</span> <span class="dv">500</span>, mean_life_expectancy <span class="op">+</span> <span class="dv">1</span>, <span class="ss">f'Mediana: </span><span class="sc">{</span>median_gdp_per_capita<span class="sc">:.2f}</span><span class="ss">'</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
-<span id="cb60-25"><a href="#cb60-25" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'PIB per Capita'</span>)</span>
-<span id="cb60-26"><a href="#cb60-26" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Expectativa de Vida'</span>)</span>
-<span id="cb60-27"><a href="#cb60-27" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'PIB per Capita vs Expectativa de Vida'</span>)</span>
-<span id="cb60-28"><a href="#cb60-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>No código acima, começamos carregando os dados do Gapminder usando a função pd.read_csv() do Pandas. Em seguida, calculamos a média da expectativa de vida e a mediana do PIB per capita usando funções NumPy np.mean() e np.median(), respectivamente. Para visualizar a distribuição da expectativa de vida, plotamos um histograma usando a função plt.hist() do Matplotlib.</p>
+<!-- ## Análise de Dados Avançada -->
+<!-- ### Caso 1: Visualizando dados `NumPy` com `Matplotlib` {.unnumbered} -->
+<!-- O objetivo deste exemplo é demonstrar como usar NumPy e Matplotlib em conjunto para analisar dados econômicos simulados. Leia o código abaixo e tente entender o que está sendo feito. -->
+<!-- No exemplo acima, começamos gerando dados aleatórios para simular valores de PIB usando a distribuição normal com uma média de 500 e um desvio padrão de 100. Em seguida, calculamos a média, a mediana e o desvio padrão desses valores usando funções NumPy. Para facilitar a visualização e análise dos dados, plotamos um histograma usando Matplotlib. Este histograma nos permite visualizar a distribuição dos valores do PIB e identificar tendências ou padrões nos dados. -->
+<!-- ### Caso 2: Gapminder {.unnumbered} -->
+<!-- O objetivo deste exemplo é demonstrar como usar Pandas, NumPy e Matplotlib em conjunto para realizar análises exploratórias de dados do Gapminder. -->
+<!-- No código acima, começamos carregando os dados do Gapminder usando a função pd.read_csv() do Pandas. Em seguida, calculamos a média da expectativa de vida e a mediana do PIB per capita usando funções NumPy np.mean() e np.median(), respectivamente. Para visualizar a distribuição da expectativa de vida, plotamos um histograma usando a função plt.hist() do Matplotlib. -->
 <!-- ## Exercícios -->
 
 

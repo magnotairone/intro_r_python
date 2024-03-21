@@ -32,8 +32,8 @@ Siga os passos abaixo para realizar a instalação do Anaconda e do JupyterLab:
 
 Em Python, os tipos de dados fundamentais incluem `integer`, `float`, `string` e `boolean`:
 
--   Integers são números inteiros, como 1, 2, -3, etc. - Floats são números decimais, como 3.14, -0.5, etc. 
-- Strings são sequências de caracteres, como "hello", "world", "python", etc.
+-   Integers são números inteiros, como 1, 2, -3, etc. - Floats são números decimais, como 3.14, -0.5, etc.
+-   Strings são sequências de caracteres, como "hello", "world", "python", etc.
 -   Booleans são valores lógicos que representam verdadeiro (`True`) ou falso (`False`).
 
 Esses tipos de dados são os blocos básicos para representar diferentes tipos de informações em Python, e são amplamente utilizados em programação para realizar operações e manipulações de dados.
@@ -728,13 +728,13 @@ print("Valor presente na carteira:", valor_presente)
 
 ```
 
-  **a)** Implemente as classes Transacao e Carteira com os atributos e métodos descritos acima.
-  
-  **b)** Crie três instâncias da classe Transacao para representar diferentes transações de compra e venda de ações.
-  
-  **c)** Crie uma instância da classe Carteira e adicione as transações criadas à carteira.
-  
-  **d)** Teste os métodos da classe Carteira, utilizando os exemplos fornecidos no código de teste abaixo.
+**a)** Implemente as classes Transacao e Carteira com os atributos e métodos descritos acima.
+
+**b)** Crie três instâncias da classe Transacao para representar diferentes transações de compra e venda de ações.
+
+**c)** Crie uma instância da classe Carteira e adicione as transações criadas à carteira.
+
+**d)** Teste os métodos da classe Carteira, utilizando os exemplos fornecidos no código de teste abaixo.
 
 ```{python}
 #| eval: false

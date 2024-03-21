@@ -343,7 +343,7 @@ Atenção!!!
 <p>Um tipo de dados inteiro (<code>integer</code>) em Python representa números inteiros, ou seja, números sem casas decimais. Por exemplo, 5, -10 e 0 são todos exemplos de números inteiros. No Python, os inteiros são representados pela classe <code>int</code>. Nos exemplos abaixo realizamos operações básicas com números inteiros.</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="53">
 <pre><code>4</code></pre>
 </div>
 </div>
@@ -355,7 +355,7 @@ Atenção!!!
 <div class="cell-output cell-output-stdout">
 <pre><code>200</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="54">
 <pre><code>int</code></pre>
 </div>
 </div>
@@ -373,7 +373,7 @@ Atenção!!!
 <div class="cell-output cell-output-stdout">
 <pre><code>1.25</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="55">
 <pre><code>float</code></pre>
 </div>
 </div>
@@ -389,7 +389,7 @@ Atenção!!!
 <div class="cell-output cell-output-stdout">
 <pre><code>Brasil</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="56">
 <pre><code>str</code></pre>
 </div>
 </div>
@@ -400,13 +400,13 @@ Atenção!!!
 <p>O tipo de dados lógico, também conhecido como booleano (<code>bool</code>), é usado para representar valores de verdadeiro ou falso. No Python, os valores booleanos são <code>True</code> e <code>False</code>, que representam verdadeiro e falso, respectivamente.</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">==</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="57">
 <pre><code>False</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="58">
 <pre><code>False</code></pre>
 </div>
 </div>
@@ -417,7 +417,7 @@ Atenção!!!
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="59">
 <pre><code>bool</code></pre>
 </div>
 </div>
@@ -429,13 +429,13 @@ Atenção!!!
 <div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>str_num <span class="op">=</span> <span class="st">"1.41"</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(str_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="60">
 <pre><code>str</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">float</span>(str_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="61">
 <pre><code>1.41</code></pre>
 </div>
 </div>
@@ -614,19 +614,19 @@ Tip
 <p>Outros métodos úteis para trabalhar com dicionários são <code>keys()</code>, <code>values()</code> e <code>items()</code> que retornam listas com as chaves, valores e itens do dicionário, respectivamente.</p>
 <div class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>cotacoes_acoes_brasileiras.keys() <span class="co"># retorna uma lista contendo todas as chaves</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="78">
 <pre><code>dict_keys(['PETR4', 'VALE3', 'ITUB4', 'ABEV3'])</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>cotacoes_acoes_brasileiras.values() <span class="co"># retorna uma lista contendo todos os valores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="79">
 <pre><code>dict_values([36.75, 62.4, 34.15, 12.8])</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>cotacoes_acoes_brasileiras.items() <span class="co"># retorna uma lista de tuplas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="80">
 <pre><code>dict_items([('PETR4', 36.75), ('VALE3', 62.4), ('ITUB4', 34.15), ('ABEV3', 12.8)])</code></pre>
 </div>
 </div>
@@ -648,7 +648,7 @@ Tip
 <p>Para acessar os três primeiros países, podemos fazer:</p>
 <div class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>nomes_paises[:<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="82">
 <pre><code>['Indonésia', 'Índia', 'Brasil']</code></pre>
 </div>
 </div>
@@ -656,21 +656,21 @@ Tip
 <p>Se quisermos acessar os países do segundo ao terceiro:</p>
 <div class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>nomes_paises[<span class="dv">1</span>:<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="83">
 <pre><code>['Índia', 'Brasil', 'África do Sul']</code></pre>
 </div>
 </div>
 <p>Podemos até mesmo fazer fatias reversas, onde o índice inicial é maior que o índice final, indicando que queremos percorrer a lista de trás para frente. Por exemplo, para acessar os últimos três países:</p>
 <div class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>nomes_paises[<span class="op">-</span><span class="dv">3</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="84">
 <pre><code>['Brasil', 'África do Sul', 'Alemanha']</code></pre>
 </div>
 </div>
 <p>Suponha que queremos acessar todos os países, mas pulando de dois em dois:</p>
 <div class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>nomes_paises[::<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="85">
 <pre><code>['Indonésia', 'Brasil', 'Alemanha']</code></pre>
 </div>
 </div>
@@ -792,7 +792,7 @@ Após 10 anos, o investimento vale R$ 1628.89</code></pre>
 <div class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>quadrados <span class="op">=</span> [x <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)]</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>quadrados</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="40">
+<div class="cell-output cell-output-display" data-execution_count="92">
 <pre><code>[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]</code></pre>
 </div>
 </div>
