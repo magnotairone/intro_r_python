@@ -5,5 +5,3 @@ O objetivo deste capítulo é apresentar estudos de casos reais usando tanto `R`
 ::: callout-important
 Página ainda em construção!
 :::
-
-

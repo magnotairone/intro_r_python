@@ -18,6 +18,9 @@ book:
       chapters:
         - 05-fundamentos_python.qmd
         - 06-visualizacao_python.qmd
+    - part: Prova Final
+      chapters:
+        - 07-prova.qmd
     - part: Estudo de casos
       chapters:
         - 07-casos.qmd
