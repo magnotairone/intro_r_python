@@ -96,11 +96,11 @@ print("Médias móveis:", media_movel)
 ::: callout-tip
 A função `np.convolve` em `NumPy` é usada para realizar a convolução entre duas sequências, representadas por dois vetores unidimensionais. A convolução é uma operação matemática que combina duas funções para produzir uma terceira função que representa a quantidade de sobreposição entre elas conforme uma delas é deslocada ao longo do eixo.
 
-A sintaxe básica da função é `np.convolve(a, b, mode='full')`, onde `a` e `b` são os dois vetores unidimensionais a serem convolvidos e `mode` é um parâmetro opcional que define o modo de convolução. Os modos mais comuns são: 
+A sintaxe básica da função é `np.convolve(a, b, mode='full')`, onde `a` e `b` são os dois vetores unidimensionais a serem convolvidos e `mode` é um parâmetro opcional que define o modo de convolução. Os modos mais comuns são:
 
-- `'full'`: Retorna a saída completa da convolução. O comprimento do resultado será `len(a) + len(b) - 1`. 
-- `'valid'`: Retorna apenas pontos onde as sequências se sobrepõem completamente. O comprimento do resultado será `max(len(a), len(b)) - min(len(a), len(b)) + 1`. 
-- `'same'`: Retorna a saída do mesmo tamanho que o vetor de entrada mais longo. O comprimento do resultado será `max(len(a), len(b))`.
+-   `'full'`: Retorna a saída completa da convolução. O comprimento do resultado será `len(a) + len(b) - 1`.
+-   `'valid'`: Retorna apenas pontos onde as sequências se sobrepõem completamente. O comprimento do resultado será `max(len(a), len(b)) - min(len(a), len(b)) + 1`.
+-   `'same'`: Retorna a saída do mesmo tamanho que o vetor de entrada mais longo. O comprimento do resultado será `max(len(a), len(b))`.
 
 No exemplo anterior, a função `np.convolve` foi usada aqui para calcular a média móvel dos preços. Nesse caso, a primeira sequência é o vetor de preços e a segunda sequência é um vetor de 1s dividido pelo tamanho da janela de média móvel. Isso cria uma sequência que representa uma média ponderada dos valores.
 :::
@@ -140,11 +140,11 @@ O pandas é uma biblioteca de código aberto amplamente utilizada em Python para
 
 Pandas é uma biblioteca Python de código aberto que oferece estruturas de dados de alto desempenho e ferramentas de análise de dados. O pandas foi projetado para lidar com as complexidades do mundo real em análise de dados, oferecendo uma interface simples e intuitiva para trabalhar com dados tabulares.
 
-Pandas é amplamente utilizado em análise de dados devido à sua capacidade de: 
+Pandas é amplamente utilizado em análise de dados devido à sua capacidade de:
 
-- Importar e exportar dados de uma variedade de fontes, incluindo arquivos CSV, Excel, SQL, JSON, HDF5 e mais. 
-- Manipular dados de forma eficiente, incluindo indexação, filtragem, agregação e limpeza. 
-- Realizar operações estatísticas e matemáticas em dados, como média, soma, desvio padrão, correlação, etc.
+-   Importar e exportar dados de uma variedade de fontes, incluindo arquivos CSV, Excel, SQL, JSON, HDF5 e mais.
+-   Manipular dados de forma eficiente, incluindo indexação, filtragem, agregação e limpeza.
+-   Realizar operações estatísticas e matemáticas em dados, como média, soma, desvio padrão, correlação, etc.
 
 As duas principais estruturas de dados fornecidas pelo pandas são series e dataframes.
 
@@ -252,11 +252,11 @@ dados = {'Nome': ['João', 'Maria', 'Pedro', 'Ana', 'Mariana'],
 df_clientes = pd.DataFrame(dados)
 ```
 
-Neste exemplo, 
+Neste exemplo,
 
-- Os valores ausentes na coluna "Idade" foram preenchidos com a mediana das idades existentes no DataFrame.
-- Os valores ausentes na coluna "Limite de Crédito" foram preenchidos com a moda dos limites de crédito existentes no DataFrame. 
-- Os valores ausentes na coluna "Renda Mensal" foram preenchidos com a média das rendas mensais existentes no DataFrame.
+-   Os valores ausentes na coluna "Idade" foram preenchidos com a mediana das idades existentes no DataFrame.
+-   Os valores ausentes na coluna "Limite de Crédito" foram preenchidos com a moda dos limites de crédito existentes no DataFrame.
+-   Os valores ausentes na coluna "Renda Mensal" foram preenchidos com a média das rendas mensais existentes no DataFrame.
 
 ```{python}
 # Preenchendo valores ausentes na coluna 'Idade' com a mediana das idades
@@ -364,10 +364,10 @@ table2_tidy = (table2.pivot_table(index = ["country", "year"], columns = "type",
 table2_tidy.assign(rate = lambda _: 10000 * (_.cases / _.population))
 ```
 
-No exemplo acima, usamos o método `pivot_table` do pandas para reorganizar os dados do DataFrame `table2`. Ele reorganiza os dados de forma que os valores da coluna "count" sejam pivotados (transformados em colunas) com base nos valores únicos da combinação de "country" e "year". Os parâmetros index, columns e values especificam respectivamente as colunas que serão usadas como índice, as que serão transformadas em colunas e os valores a serem preenchidos na tabela pivô. Após a operação de pivotagem, são encadeados métodos adicionais para modificar a estrutura do DataFrame resultante: 
+No exemplo acima, usamos o método `pivot_table` do pandas para reorganizar os dados do DataFrame `table2`. Ele reorganiza os dados de forma que os valores da coluna "count" sejam pivotados (transformados em colunas) com base nos valores únicos da combinação de "country" e "year". Os parâmetros index, columns e values especificam respectivamente as colunas que serão usadas como índice, as que serão transformadas em colunas e os valores a serem preenchidos na tabela pivô. Após a operação de pivotagem, são encadeados métodos adicionais para modificar a estrutura do DataFrame resultante:
 
-- `reset_index()` redefine os índices do DataFrame para índices numéricos padrão, movendo os índices anteriores (no caso, "country" e "year") para colunas. 
-- `rename_axis(None, axis=1)` remove os nomes dos índices das colunas, substituindo-os por None. Isso é feito especificamente para limpar os nomes das colunas do DataFrame. 
+-   `reset_index()` redefine os índices do DataFrame para índices numéricos padrão, movendo os índices anteriores (no caso, "country" e "year") para colunas.
+-   `rename_axis(None, axis=1)` remove os nomes dos índices das colunas, substituindo-os por None. Isso é feito especificamente para limpar os nomes das colunas do DataFrame.
 
 Após a transformação dos dados, a função `assign` é usada para criar uma nova coluna chamada `rate` no DataFrame resultante `table2_tidy`.
 
@@ -382,11 +382,11 @@ table4_tidy = (table4a.melt(id_vars = "country", value_vars = ["1999", "2000"], 
 table4_tidy.assign(rate = lambda _: 10000 * (_.cases / _.population))
 ```
 
-Os DataFrames `table4a` e `table4b` são derretidos usando o método `melt`: 
+Os DataFrames `table4a` e `table4b` são derretidos usando o método `melt`:
 
-- Para `table4a`, as colunas que permanecerão fixas são especificadas através do argumento id_vars = "country", enquanto as colunas "1999" e "2000" são derretidas como variáveis usando value_vars = \["1999", "2000"\]. Os nomes das variáveis derretidas são renomeadas para "year" e "cases" usando var_name = "year" e value_name = "cases", respectivamente. 
+-   Para `table4a`, as colunas que permanecerão fixas são especificadas através do argumento id_vars = "country", enquanto as colunas "1999" e "2000" são derretidas como variáveis usando value_vars = \["1999", "2000"\]. Os nomes das variáveis derretidas são renomeadas para "year" e "cases" usando var_name = "year" e value_name = "cases", respectivamente.
 
-- Da mesma forma, para `table4b`, as colunas "country" e "1999", "2000" são derretidas, com os nomes das variáveis renomeadas para "year" e "population", respectivamente.
+-   Da mesma forma, para `table4b`, as colunas "country" e "1999", "2000" são derretidas, com os nomes das variáveis renomeadas para "year" e "population", respectivamente.
 
 Os DataFrames resultantes do derretimento de table4a e table4b são mesclados usando o método merge. A mesclagem é feita com base nas colunas "country" e "year", garantindo que os dados correspondentes de table4a e table4b sejam combinados corretamente.
 
@@ -494,6 +494,7 @@ Plotnine é uma biblioteca em Python que permite criar visualizações de dados 
 
 ```{python}
 #| warning: false
+#| eval: false
 from plotnine import *
 ```
 
@@ -501,6 +502,7 @@ Para exemplificar, vamos utilizar a base de dados `gapminder`.
 
 ```{python}
 #| warning: false
+#| eval: false
 ((ggplot(gapminder, aes(x = "continent", fill = "continent")) +
      geom_bar(aes(y = "stat(count) / 12"), alpha = 0.75) +
      labs(x = "", y = "Number of countries", title = "Continents") +
@@ -512,6 +514,7 @@ Para exemplificar, vamos utilizar a base de dados `gapminder`.
 
 ```{python}
 #| warning: false
+#| eval: false
 ((ggplot(gapminder, aes(x = "lifeExp", y = "stat(density)")) +
      geom_histogram(fill = "blue", color = "white", alpha = 0.5) +
      labs(x = "Life Expectancy", y = "", title = "Gapminder"))
@@ -520,6 +523,7 @@ Para exemplificar, vamos utilizar a base de dados `gapminder`.
 
 ```{python}
 #| warning: false
+#| eval: false
 ((ggplot(gapminder, aes(x = "lifeExp", y = "stat(density)")) +
      geom_histogram(fill = "blue", color = "white", alpha = 0.5) +
      labs(x = "Life Expectancy", y = "", title = "Gapminder") +
@@ -530,6 +534,7 @@ Para exemplificar, vamos utilizar a base de dados `gapminder`.
 
 ```{python}
 #| warning: false
+#| eval: false
 ((gapminder.groupby(["continent", "year"], as_index = False)
       .agg(median_lifeExp = ("lifeExp", np.median))
       .pipe(lambda _: ggplot(_, aes(x = "year", y = "median_lifeExp", color = "continent")) +

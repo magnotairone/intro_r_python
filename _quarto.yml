@@ -2,6 +2,9 @@ project:
   type: book
   output-dir: docs
 
+python:
+  version: C:/Users/m_tai/anaconda3/python.exe
+
 book:
   title: "Introdução à R e Python"
   author: "Magno Severino"
@@ -18,9 +21,9 @@ book:
       chapters:
         - 05-fundamentos_python.qmd
         - 06-visualizacao_python.qmd
-    - part: Prova Final
-      chapters:
-        - 07-prova.qmd
+    #- part: Prova Final
+    #  chapters:
+    #    - 07-prova.qmd
     - part: Estudo de casos
       chapters:
         - 07-casos.qmd
@@ -36,3 +39,4 @@ format:
 
 editor: visual
 
+lang: pt    

@@ -350,9 +350,23 @@ grafico <- ggplot(data = gapminder_anos,
        y = "Expectativa de vida", 
        color = "Continente", 
        title = "Relação entre PIB per capita e Expectativa de Vida")
+```
 
+::: {.content-visible when-format="html"}
+```{r}
+#| eval: false
+ggplotly(grafico) 
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{r}
+#| eval: false
 ggplotly(grafico)
 ```
+:::
+
+
 
 ## Dicas extras
 
@@ -427,7 +441,6 @@ ggplot2::ggplot(tidyr::tibble(t=5:30, mm=media_movel), ggplot2::aes(t, mm)) +
   ggplot2::ylim(10,15)+
   ggplot2::theme_bw()
 ```
-
 
 **3. (Desafio)** Reproduza o gráfico de dispersão abaixo que foi apresentado na @sec-fluxos-funcoes.
 
