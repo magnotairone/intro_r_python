@@ -4,6 +4,11 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r echo=FALSE}
+library(reticulate)
+use_python("C:/Users/m_tai/anaconda3/python.exe", required = TRUE)
+```
+
 # Processamento e visualização de dados
 
 ## Instalação de bibliotecas
@@ -254,9 +259,11 @@ df_clientes = pd.DataFrame(dados)
 
 Neste exemplo,
 
--   Os valores ausentes na coluna "Idade" foram preenchidos com a mediana das idades existentes no DataFrame.
--   Os valores ausentes na coluna "Limite de Crédito" foram preenchidos com a moda dos limites de crédito existentes no DataFrame.
--   Os valores ausentes na coluna "Renda Mensal" foram preenchidos com a média das rendas mensais existentes no DataFrame.
+-   Os valores ausentes na coluna "Idade" serão preenchidos com a mediana das idades existentes no DataFrame.
+-   Os valores ausentes na coluna "Limite de Crédito" serão preenchidos com a moda dos limites de crédito existentes no DataFrame.
+-   Os valores ausentes na coluna "Renda Mensal" serão preenchidos com a média das rendas mensais existentes no DataFrame.
+
+Veja abaixo.
 
 ```{python}
 # Preenchendo valores ausentes na coluna 'Idade' com a mediana das idades

@@ -6,6 +6,11 @@ editor_options:
 
 # Fundamentos de Python
 
+```{r echo=FALSE}
+library(reticulate)
+use_python("C:/Users/m_tai/anaconda3/python.exe", required = TRUE)
+```
+
 ::: {.callout-important title="Atenção!!!"}
 A partir de agora, todo o código apresentado neste livro está na linguagem Python.
 :::
@@ -146,7 +151,11 @@ No código acima, estamos convertendo um valor float em string.
 
 ## Objetos básicos
 
-Em Python, há três estruturas de dados básicas: listas, tuplas e dicionários: - As listas são coleções ordenadas e mutáveis de elementos, permitindo a inclusão de itens de diferentes tipos e a modificação dos valores contidos nelas. - As tuplas são semelhantes às listas, porém são imutáveis, ou seja, não podem ser alteradas após a sua criação. - Já os dicionários são coleções não ordenadas de pares chave-valor, onde cada valor é associado a uma chave única, proporcionando acesso eficiente aos dados por meio das chaves.
+Em Python, há três estruturas de dados básicas: listas, tuplas e dicionários: 
+
+- As listas são coleções ordenadas e mutáveis de elementos, permitindo a inclusão de itens de diferentes tipos e a modificação dos valores contidos nelas. 
+- As tuplas são semelhantes às listas, porém são imutáveis, ou seja, não podem ser alteradas após a sua criação. 
+- Já os dicionários são coleções não ordenadas de pares chave-valor, onde cada valor é associado a uma chave única, proporcionando acesso eficiente aos dados por meio das chaves.
 
 ### Listas
 
