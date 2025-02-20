@@ -292,5 +292,12 @@
     "title": "References",
     "section": "",
     "text": "McKinney, Wes. 2022. Python for Data Analysis. \" O’Reilly\nMedia, Inc.\".\n\n\nRosling, Hans. 2012. “Data - Gapminder.org.” http://www.gapminder.org/data/.\n\n\nWilkinson, Leland. 2012. The Grammar of Graphics. Springer."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introdução à R e Python",
+    "section": "",
+    "text": "Introdução\nEste livro consiste em notas de aula do minicurso de Introdução às Linguagens de Programação R e Python.\nSe você está interessado nos fundamentos da linguagem R, você pode encontrar esses tópicos na primeira parte do livro. Por outro lado, se deseja explorar os fundamentos de Python, a segunda parte é onde você encontrará essas informações.\nEste é um livro em constante evolução, projetado para crescer e se adaptar. Se você tiver alguma sugestão ou feedback sobre o conteúdo apresentado, sinta-se à vontade para enviar um e-mail para magnotairone[at]gmail.com.\nMeus sinceros agradecimentos a Luiza Tuler pela revisão do conteúdo deste livro."
   }
 ]
