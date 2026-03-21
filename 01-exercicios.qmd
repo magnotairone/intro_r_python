@@ -1,0 +1,109 @@
+---
+title: "Lista de Exercícios - Fundamentos de R"
+---
+
+# Lista de Exercícios Prática
+
+## Exercício 1: Análise de Retornos de Ações
+
+Você é um analista de investimentos. Crie um vetor com 10 retornos mensais de uma ação (valores entre -0.05 e 0.10). Utilize:
+
+- `length()` para verificar o tamanho
+- Indexação para acessar o 3º e 7º retornos
+- Indexação lógica para identificar meses com retorno positivo
+- `mean()` para calcular o retorno médio
+
+## Exercício 2: Classificação de Risco de Crédito
+
+Crie um fator com a classificação de risco ("Baixo", "Médio", "Alto") de 8 empresas: `c("Baixo", "Médio", "Alto", "Baixo", "Alto", "Médio", "Baixo", "Alto")`
+
+Utilize:
+
+- `class()` para verificar o tipo
+- `levels()` para visualizar as categorias
+- `as.numeric()` para converter o fator em números
+- Contar quantas empresas estão em cada nível de risco
+
+## Exercício 3: Matriz de Dados Econômicos
+
+Crie uma matriz 4×3 representando PIB trimestral (em bilhões) de 4 estados:
+
+```
+         Q1    Q2    Q3
+SP    1500  1550  1600
+MG     800   820   850
+RJ     700   720   740
+BA     500   510   520
+```
+
+Utilize:
+
+- `rownames()` e `colnames()` para nomear
+- `dim()`, `nrow()`, `ncol()` para verificar dimensões
+- Acessar o PIB de SP no Q2
+- Acessar toda a coluna de Q3
+- Calcular o PIB total por estado usando `rowSums()`
+
+## Exercício 4: Lista de Informações de Empresa
+
+Crie uma lista chamada `empresa_data` contendo:
+
+- `nome`: "Petrobras"
+- `setor`: "Energia"
+- `cotacoes`: um vetor com 5 cotações de ações (ex: 25.5, 26.3, 25.8, 27.1, 26.9)
+- `anos_operacao`: 60
+
+Utilize:
+
+- Operador `$` para acessar cada elemento
+- Colchetes duplos `[[]]` para acessar por índice
+- A segunda cotação usando `empresa_data[["cotacoes"][2]`
+
+## Exercício 5: DataFrame de Economia Regional
+
+Crie um dataframe com dados de 5 regiões brasileiras:
+
+| Região | PIB (bilhões) | Taxa Desemprego (%) | Inflação (%) |
+|--------|---------------|-------------------|------------|
+| Nordeste | 450 | 12.5 | 5.2 |
+| Norte | 280 | 11.8 | 5.1 |
+| Centro-Oeste | 380 | 10.2 | 4.9 |
+| Sudeste | 2100 | 8.5 | 4.8 |
+| Sul | 800 | 9.3 | 5.0 |
+
+Utilize:
+
+- Acessar a coluna "PIB (bilhões)" usando `$`
+- Filtrar regiões com desemprego > 10%
+- Calcular o PIB médio
+- Acessar a segunda linha completamente
+
+## Exercício 6: Tratamento de Dados Faltantes
+
+Crie um dataframe com cotações mensais de 3 ativos (com alguns NA):
+
+```r
+ativos <- data.frame(
+  mes = 1:6,
+  ativo_a = c(100, 102, NA, 105, 107, 108),
+  ativo_b = c(50, 51, 52, NA, 54, 55),
+  ativo_c = c(200, NA, 202, 203, 204, 205)
+)
+```
+
+Utilize:
+
+- `is.na()` para identificar dados faltantes
+- `na.omit()` para remover linhas com NA
+- Contar quantos NA existem em cada coluna
+
+## Exercício 7: Análise Integrada (Mini-Projeto)
+
+Com base em seus conhecimentos:
+
+1. Crie um vetor com 12 inflações mensais de um país (valores entre 0.3% e 0.8%)
+2. Crie um fator com as estações do ano (4 repetições)
+3. Combine em um dataframe com coluna "mês" (1:12)
+4. Calcule a inflação média
+5. Identifique em qual(is) mês(es) a inflação foi maior que a média
+6. (Desafio extra) Calcule a inflação média por estação
