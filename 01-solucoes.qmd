@@ -1,0 +1,22 @@
+# Propostas de Soluções para os 7 Exercícios
+
+## Exercício 1
+- Solução proposta para o primeiro exercício.
+
+## Exercício 2
+- Solução proposta para o segundo exercício.
+
+## Exercício 3
+- Solução proposta para o terceiro exercício.
+
+## Exercício 4
+- Solução proposta para o quarto exercício.
+
+## Exercício 5
+- Solução proposta para o quinto exercício.
+
+## Exercício 6
+- Solução proposta para o sexto exercício.
+
+## Exercício 7
+- Solução proposta para o sétimo exercício.
