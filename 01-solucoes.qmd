@@ -1,22 +1,223 @@
-# Propostas de Soluções para os 7 Exercícios
+---
+title: "Soluções - Fundamentos de R"
+---
 
-## Exercício 1
-- Solução proposta para o primeiro exercício.
+# Soluções dos Exercícios
 
-## Exercício 2
-- Solução proposta para o segundo exercício.
+## Exercício 1: Análise de Retornos de Ações
 
-## Exercício 3
-- Solução proposta para o terceiro exercício.
+```{r}
+# Criando um vetor com 10 retornos mensais
+set.seed(123)
+retornos <- c(-0.02, 0.05, 0.03, -0.01, 0.07, 0.02, 0.04, -0.03, 0.06, 0.01)
 
-## Exercício 4
-- Solução proposta para o quarto exercício.
+# Verificando o tamanho do vetor
+length(retornos)
 
-## Exercício 5
-- Solução proposta para o quinto exercício.
+# Acessando o 3º e 7º retornos
+retornos[3]
+retornos[7]
 
-## Exercício 6
-- Solução proposta para o sexto exercício.
+# Indexação lógica para identificar retornos positivos
+retornos_positivos <- retornos[retornos > 0]
+retornos_positivos
 
-## Exercício 7
-- Solução proposta para o sétimo exercício.
+# Quais meses tiveram retorno positivo
+which(retornos > 0)
+
+# Calculando o retorno médio
+mean(retornos)
+```
+
+**Explicação**: Usamos indexação numérica para acessar posições específicas, indexação lógica com `retornos > 0` para filtrar valores, e `mean()` para calcular a média.
+
+---
+
+## Exercício 2: Classificação de Risco de Crédito
+
+```{r}
+# Criando o fator com classificações de risco
+risco <- factor(c("Baixo", "Médio", "Alto", "Baixo", "Alto", "Médio", "Baixo", "Alto"))
+
+# Verificando a classe
+class(risco)
+
+# Visualizando os níveis (categorias)
+levels(risco)
+
+# Convertendo para números
+as.numeric(risco)
+
+# Contando quantas empresas estão em cada nível de risco
+table(risco)
+# ou
+summary(risco)
+```
+
+**Explicação**: A função `factor()` cria categorias. `levels()` mostra as categorias únicas. `table()` ou `summary()` contam as frequências de cada categoria.
+
+---
+
+## Exercício 3: Matriz de Dados Econômicos
+
+```{r}
+# Criando a matriz com os dados de PIB trimestral
+pib_matriz <- matrix(c(1500, 1550, 1600, 
+                       800, 820, 850, 
+                       700, 720, 740, 
+                       500, 510, 520), 
+                     nrow = 4, byrow = TRUE)
+
+# Adicionando nomes às linhas e colunas
+rownames(pib_matriz) <- c("SP", "MG", "RJ", "BA")
+colnames(pib_matriz) <- c("Q1", "Q2", "Q3")
+
+# Verificando as dimensões
+dim(pib_matriz)
+nrow(pib_matriz)
+ncol(pib_matriz)
+
+# Acessando o PIB de SP no Q2
+pib_matriz["SP", "Q2"]
+# ou
+pib_matriz[1, 2]
+
+# Acessando toda a coluna de Q3
+pib_matriz[, "Q3"]
+
+# Calculando o PIB total por estado
+rowSums(pib_matriz)
+```
+
+**Explicação**: Matrizes usam indexação bidimensional `[linha, coluna]`. Podemos usar nomes ou índices numéricos. `rowSums()` calcula a soma por linha.
+
+---
+
+## Exercício 4: Lista de Informações de Empresa
+
+```{r}
+# Criando a lista com informações da empresa
+empresa_data <- list(
+  nome = "Petrobras",
+  setor = "Energia",
+  cotacoes = c(25.5, 26.3, 25.8, 27.1, 26.9),
+  anos_operacao = 60
+)
+
+# Acessando elementos com o operador $
+empresa_data$nome
+empresa_data$setor
+empresa_data$cotacoes
+empresa_data$anos_operacao
+
+# Acessando com colchetes duplos [[]]
+empresa_data[[1]]
+empresa_data[[3]]
+
+# Acessando a segunda cotação
+enpresa_data[["cotacoes"]][2]
+
+# Ou de forma alternativa
+empresa_data$cotacoes[2]
+```
+
+**Explicação**: O operador `$` acessa elementos por nome. Colchetes duplos `[[]]` acessam por índice. Combinando `[[]]` com `[]` acessamos elementos dentro de vetores da lista.
+
+---
+
+## Exercício 5: DataFrame de Economia Regional
+
+```{r}
+# Criando o dataframe com dados econômicos regionais
+economia_regional <- data.frame(
+  Regiao = c("Nordeste", "Norte", "Centro-Oeste", "Sudeste", "Sul"),
+  PIB_bilhoes = c(450, 280, 380, 2100, 800),
+  Taxa_Desemprego = c(12.5, 11.8, 10.2, 8.5, 9.3),
+  Inflacao = c(5.2, 5.1, 4.9, 4.8, 5.0)
+)
+
+# Acessando a coluna PIB usando $
+economia_regional$PIB_bilhoes
+
+# Filtrando regiões com desemprego > 10%
+regioes_alto_desemprego <- economia_regional[economia_regional$Taxa_Desemprego > 10, ]
+regioes_alto_desemprego
+
+# Calculando o PIB médio
+mean(economia_regional$PIB_bilhoes)
+
+# Acessando a segunda linha completamente
+economia_regional[2, ]
+```
+
+**Explicação**: Dataframes usam `$` para acessar colunas. Indexação lógica com `[ condicao, ]` filtra linhas. Podemos combinar operações para análises mais complexas.
+
+---
+
+## Exercício 6: Tratamento de Dados Faltantes
+
+```{r}
+# Criando o dataframe com dados faltantes (NA)
+ativos <- data.frame(
+  mes = 1:6,
+  ativo_a = c(100, 102, NA, 105, 107, 108),
+  ativo_b = c(50, 51, 52, NA, 54, 55),
+  ativo_c = c(200, NA, 202, 203, 204, 205)
+)
+
+# Identificando dados faltantes
+is.na(ativos)
+
+# Contando NA por coluna
+colSums(is.na(ativos))
+
+# Removendo linhas com NA
+ativos_completos <- na.omit(ativos)
+ativos_completos
+
+# Verificando as dimensões antes e depois
+nrow(ativos)      # 6 linhas originais
+nrow(ativos_completos)  # 2 linhas após remover NA
+```
+
+**Explicação**: `is.na()` retorna TRUE onde h�� valores faltantes. `colSums(is.na())` conta NAs por coluna. `na.omit()` remove linhas com qualquer NA. Dados faltantes são comuns em análises reais.
+
+---
+
+## Exercício 7: Análise Integrada (Mini-Projeto)
+
+```{r}
+# 1. Criando um vetor com 12 inflações mensais
+set.seed(42)
+inflacao_mensal <- c(0.35, 0.42, 0.38, 0.45, 0.40, 0.38, 
+                     0.43, 0.39, 0.41, 0.37, 0.44, 0.36) / 100
+
+# 2. Criando um fator com as estações do ano (4 repetições)
+estacoes <- factor(rep(c("Verão", "Outono", "Inverno", "Primavera"), 3))
+
+# 3. Combinando em um dataframe
+analise_inflacao <- data.frame(
+  mes = 1:12,
+  estacao = estacoes,
+  inflacao = inflacao_mensal
+)
+
+# 4. Calculando a inflação média
+inflacao_media <- mean(analise_inflacao$inflacao)
+inflacao_media
+
+# 5. Identificando meses com inflação maior que a média
+meses_acima_media <- analise_inflacao[analise_inflacao$inflacao > inflacao_media, ]
+meses_acima_media
+
+# Ou apenas os números dos meses
+which(analise_inflacao$inflacao > inflacao_media)
+
+# 6. (Desafio extra) Calculando a inflação média por estação
+tapply(analise_inflacao$inflacao, analise_inflacao$estacao, mean)
+
+# Forma alternativa com aggregate
+aggregate(inflacao ~ estacao, data = analise_inflacao, FUN = mean)
+```
+
+**Explicação**: Este exercício integra todos os conceitos anteriores. `tapply()` aplica uma função a grupos. `aggregate()` é alternativa mais clara para operações por grupo. Este é um exemplo prático de análise de dados que mestrandos em economia encontrarão frequentemente.
