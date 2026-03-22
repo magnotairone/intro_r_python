@@ -8,7 +8,8 @@ python:
 book:
   title: "Introdução à R e Python"
   author: "Magno Severino"
-  date: "03/03/2024"
+  date: "03/22/2026" # "03/03/2024"
+  downloads: [pdf]
   chapters:
     - index.qmd
     - part: Aprendendo R
@@ -27,16 +28,37 @@ book:
     - part: Estudo de casos
       chapters:
         - 07-casos.qmd
+    - 10-solucoes_exercicios.qmd
     - references.qmd
+
+crossref:
+  custom:
+    - kind: float
+      key: exr
+      reference-prefix: "Exercício"
+      latex-env: example
 
 bibliography: references.bib
 
 format:
   html:
     theme: cosmo
+    css: style.css
   pdf:
     documentclass: scrreprt
+    include-in-header:
+      text: |
+        \usepackage{tcolorbox}
+        \tcbuselibrary{skins, breakable}
 
-editor: visual
+        \newtcolorbox{example}{
+          colback=blue!5,
+          colframe=blue!50,
+          boxrule=0.8pt,
+          arc=2pt,
+          breakable
+        }
+
+editor: source
 
 lang: pt    
