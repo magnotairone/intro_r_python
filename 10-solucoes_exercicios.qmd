@@ -10,7 +10,7 @@ editor_options:
 
 ## Soluções do Capítulo @sec-cap-fundamentos
 
-::: {.solution  title=""}
+::: {.solution title=""}
 **Solução do @exr-cap1-retornos**
 
 ```{r}
@@ -31,10 +31,9 @@ retornos[retornos > 0]
 # Calculando o retorno médio
 mean(retornos)
 ```
-
 :::
 
-::: {.solution  title=""}
+::: {.solution title=""}
 **Solução do @exr-cap1-risco-credito**
 
 ```{r}
@@ -56,11 +55,12 @@ table(risco)
 summary(risco)
 ```
 
-Observação: A função `factor()` cria categorias. `levels()` mostra as categorias únicas. `table()` ou `summary()` contam as frequências de cada categoria.
-
+Observação: A função `factor()` cria categorias.
+`levels()` mostra as categorias únicas.
+`table()` ou `summary()` contam as frequências de cada categoria.
 :::
 
-::: {.solution  title=""}
+::: {.solution title=""}
 **Solução do @exr-cap1-matriz**
 
 ```{r}
@@ -91,11 +91,9 @@ pib_matriz[, "Q3"]
 # Calculando o PIB total por estado
 rowSums(pib_matriz)
 ```
-
 :::
 
-
-::: {.solution  title=""}
+::: {.solution title=""}
 **Solução do @exr-cap1-lista**
 
 ```{r}
@@ -123,10 +121,9 @@ empresa_data[["cotacoes"]][2]
 # Ou de forma alternativa
 empresa_data$cotacoes[2]
 ```
-
 :::
 
-::: {.solution  title=""}
+::: {.solution title=""}
 **Solução do @exr-cap1-dataframe**
 
 ```{r}
@@ -151,10 +148,9 @@ mean(economia_regional$PIB_bilhoes)
 # Acessando a segunda linha completamente
 economia_regional[2, ]
 ```
-
 :::
 
-::: {.solution  title=""}
+::: {.solution title=""}
 **Solução do @exr-cap1-NA**
 
 ```{r}
@@ -180,10 +176,9 @@ ativos_completos
 nrow(ativos)      # 6 linhas originais
 nrow(ativos_completos)  # 2 linhas após remover NA
 ```
-
 :::
 
-::: {.solution  title=""}
+::: {.solution title=""}
 **Solução do @exr-cap1-desafio**
 
 ```{r}
@@ -220,6 +215,8 @@ tapply(analise_inflacao$inflacao, analise_inflacao$estacao, mean)
 aggregate(inflacao ~ estacao, data = analise_inflacao, FUN = mean)
 ```
 
-Este exercício integra todos os conceitos anteriores. `tapply()` aplica uma função a grupos. `aggregate()` é alternativa mais clara para operações por grupo. Este é um exemplo prático de análise de dados que mestrandos em economia encontrarão frequentemente.
-
+Este exercício integra todos os conceitos anteriores.
+`tapply()` aplica uma função a grupos.
+`aggregate()` é alternativa mais clara para operações por grupo.
+Este é um exemplo prático de análise de dados que mestrandos em economia encontrarão frequentemente.
 :::
