@@ -1,0 +1,52 @@
+/* força alinhamento à esquerda para exercícios */
+.quarto-float.quarto-float-exr {
+  text-align: left !important;
+}
+
+/* garante que tudo dentro também respeite */
+.quarto-float.quarto-float-exr * {
+  text-align: left !important;
+}
+
+.quarto-float-exr {
+  display: flex !important;
+  flex-direction: column !important;
+  border-left: 4px solid #2c3e50;
+  background: #f8f9fb;
+  padding: 1em 1.2em;
+  margin: 0.5em 0;
+  border-radius: 3px;
+  text-align: left !important;
+}
+
+/* 👇 move caption para cima */
+.quarto-float-exr .quarto-float-caption {
+  order: -1;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0em;
+  padding: 0em;
+  border-left: 0px solid #2c3e50;
+  text-align: left !important;
+  
+  margin-bottom: 0.6em;
+  line-height: 1.3;
+}
+
+.solution {
+  border-left: 4px solid #2e7d32;
+  background: #FAF9F6;
+  padding: 1em 1.2em;
+  margin: 1.5em 0;
+  border-radius: 6px;
+}
+
+/* título da solução */
+.solution strong {
+  display: block;
+  background: #FAF9F6;
+  margin-bottom: 0.5em;
+}
+.quarto-float-exr .quarto-float-body {
+  text-align: left !important;
+}

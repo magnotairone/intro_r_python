@@ -6,7 +6,8 @@ editor_options:
 
 ```{r echo=FALSE}
 library(reticulate)
-use_python("C:/Users/m_tai/anaconda3/python.exe", required = TRUE)
+use_python("C:/Users/m_tai/AppData/Local/Programs/Python/Python313/python.exe", required = TRUE)
+
 ```
 
 # Processamento e visualização de dados
