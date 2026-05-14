@@ -416,9 +416,9 @@ Podemos criar uma lista que armazena informações sobre um país, como seu nome
 # Criando uma lista com informações sobre um país
 pais_info <- list(
   nome = "Brasil",
-  pib = 1609,
+  pib = 2640,
   inflacao = 0.05,
-  cambio = c(4.86, 5.13, 5.20, 5.07, 4.97)
+  cambio = c(5.51, 5.25, 5.00, 4.96, 5.30)
 )
 
 ```

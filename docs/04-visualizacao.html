@@ -319,18 +319,18 @@ div.csl-indent {
 <p>A visualização de dados desempenha um papel fundamental na compreensão e comunicação de informações complexas. Ao transformar números e estatísticas em gráficos, tabelas e outras representações visuais, podemos identificar padrões, tendências e insights que podem não ser imediatamente aparentes em conjuntos de dados brutos. Além disso, a visualização de dados facilita a comunicação de resultados e descobertas para uma audiência mais ampla, tornando informações complexas mais acessíveis e compreensíveis.</p>
 <section id="gramática-dos-gráficos" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="gramática-dos-gráficos"><span class="header-section-number">4.1</span> Gramática dos Gráficos</h2>
-<p>Ele é baseado na gramática dos gráficos (<em>grammar of graphics</em> - GG), veja <span class="citation" data-cites="GG">Wilkinson (<a href="#ref-GG" role="doc-biblioref">2012</a>)</span>. A gramática dos gráficos é um conjunto de princípios e conceitos que descrevem a estrutura e as regras para criar gráficos de forma consistente e eficaz. A GG é um <em>framework</em> para visualização de dados que desmembra cada componente de um gráfico em elementos individuais, criando camadas distintas. Usando o sistema GG, podemos construir gráficos passo a passo para obter resultados flexíveis e personalizáveis. Cada aspecto do gráfico, como pontos, linhas, cores e escalas, é tratado como uma peça separada, permitindo um controle detalhado sobre a aparência e o conteúdo do gráfico final.</p>
+<p>Ele é baseado na gramática dos gráficos (<em>grammar of graphics</em> - GG), veja <span class="citation" data-cites="GG">Wilkinson (<a href="references.html#ref-GG" role="doc-biblioref">2012</a>)</span>. A gramática dos gráficos é um conjunto de princípios e conceitos que descrevem a estrutura e as regras para criar gráficos de forma consistente e eficaz. A GG é um <em>framework</em> para visualização de dados que desmembra cada componente de um gráfico em elementos individuais, criando camadas distintas. Usando o sistema GG, podemos construir gráficos passo a passo para obter resultados flexíveis e personalizáveis. Cada aspecto do gráfico, como pontos, linhas, cores e escalas, é tratado como uma peça separada, permitindo um controle detalhado sobre a aparência e o conteúdo do gráfico final.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/gglayers.png" class="img-fluid figure-img"></p>
-<figcaption>Figura de <span class="citation" data-cites="GG">Wilkinson (<a href="#ref-GG" role="doc-biblioref">2012</a>)</span>.</figcaption>
+<figcaption>Figura de <span class="citation" data-cites="GG">Wilkinson (<a href="references.html#ref-GG" role="doc-biblioref">2012</a>)</span>.</figcaption>
 </figure>
 </div>
 </section>
 <section id="o-pacote-ggplot" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="o-pacote-ggplot"><span class="header-section-number">4.2</span> O pacote <code>ggplot</code></h2>
 <p>O pacote mais conhecido de visualização de dados em R é o <code>ggplot2</code>, que é baseado na gramática dos gráficos. O <code>ggplot2</code> permite criar uma ampla variedade de gráficos, incluindo gráficos de dispersão, linhas, barras, histogramas, entre outros, de forma simples e flexível. Com o <code>ggplot2</code>, você pode personalizar praticamente todos os aspectos do gráfico, desde a forma e a cor dos pontos até a escala dos eixos e a aparência do plano de fundo.</p>
-<p>Para exemplificar o uso do ggplot, vamos considerar os dados <code>gapminder</code>, <span class="citation" data-cites="gapminder">Rosling (<a href="#ref-gapminder" role="doc-biblioref">2012</a>)</span>.</p>
+<p>Para exemplificar o uso do ggplot, vamos considerar os dados <code>gapminder</code>, <span class="citation" data-cites="gapminder">Rosling (<a href="references.html#ref-gapminder" role="doc-biblioref">2012</a>)</span>.</p>
 <section id="dados" class="level3" data-number="4.2.1">
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="dados"><span class="header-section-number">4.2.1</span> Dados</h3>
 <p>A função <code>ggplot()</code> inicializa um gráfico ggplot2 e define os dados que serão usados.</p>
@@ -812,7 +812,7 @@ div.csl-indent {
 </section>
 <section id="exercícios" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="exercícios"><span class="header-section-number">4.5</span> Exercícios</h2>
-<p><strong>1.</strong> Vamos utilizar os dados da Billboard que foram apresentados na <a href="#sec-ex-dados" class="quarto-xref"><span class="quarto-unresolved-ref">sec-ex-dados</span></a>. Sua tarefa é reproduzir os gráficos abaixo utilizando técnicas de processamento de dados com <code>dplyr</code> e visualização de dados com <code>ggplot</code>.</p>
+<p><strong>1.</strong> Vamos utilizar os dados da Billboard que foram apresentados na <a href="03-dados.html#sec-ex-dados" class="quarto-xref"><span>Seção 3.7</span></a>. Sua tarefa é reproduzir os gráficos abaixo utilizando técnicas de processamento de dados com <code>dplyr</code> e visualização de dados com <code>ggplot</code>.</p>
 <p><strong>a)</strong> O gráfico abaixo mostra o histórico de cada musica no ranking ao longo das semanas.</p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
@@ -851,7 +851,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p><strong>2.</strong> Utilize os dados gerados na <a href="#sec-fluxos-for" class="quarto-xref"><span class="quarto-unresolved-ref">sec-fluxos-for</span></a> que representam o preço de fechamento de uma ação e reproduza o gráfico abaixo, mostrando a evolução da média móvel ao longo do tempo.</p>
+<p><strong>2.</strong> Utilize os dados gerados na <a href="02-fluxos.html#sec-fluxos-for" class="quarto-xref"><span>Seção 2.2.1</span></a> que representam o preço de fechamento de uma ação e reproduza o gráfico abaixo, mostrando a evolução da média móvel ao longo do tempo.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -861,7 +861,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p><strong>3. (Desafio)</strong> Reproduza o gráfico de dispersão abaixo que foi apresentado na <a href="#sec-fluxos-funcoes" class="quarto-xref"><span class="quarto-unresolved-ref">sec-fluxos-funcoes</span></a>.</p>
+<p><strong>3. (Desafio)</strong> Reproduza o gráfico de dispersão abaixo que foi apresentado na <a href="02-fluxos.html#sec-fluxos-funcoes" class="quarto-xref"><span>Seção 2.3</span></a>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -871,10 +871,10 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p><strong>4.</strong> Reproduza a figura apresentada na <a href="#sec-dados-groupby" class="quarto-xref"><span class="quarto-unresolved-ref">sec-dados-groupby</span></a>.</p>
+<p><strong>4.</strong> Reproduza a figura apresentada na <a href="03-dados.html#sec-dados-groupby" class="quarto-xref"><span>Seção 3.5.6</span></a>.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-gapminder" class="csl-entry" role="listitem">
 Rosling, Hans. 2012. <span>«Data - Gapminder.org»</span>. <a href="http://www.gapminder.org/data/" class="uri">http://www.gapminder.org/data/</a>.
 </div>
