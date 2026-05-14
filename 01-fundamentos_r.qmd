@@ -471,7 +471,7 @@ Vamos usar a analogia dos trens e vagões com a lista `pais_info`, que contém i
 
 Para acessar informações específicas sobre o Brasil, como o nome do país ou o valor do PIB, podemos usar os colchetes simples `[ ]`.
 Por exemplo: - `pais_info["nome"]`: obtemos o vagão que contém o nome do país, e encontramos "Brasil".
-- `pais_info[2]` : obtemos o segundo vagão, neste caso é o que contem o PIB do país, e encontramos o valor 1609.
+- `pais_info[2]` : obtemos o segundo vagão, neste caso é o que contem o PIB do país, e encontramos o valor `r pais_info[2]`.
 
 **Acessando elementos dentro de um vagão**
 
@@ -492,7 +492,7 @@ class(pais_info[["nome"]])
 ```
 
 ::: {.callout-note title="Resumindo"}
-Em resumo, os colchetes simples são usados para acessar subconjuntos de elementos em uma lista, preservando sua estrutura, enquanto os colchetes duplos são usados para acessar valores individuais de uma lista, sem preservar a estrutura original.
+Os colchetes simples são usados para acessar subconjuntos de elementos em uma lista, preservando sua estrutura, enquanto os colchetes duplos são usados para acessar valores individuais de uma lista, sem preservar a estrutura original.
 :::
 
 ### DataFrames
