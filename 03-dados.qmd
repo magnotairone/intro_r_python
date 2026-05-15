@@ -46,7 +46,7 @@ Você pode definir o diretório usando a interface do RStudio. Basta selecionar 
 
 O pacote `tidyverse` é uma coleção de pacotes do R projetados para trabalhar de forma integrada e intuitiva na análise de dados. Ele inclui uma variedade de pacotes poderosos e populares, como `ggplot2`, `dplyr`, `tidyr`, `tibble`, `readr`, `purrr`, `forcats` e `stringr`. Cada pacote no tidyverse foi projetado para lidar com uma etapa específica do fluxo de trabalho de análise de dados, desde a importação e limpeza até a visualização e modelagem. Todos os pacotes no `tidyverse` compartilham uma filosofia de design subjacente, gramática e estruturas de dados, veja mais [na página do pacote](https://www.tidyverse.org/).
 
-## O operador pipe `%>%`
+## O operador pipe `|>`
 
 O operador `%\>%`, conhecido como pipe, é uma ferramenta poderosa em R que facilita a encadeamento de operações em sequência. Ele permite escrever código de forma mais clara e concisa, especialmente ao trabalhar com pacotes do tidyverse. O pipe recebe o resultado de uma expressão à esquerda e o passa como primeiro argumento para a próxima expressão à direita.
 
@@ -54,13 +54,13 @@ O operador `%\>%`, conhecido como pipe, é uma ferramenta poderosa em R que faci
 Você não precisa digitar `%\>%` toda vez que precisar. Utilize o atalho Ctrl+Shitf+M.
 :::
 
-Vamos supor que temos uma função `f`, uma função `g` e uma variável `x`. Queremos aplicar `g` a `x` e, em seguida, aplicar `f` ao resultado. Aqui está como poderíamos fazer isso de duas maneiras: usando a abordagem encadeada tradicional e usando o pipe `%>%`.
+Vamos supor que temos uma função `f`, uma função `g` e uma variável `x`. Queremos aplicar `g` a `x` e, em seguida, aplicar `f` ao resultado. Aqui está como poderíamos fazer isso de duas maneiras: usando a abordagem encadeada tradicional e usando o pipe `|>`.
 
 ```{r eval=FALSE}
 resultado <- f(g(x))
 
-x %>% 
-  g() %>%
+x |> 
+  g() |>
   f()
 ```
 
@@ -101,14 +101,14 @@ A pivotação de dados é o processo de reorganizar um conjunto de dados para to
 No exemplo abaixo, estamos transformando os dados de `table2` para um formato mais largo, onde cada valor único da variável `type` se torna uma nova coluna. Note que cada unidade de informação (país, ano, casos e contagem) está quebrado em duas linhas. Então essa operação deixa a tabela de dados mais larga, garantindo que cada unidade de dado esteja representada em uma única linha.
 
 ```{r}
-table2 %>% 
+table2 |> 
   pivot_wider(names_from="type", values_from="count")
 ```
 
 No exemplo abaixo, estamos transformando os dados de `table4a` em um formato mais longo, onde as colunas representando anos específicos (1999 e 2000) são reunidas em uma única coluna chamada `year`, e os valores correspondentes são colocados em uma nova coluna chamada `cases`. Neste caso, a informação sobre os anos estavam armazenadas como nome de colunas, mas, pelo princípio de dados *tidy*, deveriam estar em colunas. Por isso, utilizamos a função `pivot_longer`.
 
 ```{r}
-table4a %>% 
+table4a |> 
   pivot_longer(cols = c(`1999`, `2000`), names_to = "year", values_to = "cases")
 ```
 
@@ -141,22 +141,22 @@ Por exemplo, considerando a base de dados gapminder, suponha que desejamos selec
 
 ```{r eval=FALSE}
 # Selecionando as colunas pelo nome
-gapminder %>%
+gapminder |>
   select(year, country, lifeExp, gdpPercap)
 
 # Selecionando apenas as colunas numéricas
-gapminder %>% 
+gapminder |> 
   select(where(is.numeric))
 
 # Selecionando colunas que começam com "co"
-gapminder %>% 
+gapminder |> 
   select(starts_with("co"))
 ```
 
 Note que nos exemplos acima, nenhuma das seleções foi salva em variável. Para salvar as seleções em uma variável, você pode atribuir o resultado de cada operação `select()` a uma variável separada. Por exemplo:
 
 ```{r eval=FALSE}
-gapminder_character <- gapminder %>% 
+gapminder_character <- gapminder |> 
   select(where(is.character))
 ```
 
@@ -167,16 +167,16 @@ O verbo `arrange()` é usado para reorganizar as linhas de um conjunto de dados 
 No primeiro exemplo usando o verbo `select()`, podemos ordenar os dados por país em ordem alfabética, podemos fazer assim:
 
 ```{r}
-gapminder %>%
-  select(year, country, lifeExp, gdpPercap, pop) %>%
+gapminder |>
+  select(year, country, lifeExp, gdpPercap, pop) |>
   arrange(country)
 ```
 
 No exemplo abaixo, estamos organizando de acordo com o ano em ordem crescente e a expectativa de vida em ordem decrescente dentro de cada ano.
 
 ```{r}
-gapminder %>%
-  select(year, country, lifeExp, gdpPercap, pop) %>%
+gapminder |>
+  select(year, country, lifeExp, gdpPercap, pop) |>
   arrange(year, desc(lifeExp))
 ```
 
@@ -184,7 +184,7 @@ gapminder %>%
 Ao utilizar o verbo `select()` com o prefixo `-`, você pode especificar as colunas que deseja **excluir** do conjunto de dados. No exemplo abaixo, vamos excluir a coluna `continent` da seleção no conjunto de dados.
 
 ```{r}
-gapminder %>% 
+gapminder |> 
   select(-continent)
 ```
 :::
@@ -196,9 +196,9 @@ Para analisar dados específicos de interesse, muitas vezes é necessário filtr
 No exemplo abaixo, estamos filtrando os dados para incluir apenas as observações onde o país é "Brasil" ou "Argentina".
 
 ```{r}
-gapminder %>%
-  select(year, country, lifeExp, gdpPercap, pop) %>%
-  arrange(year, desc(lifeExp)) %>% 
+gapminder |>
+  select(year, country, lifeExp, gdpPercap, pop) |>
+  arrange(year, desc(lifeExp)) |> 
   filter(country == "Brazil" | country == "Argentina")
 ```
 
@@ -209,8 +209,8 @@ O verbo `mutate()` é usado para criar ou modificar colunas em um conjunto de da
 Por exemplo, podemos usar o mutate() para calcular uma nova variável que represente o PIB total de cada país multiplicando o PIB per capita pelo tamanho da população. Aqui está um exemplo de como fazer isso com o conjunto de dados gapminder:
 
 ```{r}
-gapminder_total_gdp <- gapminder %>%
-  select(country, year, lifeExp, gdpPercap, pop) %>%
+gapminder_total_gdp <- gapminder |>
+  select(country, year, lifeExp, gdpPercap, pop) |>
   mutate(total_gdp = gdpPercap * pop)
 ```
 
@@ -221,7 +221,7 @@ O verbo `summarise()` é usado para resumir os dados em uma única linha, geralm
 Aqui está um exemplo de como usar `summarise()` para calcular a média da expectativa de vida usando os dados do `gapminder`:
 
 ```{r}
-gapminder %>%
+gapminder |>
   summarise(mean_lifeExp = mean(lifeExp, na.rm = TRUE))
 ```
 
@@ -232,8 +232,8 @@ O verbo `group_by()` é usado para dividir os dados em grupos com base nos valor
 Aqui está um exemplo de como usar `group_by()` com os dados do gapminder para calcular a média da expectativa de vida por continente:
 
 ```{r}
-gapminder %>%
-  group_by(continent) %>%
+gapminder |>
+  group_by(continent) |>
   summarise(mean_lifeExp = mean(lifeExp, na.rm = TRUE))
 
 ```
@@ -241,13 +241,13 @@ gapminder %>%
 O exemplo abaixo utiliza todos os principais verbos do `dplyr` para calcular a expectativa de vida média e o PIB (em milhares) médio por continente no ano de 2007.
 
 ```{r}
-gapminder %>%
-  select(country, continent, year, lifeExp, gdpPercap) %>% 
-  filter(year == 2007) %>% # apenas os dados para o ano de 2007
-  mutate(gdp = gdpPercap / 1000) %>% # representa o PIB per capita em milhares
-  group_by(continent) %>% # agrupar os dados por continente
+gapminder |>
+  select(country, continent, year, lifeExp, gdpPercap) |> 
+  filter(year == 2007) |> # apenas os dados para o ano de 2007
+  mutate(gdp = gdpPercap / 1000) |> # representa o PIB per capita em milhares
+  group_by(continent) |> # agrupar os dados por continente
   summarise(mean_lifeExp = mean(lifeExp, na.rm = TRUE), # média da expectativa de vida
-            mean_gdp = mean(gdp, na.rm = TRUE)) %>% #média do PIB per capita em bilhões
+            mean_gdp = mean(gdp, na.rm = TRUE)) |> #média do PIB per capita em bilhões
   arrange(desc(mean_lifeExp))
 ```
 
@@ -256,14 +256,14 @@ O gráfico abaixo mostra a evolução da expectativa de vida média nos continen
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 library(ggplot2)
 
-gapminder %>%
-  select(country, continent, year, lifeExp, gdpPercap) %>% 
-  # filter(year == 2007) %>% # apenas os dados para o ano de 2007
-  mutate(gdp = gdpPercap / 1000) %>% # representa o PIB per capita em milhares
-  group_by(year,continent) %>% # agrupar os dados por continente
+gapminder |>
+  select(country, continent, year, lifeExp, gdpPercap) |> 
+  # filter(year == 2007) |> # apenas os dados para o ano de 2007
+  mutate(gdp = gdpPercap / 1000) |> # representa o PIB per capita em milhares
+  group_by(year,continent) |> # agrupar os dados por continente
   summarise(mean_lifeExp = mean(lifeExp, na.rm = TRUE), # média da expectativa de vida
-            mean_gdp = mean(gdp, na.rm = TRUE)) %>% #média do PIB per capita em bilhões
-  arrange(desc(mean_lifeExp)) %>% 
+            mean_gdp = mean(gdp, na.rm = TRUE)) |> #média do PIB per capita em bilhões
+  arrange(desc(mean_lifeExp)) |> 
   ggplot(aes(year, mean_lifeExp,color=continent))+
   geom_line()+
   geom_point()+
@@ -290,48 +290,48 @@ Apresentando funções auxiliares do pacote `dplyr` que podem ser muito úteis e
 
 ```{r}
 
-gapminder %>% 
-  filter(year == 1952) %>% 
+gapminder |> 
+  filter(year == 1952) |> 
   pull(continent)
 
-gapminder %>% 
+gapminder |> 
   distinct(continent)
 
-gapminder %>% 
+gapminder |> 
   slice(1:10)
 
-gapminder %>% 
+gapminder |> 
   slice_head(n = 5)
 
-gapminder %>% 
+gapminder |> 
   slice_tail(n = 5)
 
 set.seed(1)
-gapminder %>% 
+gapminder |> 
   slice_sample(n = 10)
 
-gapminder %>% 
-  filter(year == 2007) %>% 
+gapminder |> 
+  filter(year == 2007) |> 
   slice_max(lifeExp, n = 2)
 
-gapminder %>% 
-  filter(year == 2007) %>% 
+gapminder |> 
+  filter(year == 2007) |> 
   slice_min(lifeExp, n = 2)
 
 
-gapminder %>% 
-  filter(year == 2007 | year == 1952) %>% 
-  group_by(year) %>% 
+gapminder |> 
+  filter(year == 2007 | year == 1952) |> 
+  group_by(year) |> 
   slice_max(lifeExp, n = 2)
 
 
-gapminder_united <- gapminder %>% 
+gapminder_united <- gapminder |> 
   unite("country_continent", c(country, continent),
         sep = "_",
         remove = TRUE,
         na.rm = FALSE)
 
-gapminder_united %>%
+gapminder_united |>
   separate_wider_delim(country_continent,
                        delim = "_",
                        names = c("country", "continent"))
@@ -351,7 +351,7 @@ billboard
 **a)** Aplique uma tranformação na base de dados para deixá-la no formato abaixo.
 
 ```{r echo=FALSE}
-billboard %>% 
+billboard |> 
   pivot_longer(
     cols = starts_with("wk"), 
     names_to = "week", 
@@ -363,7 +363,7 @@ billboard %>%
 
 ```{r eval=FALSE, echo=FALSE}
 #resposta
-billboard %>% 
+billboard |> 
   pivot_longer(
     cols = starts_with("wk"), 
     names_to = "week", 
@@ -376,13 +376,13 @@ billboard %>%
 
 ```{r echo=FALSE, eval=FALSE}
 #resposta
-billboard_longer <- billboard %>% 
+billboard_longer <- billboard |> 
   pivot_longer(
     cols = starts_with("wk"), 
     names_to = "week", 
     values_to = "rank",
     values_drop_na = TRUE
-  ) %>% 
+  ) |> 
   mutate(
     week = parse_number(week)
   )
@@ -391,18 +391,18 @@ billboard_longer <- billboard %>%
 **d)** Qual música ficou por mais semanas no top 100 da Billboard em 2000? Por quantas semanas essa música apareceu no ranking? E qual música ficou por menos tempo no ranking.
 
 ```{r echo=FALSE, eval=FALSE}
-billboard_longer %>% 
-  group_by(track) %>% 
-  summarise(n=n()) %>% 
+billboard_longer |> 
+  group_by(track) |> 
+  summarise(n=n()) |> 
   arrange(desc(n)) 
 ```
 
 **e)** Qual música ficou exatamente 10 semanas no top 100 da Billboard em 2000? Caso exista mais de uma música nessa condição, considere a que primeiro entrou no ranking.
 
 ```{r echo=FALSE, eval=FALSE}
-billboard_longer %>% 
-  group_by(track, date.entered) %>% 
-  summarise(n=n()) %>% 
-  filter(n==10) %>% 
+billboard_longer |> 
+  group_by(track, date.entered) |> 
+  summarise(n=n()) |> 
+  filter(n==10) |> 
   arrange(date.entered)
 ```
