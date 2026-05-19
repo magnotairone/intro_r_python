@@ -290,6 +290,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#sec-fluxos-for" id="toc-sec-fluxos-for" class="nav-link" data-scroll-target="#sec-fluxos-for"><span class="header-section-number">2.2.1</span> <code>for</code></a></li>
   <li><a href="#while" id="toc-while" class="nav-link" data-scroll-target="#while"><span class="header-section-number">2.2.2</span> <code>while</code></a></li>
+  <li><a href="#exemplos-com-simulação-de-monte-carlo" id="toc-exemplos-com-simulação-de-monte-carlo" class="nav-link" data-scroll-target="#exemplos-com-simulação-de-monte-carlo"><span class="header-section-number">2.2.3</span> Exemplos com Simulação de Monte Carlo</a></li>
   </ul></li>
   <li><a href="#sec-fluxos-funcoes" id="toc-sec-fluxos-funcoes" class="nav-link" data-scroll-target="#sec-fluxos-funcoes"><span class="header-section-number">2.3</span> Funções</a></li>
   <li><a href="#sec-pacotes" id="toc-sec-pacotes" class="nav-link" data-scroll-target="#sec-pacotes"><span class="header-section-number">2.4</span> Pacotes</a></li>
@@ -611,38 +612,208 @@ Nota
 </div>
 </div>
 </section>
+<section id="exemplos-com-simulação-de-monte-carlo" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="exemplos-com-simulação-de-monte-carlo"><span class="header-section-number">2.2.3</span> Exemplos com Simulação de Monte Carlo</h3>
+<p>A Simulação de Monte Carlo é um método computacional que utiliza a amostragem aleatória repetida para obter resultados numéricos aproximados para problemas que podem ser determinísticos ou estocásticos. Em economia e finanças, essa técnica é amplamente utilizada quando uma solução analítica exata é difícil ou impossível de ser calculada, permitindo simular milhares de cenários possíveis para avaliar riscos, prever comportamentos de mercado ou aproximar integrais complexas.</p>
+<p>A estrutura básica de uma simulação de Monte Carlo envolve: 1. Definir o modelo matemático ou processo estocástico do sistema. 2. Gerar uma grande quantidade de insumos aleatórios a partir de distribuições de probabilidade conhecidas. 3. Computar o resultado de interesse para cada cenário. 4. Agregar os resultados individuais (geralmente por meio da média) para obter a estimativa final.</p>
+<!-- **Exemplo 1: Estimando o valor de $\pi$ (Abordagem Geométrica)** -->
+<!-- O exemplo clássico de Monte Carlo consiste em aproximar o valor de $\pi$ utilizando geometria e probabilidade. Imagine um quadrado de lado $2$ centrado na origem, cuja área é $2 \times 2 = 4$. Dentro dele, inscrevemos um círculo de raio $r = 1$, cuja área é $\pi r^2 = \pi$. -->
+<!-- Se sortearmos pontos aleatórios uniformemente dentro desse quadrado, a probabilidade $p$ de um ponto cair dentro do círculo é a razão entre as áreas: -->
+<!-- $$p = \frac{\text{Área do Círculo}}{\text{Área do Quadrado}} = \frac{\pi}{4}$$ -->
+<!-- Portanto, podemos aproximar $\pi$ simulando $N$ pontos $(x, y)$, onde $x, y \in [-1, 1]$, contando quantos pontos satisfazem a condição do círculo ($x^2 + y^2 \leq 1$) e isolando o $\pi$: -->
+<!-- $$\pi \approx 4 \times \frac{\text{Pontos dentro do círculo}}{\text{Total de pontos } (N)}$$ -->
+<!-- Veja como implementar essa simulação em R utilizando um loop `for` e uma estrutura condicional `if`: -->
+<!-- ```{r} -->
+<!-- # Definindo a semente para reprodutibilidade -->
+<!-- set.seed(42) -->
+<!-- # Número de replicações (iterações) -->
+<!-- n_simulacoes <- 100000 -->
+<!-- # Contador para os pontos que caem dentro do círculo -->
+<!-- pontos_dentro <- 0 -->
+<!-- for (i in 1:n_simulacoes) { -->
+<!--   # Sorteando coordenadas x e y entre -1 e 1 -->
+<!--   x <- runif(1, min = -1, max = 1) -->
+<!--   y <- runif(1, min = -1, max = 1) -->
+<!--   # Verificando se o ponto está dentro do círculo de raio 1 -->
+<!--   if ((x^2 + y^2) <= 1) { -->
+<!--     pontos_dentro <- pontos_dentro + 1 -->
+<!--   } -->
+<!-- } -->
+<!-- # Estimando o valor de Pi -->
+<!-- pi_estimado <- 4 * (pontos_dentro / n_simulacoes) -->
+<!-- print(paste("Valor estimado de Pi:", pi_estimado)) -->
+<!-- print(paste("Erro absoluto:", abs(pi - pi_estimado))) -->
+<!-- ``` -->
+<p><strong>Exemplo Prático: Estimando o valor de <span class="math inline">\(\pi\)</span> (Abordagem Geométrica e Convergência)</strong></p>
+<p>O exemplo clássico de Monte Carlo consiste em aproximar o valor de <span class="math inline">\(\pi\)</span> utilizando geometria e probabilidade. Imagine um quadrado de lado <span class="math inline">\(2\)</span> centrado na origem, cuja área é <span class="math inline">\(2 \times 2 = 4\)</span>. Dentro dele, inscrevemos um círculo de raio <span class="math inline">\(r = 1\)</span>, cuja área é <span class="math inline">\(\pi r^2 = \pi\)</span>.</p>
+<p>Se sortearmos pontos aleatórios uniformemente dentro desse quadrado, a probabilidade <span class="math inline">\(p\)</span> de um ponto cair dentro do círculo é a razão entre as áreas:</p>
+<p><span class="math display">\[p = \frac{\text{Área do Círculo}}{\text{Área do Quadrado}} = \frac{\pi}{4}\]</span></p>
+<p>Portanto, podemos aproximar <span class="math inline">\(\pi\)</span> simulando <span class="math inline">\(N\)</span> pontos <span class="math inline">\((x, y)\)</span>, onde <span class="math inline">\(x, y \in [-1, 1]\)</span>, contando quantos pontos satisfazem a condição do círculo (<span class="math inline">\(x^2 + y^2 \leq 1\)</span>) e isolando o <span class="math inline">\(\pi\)</span>:</p>
+<p><span class="math display">\[\pi \approx 4 \times \frac{\text{Pontos dentro do círculo}}{\text{Total de pontos } (N)}\]</span></p>
+<p>Para visualizar a Lei dos Grandes Números em ação, vamos salvar o histórico das estimativas ao longo das iterações para observar a convergência do valor estimado em direção ao valor real de <span class="math inline">\(\pi\)</span> à medida que <span class="math inline">\(N\)</span> cresce até <span class="math inline">\(10.000\)</span>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo a semente para reprodutibilidade</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de replicações (iterações)</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>n_simulacoes <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Vetores para armazenar o histórico da simulação</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>historico_x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length =</span> n_simulacoes)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>historico_y <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length =</span> n_simulacoes)</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>dentro_circulo <span class="ot">&lt;-</span> <span class="fu">logical</span>(<span class="at">length =</span> n_simulacoes)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>historico_pi <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="at">length =</span> n_simulacoes)</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>pontos_dentro <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_simulacoes) {</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sorteando coordenadas x e y entre -1 e 1</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  historico_x[i] <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  historico_y[i] <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="at">min =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">max =</span> <span class="dv">1</span>)</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Verificando se o ponto está dentro do círculo de raio 1</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> ((historico_x[i]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> historico_y[i]<span class="sc">^</span><span class="dv">2</span>) <span class="sc">&lt;=</span> <span class="dv">1</span>) {</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    pontos_dentro <span class="ot">&lt;-</span> pontos_dentro <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    dentro_circulo[i] <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    dentro_circulo[i] <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Salvando a estimativa parcial de Pi até a iteração atual</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>  historico_pi[i] <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="sc">*</span> (pontos_dentro <span class="sc">/</span> i)</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo o resultado final da última iteração</span></span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Valor final estimado de Pi para N = 10000:"</span>, historico_pi[n_simulacoes]))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Valor final estimado de Pi para N = 10000: 3.1208"</code></pre>
+</div>
+</div>
+<p>Abaixo, podemos visualizar graficamente o comportamento dos pontos sorteados no plano cartesiano e, em seguida, o processo de convergência da estimativa ao longo das <span class="math inline">\(10.000\)</span> repetições.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-fluxos_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-fluxos_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note como, no início da simulação (valores baixos de <span class="math inline">\(N\)</span>), a estimativa oscila de forma agressiva. À medida que o número de pontos simulados se aproxima de <span class="math inline">\(10.000\)</span>, a linha verde estabiliza e converge em torno da linha tracejada, que representa o valor real de <span class="math inline">\(\pi\)</span>. Você vai aprender a construir e personalizar gráficos usando o pacote <code>ggplot2</code> no <a href="./04-visualizacao.html">Capítulo 4</a>.</p>
+</div>
+</div>
+<p><strong>Exemplo Prático: Precificação de Opções Financeiras (Call Européia)</strong></p>
+<p>No contexto financeiro, os métodos de Monte Carlo são fundamentais para precificar derivativos complexos. Vamos considerar o caso de uma <strong>Opção de Compra Europeia (European Call Option)</strong>.</p>
+<p>Uma opção de compra dá ao investidor o direito (mas não a obrigação) de comprar uma ação em uma data futura específica (Data de Vencimento <span class="math inline">\(T\)</span>) por um preço previamente combinado (Preço de Exercício ou <em>Strike Price</em> <span class="math inline">\(K\)</span>).</p>
+<ul>
+<li>Se na data <span class="math inline">\(T\)</span> o preço da ação (<span class="math inline">\(S_T\)</span>) for maior que <span class="math inline">\(K\)</span>, o investidor exerce a opção, compra por <span class="math inline">\(K\)</span>, vende a mercado por <span class="math inline">\(S_T\)</span> e obtém um ganho (<em>payoff</em>) de <span class="math inline">\(S_T - K\)</span>.</li>
+<li>Se <span class="math inline">\(S_T\)</span> for menor ou igual a <span class="math inline">\(K\)</span>, a opção perde a validade e o ganho é zero.</li>
+<li>Logo, o ganho da opção no vencimento é dado por: <span class="math inline">\(\max(S_T - K, 0)\)</span>.</li>
+</ul>
+<p>Para encontrar o preço justo da opção hoje (<span class="math inline">\(t=0\)</span>), precisamos projetar o preço futuro da ação sob o cenário neutro ao risco, calcular a média dos <em>payoffs</em> simulados e trazê-la a valor presente descontando pela taxa de juros livre de risco (<span class="math inline">\(r\)</span>).</p>
+<p>O modelo padrão de Black-Scholes assume que o preço da ação segue um <strong>Movimento Browniano Geométrico</strong>. A equação que dita o preço do ativo no vencimento <span class="math inline">\(T\)</span> a partir do preço inicial <span class="math inline">\(S_0\)</span> é:</p>
+<p><span class="math display">\[S_T = S_0 \exp\left( \left(r - \frac{\sigma^2}{2}\right)T + \sigma \sqrt{T} Z \right)\]</span></p>
+<p>Onde:</p>
+<ul>
+<li><span class="math inline">\(S_0\)</span>: Preço atual da ação.</li>
+<li><span class="math inline">\(r\)</span>: Taxa de juros livre de risco anualizada.</li>
+<li><span class="math inline">\(\sigma\)</span>: Volatilidade anualizada do preço da ação (grau de incerteza).</li>
+<li><span class="math inline">\(T\)</span>: Tempo até o vencimento em anos.</li>
+<li><span class="math inline">\(Z\)</span>: Uma variável aleatória Normal Padrão, ou seja, <span class="math inline">\(Z \sim N(0, 1)\)</span>.</li>
+</ul>
+<p>Abaixo, simulamos 50.000 caminhos possíveis para o preço final da ação para precificar uma opção:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Parâmetros da Opção e do Ativo</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>S0 <span class="ot">&lt;-</span> <span class="dv">100</span>        <span class="co"># Preço inicial da ação</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>K  <span class="ot">&lt;-</span> <span class="dv">105</span>        <span class="co"># Preço de exercício (Strike)</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>r  <span class="ot">&lt;-</span> <span class="fl">0.05</span>       <span class="co"># Taxa de juros livre de risco (5% ao ano)</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fl">0.20</span>    <span class="co"># Volatilidade do ativo (20% ao ano)</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>T_anos <span class="ot">&lt;-</span> <span class="dv">1</span>      <span class="co"># Tempo até o vencimento (1 ano)</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Parâmetros da Simulação</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>n_trajetorias <span class="ot">&lt;-</span> <span class="dv">50000</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>soma_payoffs <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_trajetorias) {</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Geração do choque aleatório Z ~ N(0,1)</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  Z <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Projeção do preço da ação no vencimento T usando a equação do modelo</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>  ST <span class="ot">&lt;-</span> S0 <span class="sc">*</span> <span class="fu">exp</span>((r <span class="sc">-</span> (sigma<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">*</span> T_anos <span class="sc">+</span> sigma <span class="sc">*</span> <span class="fu">sqrt</span>(T_anos) <span class="sc">*</span> Z)</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cálculo do payoff da opção de compra (Call)</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>  payoff <span class="ot">&lt;-</span> <span class="fu">max</span>(ST <span class="sc">-</span> K, <span class="dv">0</span>)</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Acumulando os payoffs</span></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>  soma_payoffs <span class="ot">&lt;-</span> soma_payoffs <span class="sc">+</span> payoff</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Média dos payoffs simulados</span></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>media_payoff <span class="ot">&lt;-</span> soma_payoffs <span class="sc">/</span> n_trajetorias</span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Trazendo o valor médio esperado para o valor presente (desconto estocástico)</span></span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>preco_opcao_mc <span class="ot">&lt;-</span> <span class="fu">exp</span>(<span class="sc">-</span>r <span class="sc">*</span> T_anos) <span class="sc">*</span> media_payoff</span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Preço estimado da Opção via Monte Carlo: R$"</span>, <span class="fu">round</span>(preco_opcao_mc, <span class="dv">2</span>)))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Preço estimado da Opção via Monte Carlo: R$ 8.04"</code></pre>
+</div>
+</div>
+<p>Neste exemplo, cada iteração do loop gera uma trajetória independente para o preço final da ação no vencimento. Ao final, a média de todos os cenários possíveis fornece uma aproximação robusta do preço justo do derivativo sob as premissas adotadas.</p>
+</section>
 </section>
 <section id="sec-fluxos-funcoes" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="sec-fluxos-funcoes"><span class="header-section-number">2.3</span> Funções</h2>
 <p>Uma função em R é um bloco de código que realiza uma tarefa específica e pode ser reutilizado várias vezes. A sintaxe para definir uma função em R segue o padrão:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>nome_da_funcao <span class="ot">&lt;-</span> <span class="cf">function</span>(parametros) {</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Corpo da função</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Código que realiza a tarefa desejada</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Pode incluir operações matemáticas, manipulação de dados, etc.</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(resultado)  <span class="co"># Retorna o resultado desejado</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>nome_da_funcao <span class="ot">&lt;-</span> <span class="cf">function</span>(parametros) {</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Corpo da função</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Código que realiza a tarefa desejada</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Pode incluir operações matemáticas, manipulação de dados, etc.</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(resultado)  <span class="co"># Retorna o resultado desejado</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Os parâmetros são variáveis que uma função recebe como entrada para executar suas operações. Eles são especificados entre parênteses na definição da função. Dentro do corpo da função, os parâmetros podem ser utilizados para realizar cálculos ou operações.</p>
 <p>O exemplo abaixo define uma função para realizar uma regressão linear simples. A função <code>regressao_linear</code> recebe dois parâmetros: <code>x</code> e <code>y</code>, que representam os dados de entrada para a regressão linear. Dentro da função, um modelo de regressão linear é criado usando a função <code>lm()</code> do R com os dados <code>y</code> em função de <code>x</code>. A documentação da função <code>lm()</code> pode ser acessada ao executar o comando <code>?lm</code>. O modelo resultante é retornado como resultado da função.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função para realizar regressão linear simples</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>regressao_linear <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)  <span class="co"># Criando o modelo de regressão linear</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(modelo)  <span class="co"># Retornando o modelo</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados de exemplo: salário (y) em função dos anos de educação (x)</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>anos_educacao <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">18</span>)</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>salario <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">3300</span>, <span class="dv">3550</span>, <span class="dv">3700</span>, <span class="dv">4500</span>)</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Chamando a função de regressão linear</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>modelo_regressao <span class="ot">&lt;-</span> <span class="fu">regressao_linear</span>(anos_educacao, salario)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função para realizar regressão linear simples</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>regressao_linear <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x)  <span class="co"># Criando o modelo de regressão linear</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(modelo)  <span class="co"># Retornando o modelo</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados de exemplo: salário (y) em função dos anos de educação (x)</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>anos_educacao <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">18</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>salario <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">3300</span>, <span class="dv">3550</span>, <span class="dv">3700</span>, <span class="dv">4500</span>)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Chamando a função de regressão linear</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>modelo_regressao <span class="ot">&lt;-</span> <span class="fu">regressao_linear</span>(anos_educacao, salario)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Veja o sumário com o resultado do modelo treinado.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo os resultados da regressão</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo_regressao)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibindo os resultados da regressão</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo_regressao)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -669,7 +840,7 @@ F-statistic: 39.78 on 1 and 3 DF,  p-value: 0.008054</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02-fluxos_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02-fluxos_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -693,11 +864,11 @@ Nota
 <p>Os pacotes no R são conjuntos de funções, conjuntos de dados e documentação que ampliam as capacidades básicas da linguagem R. Eles são essenciais para expandir a funcionalidade do R, permitindo que os usuários realizem uma ampla variedade de tarefas.</p>
 <p>Os pacotes do R estão disponíveis no CRAN (Comprehensive R Archive Network), um repositório centralizado que abriga uma vasta coleção de pacotes, manuais, documentações e outros recursos relacionados ao R. O CRAN é essencialmente o principal hub para distribuição de pacotes R e serve como uma fonte confiável e abrangente de ferramentas para análise de dados, estatísticas e muito mais. Para acessar os pacotes do CRAN, você pode usar a função <code>install.packages()</code>. Por exemplo:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"nome_do_pacote"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"nome_do_pacote"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Depois de instalar um pacote, você precisa carregá-lo em sua sessão R usando a função <code>library()</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nome_do_pacote)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nome_do_pacote)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Isso tornará as funções e conjuntos de dados do pacote disponíveis para uso em sua sessão atual.</p>
 </section>
@@ -706,8 +877,8 @@ Nota
 <p><strong>1.</strong> Neste exercício, vamos simular o lançamento de uma moeda e armazenar os resultados como um fator contendo os níveis “cara” e “coroa”. Para isso, siga os passos abaixo:</p>
 <p><strong>a)</strong> Utilize o comando abaixo para gerar amostras aleatórias seguindo a distribuição binomial para simular o lançamento de 100 moedas:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>lancamentos <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">100</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>lancamentos <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">100</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>b)</strong> Considere que 0 represente “cara” e 1 represente “coroa”. Crie uma variável para armazenar os lançamentos como um fator contendo os níveis “cara” e “coroa”.</p>
 <p><strong>c)</strong> Conte quantas vezes cada um dos resultados ocorreu neste experimento.</p>
@@ -715,16 +886,16 @@ Nota
 <p><strong>2.</strong> Trabalhando com dados de pacotes.</p>
 <p><strong>a)</strong> Instale o pacote <code>nycflights13</code> utilizando o comando abaixo:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"nycflights13"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"nycflights13"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>b)</strong> Carregue no seu ambiente o pacote instalado:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>c)</strong> Utilizando os comandos abaixo, verifique o conteúdo dos dataframes <code>flights</code> e <code>airports</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>?flights</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>?airports</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>?flights</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>?airports</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>d)</strong> Filtre os voos que aconteceram em 25/01/2013 e armazene-os na variável natal;</p>
 <p><strong>e)</strong> Quantos voos partiram de Nova Iorque em 25/12/2013?</p>

@@ -48,10 +48,10 @@ O pacote `tidyverse` é uma coleção de pacotes do R projetados para trabalhar 
 
 ## O operador pipe `|>`
 
-O operador `%\>%`, conhecido como pipe, é uma ferramenta poderosa em R que facilita a encadeamento de operações em sequência. Ele permite escrever código de forma mais clara e concisa, especialmente ao trabalhar com pacotes do tidyverse. O pipe recebe o resultado de uma expressão à esquerda e o passa como primeiro argumento para a próxima expressão à direita.
+O operador `|>`, conhecido como pipe, é uma ferramenta poderosa em R que facilita a encadeamento de operações em sequência. Ele permite escrever código de forma mais clara e concisa, especialmente ao trabalhar com pacotes do tidyverse. O pipe recebe o resultado de uma expressão à esquerda e o passa como primeiro argumento para a próxima expressão à direita.
 
 ::: callout-tip
-Você não precisa digitar `%\>%` toda vez que precisar. Utilize o atalho Ctrl+Shitf+M.
+Você não precisa digitar `|>` toda vez que precisar. Utilize o atalho Ctrl+Shitf+M.
 :::
 
 Vamos supor que temos uma função `f`, uma função `g` e uma variável `x`. Queremos aplicar `g` a `x` e, em seguida, aplicar `f` ao resultado. Aqui está como poderíamos fazer isso de duas maneiras: usando a abordagem encadeada tradicional e usando o pipe `|>`.
@@ -64,10 +64,10 @@ x |>
   f()
 ```
 
-Ambos os métodos produzirão o mesmo resultado. No entanto, a segunda abordagem usando o pipe %\>% é mais legível e fácil de entender, especialmente quando estamos encadeando múltiplas operações. Isso torna o código mais conciso e mais próximo de uma leitura natural da operação que está sendo realizada.
+Ambos os métodos produzirão o mesmo resultado. No entanto, a segunda abordagem usando o pipe `|>` é mais legível e fácil de entender, especialmente quando estamos encadeando múltiplas operações. Isso torna o código mais conciso e mais próximo de uma leitura natural da operação que está sendo realizada.
 
 ::: callout-tip
-Uma boa prática ao usar o pipe %\>% é quebrar a linha após cada pipe para melhorar a legibilidade do código.
+Uma boa prática ao usar o pipe `|>` é quebrar a linha após cada pipe para melhorar a legibilidade do código.
 :::
 
 ## Dados no formato *tidy*
